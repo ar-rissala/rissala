@@ -1,0 +1,51 @@
+﻿
+> rissala@0.1.0 lint
+> eslint
+
+
+C:\Users\micka\Desktop\rissala\src\app\about\page.tsx
+   3:16   warning  'CardContent' is defined but never used                          @typescript-eslint/no-unused-vars
+   3:46   warning  'CardHeader' is defined but never used                           @typescript-eslint/no-unused-vars
+  16:57   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  16:123  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  19:42   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  20:48   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  44:49   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  54:39   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  54:69   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  54:86   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  54:114  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\app\blog\page.tsx
+   4:8   warning  'Link' is defined but never used                                 @typescript-eslint/no-unused-vars
+  70:25  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\app\contact\page.tsx
+   3:16  warning  'CardContent' is defined but never used                          @typescript-eslint/no-unused-vars
+   3:29  warning  'CardDescription' is defined but never used                      @typescript-eslint/no-unused-vars
+   3:46  warning  'CardHeader' is defined but never used                           @typescript-eslint/no-unused-vars
+   3:58  warning  'CardTitle' is defined but never used                            @typescript-eslint/no-unused-vars
+   3:69  warning  'CardFooter' is defined but never used                           @typescript-eslint/no-unused-vars
+  13:59  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\app\marketplaces\crypto\page.tsx
+  83:164  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\app\page.tsx
+  48:105  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\app\services\page.tsx
+  28:69   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  60:98   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  60:142  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\components\layout\Footer.tsx
+  35:69   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  35:111  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\micka\Desktop\rissala\src\components\layout\Navbar.tsx
+   3:16  warning  'X' is defined but never used                                    @typescript-eslint/no-unused-vars
+  25:87  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+Ô£û 28 problems (19 errors, 9 warnings)
+
