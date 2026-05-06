@@ -25,9 +25,9 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-background pt-24 pb-32 lg:pt-36 lg:pb-40">
+      <section className="relative overflow-hidden bg-background pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-36 lg:pb-40">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background z-0" />
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-50 z-0" />
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] lg:w-[800px] lg:h-[800px] bg-primary/20 rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] opacity-50 z-0" />
         
         <div className="container relative z-10 mx-auto px-4 lg:px-8 flex flex-col items-center text-center">
           <motion.div 
@@ -36,25 +36,25 @@ export default function Home() {
             variants={staggerContainer}
             className="max-w-4xl"
           >
-            <motion.div variants={fadeIn} className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-8 backdrop-blur-sm">
-              <ShieldCheck className="mr-2 h-4 w-4" /> La référence éthique
+            <motion.div variants={fadeIn} className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs sm:text-sm font-medium text-primary mb-6 sm:mb-8 backdrop-blur-sm">
+              <ShieldCheck className="mr-2 h-4 w-4" /> La science Authentique
             </motion.div>
             
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-foreground font-heading">
-              Investissez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>.
+            <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-foreground font-heading">
+              Étudiez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>.
             </motion.h1>
             
-            <motion.p variants={fadeIn} className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-              Rissala vous accompagne dans la gestion de votre patrimoine, le calcul de votre Zakat et l'accès aux marchés cryptos et actions 100% Halal.
+            <motion.p variants={fadeIn} className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
+              Rissala vous accompagne dans votre quête de savoir, nous croyons que la vraie connaissance élève l'âme et rapproche du Créateur.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="h-14 px-8 text-lg w-full sm:w-auto group">
+              <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg w-full sm:w-auto group">
                 Commencer maintenant
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto border-primary/20 hover:bg-primary/5">
-                Découvrir nos services
+              <Button size="lg" variant="outline" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg w-full sm:w-auto border-primary/20 hover:bg-primary/5">
+                Apprendre l'Arabe
               </Button>
             </motion.div>
           </motion.div>
@@ -62,11 +62,11 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-card/50 relative">
+      <section className="py-16 sm:py-20 lg:py-24 bg-card/50 relative">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">Une plateforme complète</h2>
-            <p className="text-muted-foreground text-lg">Des outils conçus sur-mesure pour allier performance financière et respect des principes islamiques.</p>
+          <div className="text-center mb-10 sm:mb-16 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 sm:mb-4">Une plateforme complète</h2>
+            <p className="text-muted-foreground text-base sm:text-lg">Des outils conçus sur-mesure pour allier performance financière et respect des principes islamiques.</p>
           </div>
 
           <motion.div 
@@ -74,7 +74,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           >
             {/* Crypto Card */}
             <motion.div variants={fadeIn}>
@@ -140,14 +140,14 @@ export default function Home() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4 lg:px-8 text-center border-t border-border/50 pt-24">
-          <h2 className="text-2xl font-semibold mb-12 text-muted-foreground">Ils nous font confiance pour leur investissement éthique</h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+      <section className="py-12 sm:py-16 lg:py-24">
+        <div className="container mx-auto px-4 lg:px-8 text-center border-t border-border/50 pt-12 sm:pt-16 lg:pt-24">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-8 sm:mb-12 text-muted-foreground">Ils nous font confiance pour leur investissement éthique</h2>
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
             {/* Logos Placeholders - Emulating Fintech Partners */}
-            <div className="text-2xl font-bold font-heading">Interactive Trader</div>
-            <div className="text-2xl font-bold font-heading flex items-center"><Briefcase className="mr-2" /> Islamic Finance Hub</div>
-            <div className="text-2xl font-bold font-heading">Halal Investors Network</div>
+            <div className="text-base sm:text-xl lg:text-2xl font-bold font-heading">Interactive Trader</div>
+            <div className="text-base sm:text-xl lg:text-2xl font-bold font-heading flex items-center"><Briefcase className="mr-2 h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" /> Islamic Finance Hub</div>
+            <div className="text-base sm:text-xl lg:text-2xl font-bold font-heading">Halal Investors Network</div>
           </div>
         </div>
       </section>

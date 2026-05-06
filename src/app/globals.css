@@ -120,11 +120,53 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
   }
   html {
     @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Safe area support for notched devices (iPhone X+, Dynamic Island) */
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Minimum touch target size for interactive elements */
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Exceptions for inline links within text */
+  p a, li a, span a, td a {
+    min-height: auto;
+    min-width: auto;
+  }
+
+  /* Scroll margin for anchor links under sticky navbar */
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Prevent horizontal overflow from decorative elements */
+  section {
+    overflow-x: clip;
+  }
+
+  /* Better image defaults */
+  img, video {
+    max-width: 100%;
+    height: auto;
   }
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -14,9 +14,16 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
-  title: "Rissala | La référence de la finance islamique",
-  description: "Plateforme premium de finance islamique: Business Halal, Zakat, et Marchés Crypto & Actions éthiques.",
+  title: "Rissala | Sciences Islamiques, Arabe & Coran",
+  description: "Plateforme premium de sciences islamiques : apprendre l'arabe, comprendre le Coran, fiqh, aqida, finance islamique et formations certifiantes.",
 };
 
 export default function RootLayout({

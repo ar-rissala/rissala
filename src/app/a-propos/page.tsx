@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="bg-primary/5 py-24 border-b border-border/50">
+      <section className="bg-primary/5 py-14 sm:py-18 lg:py-24 border-b border-border/50">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-heading">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 font-heading">
             Le Savoir  <span className="text-primary">au Service</span> de <span className="text-primary">la Foi</span>
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             Chez Rissala, nous croyons que la quête du savoir est une progression noble qui élève l’âme et rapproche du Créateur.
 Notre mission est de vous offrir un espace complet pour étudier sereinement : étude de la science islamique, apprentissage de la langue arabe, lecture et compréhension approfondie du Coran, biographies des grands savants, explication des madhabs, finance islamique, et bien d’autres domaines utiles.
 Rissala vous accompagne dans votre progression spirituelle et intellectuelle avec des contenus rigoureux, clairs et profondément ancrés dans les sources islamiques.
@@ -23,9 +23,9 @@ Rissala vous accompagne dans votre progression spirituelle et intellectuelle ave
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-18 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
             <Card className="bg-background/50 border-none shadow-none text-center flex flex-col items-center">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
                 <Shield className="h-8 w-8" />
