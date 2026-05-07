@@ -24,6 +24,9 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Rissala | Sciences Islamiques & Arabe",
   description: "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
+  verification: {
+    google: "g0SbH6Uv0UaRtCHKt7uTqQZqFFXKMdSaNt5mspGuR9A",
+  },
 };
 
 export default function RootLayout({
