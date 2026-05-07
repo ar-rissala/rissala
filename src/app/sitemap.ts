@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 // Remplacez cette URL par votre vrai nom de domaine en production
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rissala.fr";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rissala.net";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Routes principales
