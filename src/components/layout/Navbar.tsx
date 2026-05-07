@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { buttonVariants } from "@/components/ui/button";
-import { Menu, X, Instagram, Youtube } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Instagram, Youtube } from "@/components/ui/icons";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [

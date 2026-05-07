@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube } from "@/components/ui/icons";
 
 export function Footer() {
   return (
