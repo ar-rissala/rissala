@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Instagram, Youtube } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,6 +10,14 @@ export function Footer() {
           <p className="text-sm text-muted-foreground leading-relaxed">
             La référence en sciences islamiques. Étudiez l&apos;arabe et approfondissez votre foi avec des contenus rigoureux et authentiques.
           </p>
+          <div className="flex items-center gap-4 mt-6">
+            <a href="https://instagram.com/rissala.net_/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all duration-300" aria-label="Instagram Rissala">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="https://youtube.com/@Methoderissala" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all duration-300" aria-label="YouTube Rissala">
+              <Youtube className="h-5 w-5" />
+            </a>
+          </div>
         </div>
         
         <div>

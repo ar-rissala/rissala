@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { buttonVariants } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, Youtube } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -85,8 +85,18 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA & Socials */}
           <div className="hidden xl:flex items-center gap-3 shrink-0">
+            {/* Social Icons */}
+            <div className="flex items-center gap-1 mr-2">
+              <a href="https://instagram.com/rissala.net_/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="https://youtube.com/@Methoderissala" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="YouTube Rissala">
+                <Youtube className="h-4 w-4" />
+              </a>
+            </div>
+
             {/* REMPLACEZ LE "#" CI-DESSOUS PAR VOTRE LIEN DE CONNEXION SYSTEME.IO */}
             <a
               href="#"
@@ -191,13 +201,22 @@ export function Navbar() {
                 ))}
               </nav>
 
-              {/* Mobile CTA */}
+              {/* Mobile CTA & Socials */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
                 className="flex flex-col gap-3 w-full max-w-sm mt-8 pt-8 border-t border-border/50"
               >
+                <div className="flex justify-center gap-4 mb-2">
+                  <a href="https://instagram.com/rissala.net_/" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a href="https://youtube.com/@Methoderissala" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="YouTube Rissala">
+                    <Youtube className="h-5 w-5" />
+                  </a>
+                </div>
+
                 <a
                   href="#"
                   target="_blank"
