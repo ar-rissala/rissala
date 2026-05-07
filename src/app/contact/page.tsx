@@ -18,31 +18,31 @@ export default function ContactPage() {
         <div className="lg:col-span-1 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
           <Card className="bg-background border-none shadow-none text-left flex items-start p-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-6 text-primary shrink-0">
-               <Mail className="h-5 w-5" />
+              <Mail className="h-5 w-5" />
             </div>
             <div>
               <h3 className="font-bold text-lg mb-1">Email</h3>
-              <p className="text-muted-foreground">contact@rissala.com</p>
+              <p className="text-muted-foreground">rissala.contact@gmail.com</p>
             </div>
           </Card>
 
           <Card className="bg-background border-none shadow-none text-left flex items-start p-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-6 text-primary shrink-0">
-               <Phone className="h-5 w-5" />
+              <Phone className="h-5 w-5" />
             </div>
             <div>
               <h3 className="font-bold text-lg mb-1">Téléphone</h3>
-              <p className="text-muted-foreground">+33 1 23 45 67 89</p>
+              <p className="text-muted-foreground">+33 7 61 82 24 63</p>
             </div>
           </Card>
 
           <Card className="bg-background border-none shadow-none text-left flex items-start p-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-6 text-primary shrink-0">
-               <MapPin className="h-5 w-5" />
+              <MapPin className="h-5 w-5" />
             </div>
             <div>
               <h3 className="font-bold text-lg mb-1">Siège Rissala</h3>
-              <p className="text-muted-foreground">12 Avenue des Champs, Paris 75008, France.</p>
+              <p className="text-muted-foreground">24 av du Prado, Marseille 13006, France.</p>
             </div>
           </Card>
         </div>

@@ -170,3 +170,139 @@
     height: auto;
   }
 }
+
+/* ── Article Prose Styles ── */
+.prose-article {
+  @apply text-base leading-relaxed text-foreground;
+}
+
+.prose-article h2 {
+  @apply text-xl sm:text-2xl font-bold font-heading mt-12 mb-4 text-foreground;
+  @apply border-l-4 border-primary pl-4;
+}
+
+.prose-article h3 {
+  @apply text-lg sm:text-xl font-semibold font-heading mt-8 mb-3 text-foreground;
+}
+
+.prose-article p {
+  @apply mb-5 text-muted-foreground leading-relaxed;
+}
+
+.prose-article strong {
+  @apply text-foreground font-semibold;
+}
+
+.prose-article ul, .prose-article ol {
+  @apply mb-5 pl-6 space-y-2 text-muted-foreground;
+}
+
+.prose-article ul {
+  @apply list-disc;
+}
+
+.prose-article ol {
+  @apply list-decimal;
+}
+
+.prose-article li {
+  @apply leading-relaxed;
+}
+
+.prose-article blockquote {
+  @apply border-l-4 border-primary/50 bg-primary/5 rounded-r-lg p-4 sm:p-6 my-6 text-muted-foreground italic;
+}
+
+/* Arabic text styling */
+.arabic {
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  @apply text-2xl sm:text-3xl leading-loose text-foreground;
+}
+
+.arabic-inline {
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  @apply text-xl sm:text-2xl text-primary font-bold;
+}
+
+.arabic-large {
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  @apply text-4xl sm:text-5xl lg:text-6xl leading-loose text-primary;
+}
+
+/* Article tables */
+.prose-article .table-wrapper {
+  @apply my-8 overflow-x-auto rounded-xl border border-border/50;
+}
+
+.prose-article table {
+  @apply w-full text-sm;
+}
+
+.prose-article thead {
+  @apply bg-primary/10;
+}
+
+.prose-article th {
+  @apply px-4 py-3 text-left font-semibold text-foreground text-sm;
+}
+
+.prose-article td {
+  @apply px-4 py-3 border-t border-border/30 text-muted-foreground;
+}
+
+.prose-article tbody tr:hover {
+  @apply bg-primary/5 transition-colors;
+}
+
+.prose-article td .arabic-inline {
+  @apply text-lg;
+}
+
+/* Info boxes */
+.info-box {
+  @apply my-8 p-5 sm:p-6 rounded-xl border border-primary/30 bg-primary/5;
+}
+
+.info-box-title {
+  @apply text-base font-semibold text-primary mb-2 flex items-center gap-2;
+}
+
+.info-box-content {
+  @apply text-sm text-muted-foreground leading-relaxed;
+}
+
+/* Warning boxes */
+.warning-box {
+  @apply my-8 p-5 sm:p-6 rounded-xl border border-amber-500/30 bg-amber-500/5;
+}
+
+.warning-box-title {
+  @apply text-base font-semibold text-amber-500 mb-2 flex items-center gap-2;
+}
+
+.warning-box-content {
+  @apply text-sm text-muted-foreground leading-relaxed;
+}
+
+/* Step cards for method article */
+.step-card {
+  @apply p-5 sm:p-6 rounded-xl border border-border/50 bg-background/50 hover:border-primary/50 transition-colors duration-300;
+}
+
+.step-number {
+  @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm font-bold mb-3;
+}
+
+/* Letter showcase */
+.letter-showcase {
+  @apply inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-primary/10 border border-primary/20;
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  @apply text-3xl sm:text-4xl text-primary;
+}
