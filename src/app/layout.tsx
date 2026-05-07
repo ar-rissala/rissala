@@ -22,10 +22,27 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://rissala.net"),
   title: "Rissala | Sciences Islamiques & Arabe",
   description: "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
   verification: {
     google: "g0SbH6Uv0UaRtCHKt7uTqQZqFFXKMdSaNt5mspGuR9A",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Rissala | Sciences Islamiques & Arabe",
+    description: "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
+    url: "/",
+    siteName: "Rissala",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rissala | Sciences Islamiques & Arabe",
+    description: "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
   },
 };
 
