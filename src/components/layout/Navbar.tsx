@@ -10,10 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/apprendre-arabe", label: "Apprendre l'arabe" },
-  { href: "/comprendre-coran", label: "Comprendre le Coran" },
   { href: "/sciences-islamiques", label: "Sciences islamiques" },
   { href: "/finance-islamique", label: "Finance islamique" },
-  { href: "/formations", label: "Formations" },
   { href: "/blog", label: "Blog" },
   { href: "/a-propos", label: "À propos" },
 ];

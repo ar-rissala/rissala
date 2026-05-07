@@ -7,7 +7,7 @@ export function Footer() {
         <div className="col-span-2 sm:col-span-2 md:col-span-1">
           <h3 className="text-2xl font-bold text-primary mb-4 tracking-tight">Rissala</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            La référence en sciences islamiques. Étudiez l&apos;arabe, comprenez le Coran et approfondissez votre foi avec des contenus rigoureux et authentiques.
+            La référence en sciences islamiques. Étudiez l&apos;arabe et approfondissez votre foi avec des contenus rigoureux et authentiques.
           </p>
         </div>
         
@@ -15,7 +15,6 @@ export function Footer() {
           <h4 className="text-sm font-semibold mb-6 text-foreground">Apprendre</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li><Link href="/apprendre-arabe" className="hover:text-primary transition-colors">Apprendre l&apos;arabe</Link></li>
-            <li><Link href="/comprendre-coran" className="hover:text-primary transition-colors">Comprendre le Coran</Link></li>
             <li><Link href="/sciences-islamiques" className="hover:text-primary transition-colors">Sciences islamiques</Link></li>
             <li><Link href="/finance-islamique" className="hover:text-primary transition-colors">Finance islamique</Link></li>
           </ul>
@@ -24,7 +23,6 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-6 text-foreground">Ressources</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><Link href="/formations" className="hover:text-primary transition-colors">Formations</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Blog &amp; Articles</Link></li>
             <li><Link href="/a-propos" className="hover:text-primary transition-colors">À propos de Rissala</Link></li>
           </ul>
