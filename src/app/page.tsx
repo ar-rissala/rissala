@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, BarChart3, Bitcoin, Briefcase, Calculator, ShieldCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const fadeIn = {
@@ -49,17 +50,25 @@ export default function Home() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
-              <Button asChild className="h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-md">
-                <Link href="/formations" className="flex items-center justify-center w-full">
-                  Commencer maintenant
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-primary/20 hover:bg-primary/5 transition-all">
-                <Link href="/langue-arabe" className="flex items-center justify-center w-full">
-                  Apprendre l'Arabe
-                </Link>
-              </Button>
+              <Link 
+                href="/formations" 
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-md flex items-center justify-center"
+                )}
+              >
+                Commencer maintenant
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link 
+                href="/langue-arabe" 
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-primary/20 hover:bg-primary/5 transition-all flex items-center justify-center"
+                )}
+              >
+                Apprendre l'Arabe
+              </Link>
             </motion.div>
           </motion.div>
         </div>

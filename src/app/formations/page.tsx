@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, TrendingUp, ShieldCheck, BookOpen, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Formation Investissement Halal | Rissala",
@@ -32,13 +33,17 @@ export default function FormationsPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="h-12 sm:h-14 px-8 text-base font-semibold group rounded-xl shadow-lg w-full sm:w-auto" asChild>
-                  {/* Lien vers votre bon de commande Systeme.io */}
-                  <Link href="https://votre-lien-systeme.io/checkout" target="_blank">
-                    Accéder à la formation
-                    <ExternalLink className="ml-2 h-5 w-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                  </Link>
-                </Button>
+                <Link 
+                  href="https://votre-lien-systeme.io/checkout" 
+                  target="_blank"
+                  className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "h-12 sm:h-14 px-8 text-base font-semibold group rounded-xl shadow-lg w-full sm:w-auto flex items-center justify-center"
+                  )}
+                >
+                  Accéder à la formation
+                  <ExternalLink className="ml-2 h-5 w-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </Link>
                 <div className="flex items-center text-sm text-muted-foreground ml-2 sm:ml-4">
                   <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
                   Paiement 100% sécurisé
@@ -105,11 +110,16 @@ export default function FormationsPage() {
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                   Rejoignez les étudiants qui ont déjà pris le contrôle de leurs finances tout en préservant leurs valeurs. Accès à vie et mises à jour incluses.
                 </p>
-                <Button size="lg" className="h-14 px-10 text-lg font-semibold rounded-xl shadow-lg" asChild>
-                  <Link href="https://votre-lien-systeme.io/checkout" target="_blank">
-                    Rejoindre le programme
-                  </Link>
-                </Button>
+                <Link 
+                  href="https://votre-lien-systeme.io/checkout" 
+                  target="_blank"
+                  className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "h-14 px-10 text-lg font-semibold rounded-xl shadow-lg flex items-center justify-center inline-flex"
+                  )}
+                >
+                  Rejoindre le programme
+                </Link>
              </div>
           </div>
 
