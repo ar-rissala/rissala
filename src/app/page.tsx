@@ -48,13 +48,17 @@ export default function Home() {
               Rissala vous accompagne dans votre quête de savoir, nous croyons que la vraie connaissance élève l'âme et rapproche du Créateur.
             </motion.p>
             
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg w-full sm:w-auto group">
-                Commencer maintenant
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
+              <Button asChild className="h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-md">
+                <Link href="/formations" className="flex items-center justify-center w-full">
+                  Commencer maintenant
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
-              <Button size="lg" variant="outline" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg w-full sm:w-auto border-primary/20 hover:bg-primary/5">
-                Apprendre l'Arabe
+              <Button asChild variant="outline" className="h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-primary/20 hover:bg-primary/5 transition-all">
+                <Link href="/langue-arabe" className="flex items-center justify-center w-full">
+                  Apprendre l'Arabe
+                </Link>
               </Button>
             </motion.div>
           </motion.div>

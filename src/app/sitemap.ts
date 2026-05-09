@@ -1,40 +1,27 @@
 import { MetadataRoute } from "next";
 
-// Remplacez cette URL par votre vrai nom de domaine en production
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rissala.net";
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Routes principales
-  const routes = [
+  // Remplacez cette URL par votre vrai nom de domaine en production
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rissala.net";
+
+  // 1. Routes Principales (Niveau 1) - Les plus importantes (Priorité haute)
+  const mainRoutes = [
     "",
+    "/langue-arabe",
+    "/sciences-islamiques",
+    "/finance-islamique",
+    "/ressources",
+    "/formations",
     "/a-propos",
-    "/contact",
-    "/services",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "weekly" as const,
-    priority: route === "" ? 1 : 0.8,
+    priority: route === "" ? 1.0 : 0.9,
   }));
 
-  // Apprendre l'Arabe
-  const arabeRoutes = [
-    "/apprendre-arabe",
-    "/apprendre-arabe/alphabet-arabe",
-    "/apprendre-arabe/formes-lettres-arabes",
-    "/apprendre-arabe/voyelles-courtes-arabe",
-    "/apprendre-arabe/voyelles-longues-arabe",
-    "/apprendre-arabe/methode-rissala-30-jours",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: route === "/apprendre-arabe" ? 0.9 : 0.7,
-  }));
-
-  // Sciences Islamiques
+  // 2. Sous-routes : Sciences Islamiques (Niveau 2)
   const sciencesRoutes = [
-    "/sciences-islamiques",
     "/sciences-islamiques/islam-sunnite-sources",
     "/sciences-islamiques/vie-prophete-muhammad",
     "/sciences-islamiques/transmission-message-islamique",
@@ -44,12 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "monthly" as const,
-    priority: route === "/sciences-islamiques" ? 0.9 : 0.7,
+    priority: 0.7,
   }));
 
-  // Finance Islamique
+  // 3. Sous-routes : Finance Islamique (Niveau 2)
   const financeRoutes = [
-    "/finance-islamique",
     "/finance-islamique/fondements-commerce-islam",
     "/finance-islamique/regles-vente-contrats",
     "/finance-islamique/riba-usure-explication",
@@ -59,8 +45,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "monthly" as const,
-    priority: route === "/finance-islamique" ? 0.9 : 0.7,
+    priority: 0.7,
   }));
 
-  return [...routes, ...arabeRoutes, ...sciencesRoutes, ...financeRoutes];
+  // 4. Sous-routes : Langue Arabe (Niveau 2)
+  const arabeRoutes = [
+    "/langue-arabe/alphabet-arabe",
+    "/langue-arabe/formes-lettres-arabes",
+    "/langue-arabe/voyelles-courtes-arabe",
+    "/langue-arabe/voyelles-longues-arabe",
+    "/langue-arabe/methode-rissala-30-jours",
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // On fusionne toutes les routes et on les envoie à Google
+  return [...mainRoutes, ...sciencesRoutes, ...financeRoutes, ...arabeRoutes];
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { buttonVariants } from "@/components/ui/button";
@@ -10,10 +11,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
-  { href: "/apprendre-arabe", label: "Apprendre l'arabe" },
+  { href: "/langue-arabe", label: "Langue arabe" },
   { href: "/sciences-islamiques", label: "Sciences islamiques" },
   { href: "/finance-islamique", label: "Finance islamique" },
-  { href: "/blog", label: "Blog" },
+  { href: "/ressources", label: "Ressources" },
+  { href: "/formations", label: "Formations" },
   { href: "/a-propos", label: "À propos" },
 ];
 
@@ -48,31 +50,29 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled
-            ? "border-b border-border/80 bg-background/80 backdrop-blur-xl shadow-sm"
-            : "border-b border-border/40 bg-background/60 backdrop-blur-md"
-        }`}
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
+          ? "border-b border-border/80 bg-background/80 backdrop-blur-xl shadow-sm"
+          : "border-b border-border/40 bg-background/60 backdrop-blur-md"
+          }`}
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 shrink-0">
+          <Link href="/" className="flex items-center space-x-2 shrink-0 group">
             <span className="text-2xl font-bold text-primary tracking-tight font-heading">
               Rissala
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center gap-1 flex-1 justify-center">
+          <div className="hidden lg:flex items-center gap-1 flex-1 justify-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                  isActive(link.href)
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
+                className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${isActive(link.href)
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
               >
                 {link.label}
                 {isActive(link.href) && (
@@ -87,13 +87,13 @@ export function Navbar() {
           </div>
 
           {/* Desktop CTA & Socials */}
-          <div className="hidden xl:flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             {/* Social Icons */}
             <div className="flex items-center gap-1 mr-2">
-              <a href="https://instagram.com/rissala.net_/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
+              <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="https://youtube.com/@Methoderissala" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="YouTube Rissala">
+              <a href="https://youtube.com/@rissala-1" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="YouTube Rissala">
                 <Youtube className="h-4 w-4" />
               </a>
             </div>
@@ -124,7 +124,7 @@ export function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="xl:hidden relative z-50 flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors"
+            className="lg:hidden relative z-50 flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors"
             aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -162,7 +162,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 xl:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
           >
             {/* Backdrop */}
             <div
@@ -190,11 +190,10 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`flex items-center justify-center w-full py-3.5 px-6 rounded-xl text-lg font-medium transition-all duration-200 ${
-                        isActive(link.href)
-                          ? "text-primary bg-primary/10"
-                          : "text-foreground hover:text-primary hover:bg-muted/50"
-                      }`}
+                      className={`flex items-center justify-center w-full py-3.5 px-6 rounded-xl text-lg font-medium transition-all duration-200 ${isActive(link.href)
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground hover:text-primary hover:bg-muted/50"
+                        }`}
                     >
                       {link.label}
                     </Link>
@@ -210,10 +209,10 @@ export function Navbar() {
                 className="flex flex-col gap-3 w-full max-w-sm mt-8 pt-8 border-t border-border/50"
               >
                 <div className="flex justify-center gap-4 mb-2">
-                  <a href="https://instagram.com/rissala.net_/" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
+                  <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
                     <Instagram className="h-5 w-5" />
                   </a>
-                  <a href="https://youtube.com/@Methoderissala" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="YouTube Rissala">
+                  <a href="https://youtube.com/@rissala-1" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="YouTube Rissala">
                     <Youtube className="h-5 w-5" />
                   </a>
                 </div>

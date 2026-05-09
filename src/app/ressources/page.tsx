@@ -28,11 +28,11 @@ const blogPosts = [
 ];
 
 export const metadata = {
-  title: 'Blog & Ressources | Rissala',
+  title: 'Ressources | Rissala',
   description: 'Articles sur la finance islamique, la Zakat et l\'investissement éthique.',
 }
 
-export default function BlogPage() {
+export default function RessourcesPage() {
   return (
     <div className="container mx-auto px-4 lg:px-8 py-10 sm:py-12 lg:py-16">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 border-b border-border/50 pb-6 sm:pb-8">
