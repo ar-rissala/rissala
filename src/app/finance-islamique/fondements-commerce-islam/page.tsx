@@ -14,7 +14,7 @@ export default function FondementsCommercePage() {
       titleAccent="Licéité et Justice Économique"
       subtitle="L'islam ne sépare pas la spiritualité de l'économie. Comprendre pourquoi le commerce est valorisé et l'usure (ribā) strictement prohibée est la clé pour aborder la finance islamique."
       articleNumber={1}
-      totalArticles={5}
+      totalArticles={6}
       nextArticle={{ href: "/finance-islamique/regles-vente-contrats", title: "Les règles de la vente (bayʿ)" }}
     >
       <p>

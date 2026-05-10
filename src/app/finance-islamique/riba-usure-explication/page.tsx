@@ -14,7 +14,7 @@ export default function RibaExplicationPage() {
       titleAccent="Ribā al-Faḍl et Ribā al-Nasīʾa"
       subtitle="Le Ribā ne se limite pas aux intérêts bancaires. La jurisprudence islamique définit techniquement deux types d'usure pour empêcher toute forme d'exploitation dans l'échange de devises et de matières premières."
       articleNumber={3}
-      totalArticles={5}
+      totalArticles={6}
       prevArticle={{ href: "/finance-islamique/regles-vente-contrats", title: "Les règles de la vente" }}
       nextArticle={{ href: "/finance-islamique/zakat-mecanisme-economique", title: "La zakāt : mécanisme économique" }}
     >

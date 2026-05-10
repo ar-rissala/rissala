@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2, Coins } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 

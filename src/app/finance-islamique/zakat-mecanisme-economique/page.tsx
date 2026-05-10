@@ -14,9 +14,9 @@ export default function ZakatMecanismePage() {
       titleAccent="Pilier Spirituel et Mécanisme Économique"
       subtitle="La Zakāt n'est pas une simple charité (sadaqa). C'est un prélèvement obligatoire, un droit des pauvres sur la richesse des riches, conçu pour empêcher la concentration extrême du capital."
       articleNumber={4}
-      totalArticles={5}
+      totalArticles={6}
       prevArticle={{ href: "/finance-islamique/riba-usure-explication", title: "Le ribā en détail" }}
-      nextArticle={{ href: "/finance-islamique/finance-islamique-moderne", title: "La finance islamique moderne" }}
+      nextArticle={{ href: "/finance-islamique/zakat-ere-moderne", title: "La Zakāt et l'ère moderne" }}
     >
       <p>
         Dans la vision économique de l&apos;islam, la richesse n&apos;est pas mauvaise en soi. Au contraire, elle est considérée comme un bienfait divin. Mais elle s&apos;accompagne d&apos;une condition stricte : <strong>elle doit circuler</strong>.

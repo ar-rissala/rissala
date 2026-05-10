@@ -13,9 +13,9 @@ export default function FinanceIslamiqueModernePage() {
       title="De la Jurisprudence Classique :"
       titleAccent="Vers la Finance Islamique Moderne"
       subtitle="Comment appliquer des règles juridiques vieilles de 14 siècles (interdiction du ribā, règles de vente) dans un monde financier moderne dominé par le crédit et la spéculation ? C'est le défi de la finance islamique."
-      articleNumber={5}
-      totalArticles={5}
-      prevArticle={{ href: "/finance-islamique/zakat-mecanisme-economique", title: "La zakāt : mécanisme économique" }}
+      articleNumber={6}
+      totalArticles={6}
+      prevArticle={{ href: "/finance-islamique/zakat-ere-moderne", title: "La Zakāt et l'ère moderne" }}
     >
       <p>
         Pendant des siècles, le commerce dans le monde musulman s&apos;est opéré selon les règles du <em>fiqh al-muʿāmalāt</em> que nous avons vues dans les articles précédents : commerce direct, associations pour le commerce maritime, paiements différés licites. 

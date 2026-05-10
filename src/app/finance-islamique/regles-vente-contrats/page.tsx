@@ -14,7 +14,7 @@ export default function ReglesVentePage() {
       titleAccent="Conditions de Validité d'un Contrat"
       subtitle="Le fiqh al-muʿāmalāt établit des règles strictes pour protéger l'acheteur et le vendeur. Un contrat n'est valide que s'il respecte des conditions précises sur les contractants, l'objet et la forme."
       articleNumber={2}
-      totalArticles={5}
+      totalArticles={6}
       prevArticle={{ href: "/finance-islamique/fondements-commerce-islam", title: "Les fondements du commerce" }}
       nextArticle={{ href: "/finance-islamique/riba-usure-explication", title: "Le ribā en détail" }}
     >

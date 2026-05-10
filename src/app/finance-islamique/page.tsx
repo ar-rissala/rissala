@@ -50,8 +50,18 @@ const articles = [
     tag: "Redistribution",
   },
   {
-    icon: Building2,
+    icon: Coins,
     number: 5,
+    title: "Comment la Zakāt purifie votre richesse",
+    subtitle: "Purifier sa Richesse au XXIe Siècle",
+    description:
+      "Découvrez les règles d'application de la Zakāt sur les actifs numériques, cryptos et portefeuilles boursiers internationaux.",
+    href: "/finance-islamique/zakat-ere-moderne",
+    tag: "Haute Science",
+  },
+  {
+    icon: Building2,
+    number: 6,
     title: "La Finance Islamique Moderne",
     subtitle: "De la Jurisprudence Classique aux Banques",
     description:
@@ -77,7 +87,7 @@ export default function FinanceIslamiquePage() {
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
             <BookOpen className="h-4 w-4" />
-            <span>Cursus Économique Complet • 5 Articles Fondamentaux</span>
+            <span>Cursus Économique Complet • 6 Articles Fondamentaux</span>
           </div>
         </div>
       </section>

@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/finance-islamique/regles-vente-contrats",
     "/finance-islamique/riba-usure-explication",
     "/finance-islamique/zakat-mecanisme-economique",
+    "/finance-islamique/zakat-ere-moderne",
     "/finance-islamique/finance-islamique-moderne",
   ].map((route) => ({
     url: `${baseUrl}${route}`,

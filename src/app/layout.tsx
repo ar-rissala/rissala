@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.png",
   },
 };
 
