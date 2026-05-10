@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen, Type, Baseline, Languages, GraduationCap, ArrowLeft } from "lucide-react";
+import { BookOpen, Languages, PenTool, GraduationCap, ArrowRight } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Langue Arabe | Rissala",
@@ -9,20 +10,20 @@ export const metadata: Metadata = {
 
 const articles = [
   {
-    icon: Type,
+    icon: BookOpen,
     number: 1,
     title: "L'Alphabet Arabe",
     subtitle: "Les 28 lettres fondamentales",
-    description: "Apprenez à prononcer et reconnaître les 28 lettres de l'alphabet arabe, la première étape essentielle de votre apprentissage.",
+    description: "Apprenez à prononcer et reconnaître les 28 lettres de l'alphabet arabe, la première étape essentielle.",
     href: "/langue-arabe/alphabet-arabe",
     tag: "Base",
   },
   {
-    icon: Baseline,
+    icon: PenTool,
     number: 2,
     title: "Les Formes des Lettres",
     subtitle: "Début, milieu et fin de mot",
-    description: "Comprenez comment les lettres arabes s'attachent entre elles et changent de forme selon leur position dans le mot.",
+    description: "Comprenez comment les lettres arabes s'attachent entre elles et changent de forme selon leur position.",
     href: "/langue-arabe/formes-lettres-arabes",
     tag: "Écriture",
   },
@@ -31,7 +32,7 @@ const articles = [
     number: 3,
     title: "Les Voyelles Courtes",
     subtitle: "Fatha, Kasra, Damma",
-    description: "Maîtrisez les voyelles courtes (Harakat) qui donnent le son exact à chaque lettre et permettent de lire vos premiers mots.",
+    description: "Maîtrisez les voyelles courtes (Harakat) qui donnent le son exact à chaque lettre.",
     href: "/langue-arabe/voyelles-courtes-arabe",
     tag: "Lecture",
   },
@@ -40,7 +41,7 @@ const articles = [
     number: 4,
     title: "Les Voyelles Longues",
     subtitle: "Alif, Waw, Ya",
-    description: "Découvrez l'allongement des sons dans la langue arabe pour une prononciation parfaite et fluide.",
+    description: "Découvrez l'allongement des sons dans la langue arabe pour une prononciation parfaite.",
     href: "/langue-arabe/voyelles-longues-arabe",
     tag: "Prononciation",
   },
@@ -49,7 +50,7 @@ const articles = [
     number: 5,
     title: "Méthode Rissala en 30 Jours",
     subtitle: "Votre programme complet",
-    description: "Un plan d'action structuré sur 30 jours pour passer de grand débutant à lecteur autonome de l'arabe classique.",
+    description: "Un plan d'action structuré sur 30 jours pour passer de grand débutant à lecteur autonome.",
     href: "/langue-arabe/methode-rissala-30-jours",
     tag: "Méthode",
   },
@@ -78,41 +79,33 @@ export default function LangueArabePage() {
       {/* Articles Grid */}
       <section className="py-10 sm:py-14 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <div className="space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {articles.map((article) => (
-              <Link
-                key={article.number}
-                href={article.href}
-                className="group block p-5 sm:p-6 lg:p-8 rounded-xl border border-border/50 bg-background/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
-              >
-                <div className="flex items-start gap-4 sm:gap-6">
-                  {/* Number + Icon */}
-                  <div className="shrink-0 flex flex-col items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary text-sm font-bold">
-                      {article.number}
-                    </span>
-                    <article.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-1 flex-wrap">
-                      <h2 className="text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+              <Link key={article.number} href={article.href} className="group">
+                <Card className="h-full border-border/50 bg-background/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                        {article.number}
+                      </div>
+                      <article.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
                         {article.title}
-                      </h2>
-                      <span className="inline-flex px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                      </CardTitle>
+                      <span className="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
                         {article.tag}
                       </span>
                     </div>
-                    <p className="text-sm text-primary/80 font-medium mb-2">{article.subtitle}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="shrink-0 hidden sm:flex items-center self-center">
-                    <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:-translate-x-1 transition-all" />
-                  </div>
-                </div>
+                    <p className="text-xs text-primary/80 font-semibold mb-3 uppercase tracking-wide">
+                      {article.subtitle}
+                    </p>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {article.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
               </Link>
             ))}
           </div>
