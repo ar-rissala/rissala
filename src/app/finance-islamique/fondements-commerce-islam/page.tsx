@@ -41,7 +41,7 @@ export default function FondementsCommercePage() {
       <div className="info-box">
         <div className="info-box-title">💡 Hadith fondamental</div>
         <div className="info-box-content">
-          Le Prophète Muhammad (sws) a dit : <em>« Le commerçant honnête et digne de confiance sera avec les prophètes, les véridiques et les martyrs [au Jour du Jugement]. »</em><br/><br/>
+          Le Prophète Muhammad (sws) a dit : <em>« Le commerçant honnête et digne de confiance sera avec les prophètes, les véridiques et ceux qui sont tombés pour la cause d&apos;Allah [au Jour du Jugement]. »</em><br/><br/>
           (Rapporté par al-Tirmidhī, d&apos;après le compagnon Abū Saʿīd al-Khudrī. Qualifié de ḥasan).
         </div>
       </div>

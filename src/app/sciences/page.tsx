@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, Compass, ShieldCheck, ScrollText, Scale, ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Sciences Islamiques | Rissala — Comprendre l'Islam Classique",
+  title: "Sciences | Rissala — Comprendre l'Islam Classique",
   description:
     "Fiqh, Histoire du Prophète, compilation du Coran, science du hadith et écoles juridiques. Un cursus académique simplifié pour comprendre la tradition sunnite.",
 };
@@ -16,7 +16,7 @@ const articles = [
     subtitle: "Origine, Sources et Structure Globale",
     description:
       "La définition de Ahl al-Sunna wa al-Jamā'a. Les 4 sources fondamentales (Coran, Sunna, Ijmā', Qiyās), la hiérarchie des textes et la logique de transmission.",
-    href: "/sciences-islamiques/islam-sunnite-sources",
+    href: "/sciences/islam-sunnite-sources",
     tag: "Fondements",
   },
   {
@@ -26,7 +26,7 @@ const articles = [
     subtitle: "Contexte historique et chronologie essentielle",
     description:
       "L'Arabie préislamique, la révélation, la différence entre la période mecquoise et médinoise. Les événements clés : Hégire, batailles et construction de la communauté.",
-    href: "/sciences-islamiques/vie-prophete-muhammad",
+    href: "/sciences/vie-prophete-muhammad",
     tag: "Sīra",
   },
   {
@@ -36,7 +36,7 @@ const articles = [
     subtitle: "Du Prophète aux premiers musulmans",
     description:
       "Comment le Coran est passé de la récitation orale à la standardisation sous 'Uthmān. Le rôle crucial des compagnons (ṣaḥāba) et des successeurs (tābi'ūn).",
-    href: "/sciences-islamiques/transmission-message-islamique",
+    href: "/sciences/transmission-message-islamique",
     tag: "Histoire Textuelle",
   },
   {
@@ -46,7 +46,7 @@ const articles = [
     subtitle: "Comment al-Bukhārī a vérifié la Sunna",
     description:
       "La méthodologie (matn + isnād), la critique des narrateurs ('ilm al-rijāl) et les critères d'authentification (sahih, hasan, da'if) pour protéger le message.",
-    href: "/sciences-islamiques/science-hadith-bukhari",
+    href: "/sciences/science-hadith-bukhari",
     tag: "Hadith",
   },
   {
@@ -56,7 +56,7 @@ const articles = [
     subtitle: "Comment le Fiqh s'est structuré",
     description:
       "L'apparition du besoin d'interprétation. Les 4 madhahib (Hanafī, Mālikī, Shāfi'ī, Hanbalī), leurs différences méthodologiques et la notion de divergence valide.",
-    href: "/sciences-islamiques/ecoles-juridiques-sunnites",
+    href: "/sciences/ecoles-juridiques-sunnites",
     tag: "Fiqh",
   },
 ];
@@ -69,8 +69,7 @@ export default function SciencesIslamiquesPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center relative z-10">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 font-heading">
-            Sciences{" "}
-            <span className="text-primary">Islamiques</span>
+            Sciences
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-6">
             Découvrez la construction de la tradition sunnite de manière progressive, structurée et académique. De l&apos;histoire du Prophète à la formation des écoles juridiques.
@@ -136,7 +135,7 @@ export default function SciencesIslamiquesPage() {
             Ce cursus n&apos;est pas un recueil de dogmes déconnectés. C&apos;est un voyage chronologique expliquant <strong>comment</strong> le message est né, a été transmis, filtré, puis interprété juridiquement au fil des siècles.
           </p>
           <Link
-            href="/sciences-islamiques/islam-sunnite-sources"
+            href="/sciences/islam-sunnite-sources"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
           >
             Commencer par le Fondement

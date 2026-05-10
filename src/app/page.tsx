@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BarChart3, Bitcoin, Briefcase, Calculator, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -26,9 +26,9 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-background pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-36 lg:pb-40">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background z-0" />
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] lg:w-[800px] lg:h-[800px] bg-primary/20 rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] opacity-50 z-0" />
+      <section className="relative overflow-hidden bg-background pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-36 lg:pb-40 border-b border-border/40">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background z-0" />
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] lg:w-[800px] lg:h-[800px] bg-primary/10 rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] opacity-40 z-0" />
         
         <div className="container relative z-10 mx-auto px-4 lg:px-8 flex flex-col items-center text-center">
           <motion.div 
@@ -41,23 +41,23 @@ export default function Home() {
               <ShieldCheck className="mr-2 h-4 w-4" /> La science Authentique
             </motion.div>
             
-            <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-foreground font-heading">
+            <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-foreground font-heading leading-tight">
               Étudiez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>.
             </motion.h1>
             
             <motion.p variants={fadeIn} className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-              Rissala vous accompagne dans votre quête de savoir, nous croyons que la vraie connaissance élève l'âme et rapproche du Créateur.
+              Rissala vous accompagne dans votre quête de savoir, nous croyons que la vraie connaissance élève l&apos;âme et rapproche du Créateur.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
               <Link 
-                href="/formations" 
+                href="/sciences" 
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-md flex items-center justify-center"
+                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-sm flex items-center justify-center"
                 )}
               >
-                Commencer maintenant
+                Explorer les Sciences
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
@@ -67,19 +67,19 @@ export default function Home() {
                   "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-primary/20 hover:bg-primary/5 transition-all flex items-center justify-center"
                 )}
               >
-                Apprendre l'Arabe
+                Apprendre l&apos;Arabe
               </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-card/50 relative">
+      {/* Learning Paths Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-10 sm:mb-16 max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 sm:mb-4">Une plateforme complète</h2>
-            <p className="text-muted-foreground text-base sm:text-lg">Des outils conçus sur-mesure pour allier performance financière et respect des principes islamiques.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 sm:mb-4">Vos Parcours d&apos;Apprentissage</h2>
+            <p className="text-muted-foreground text-base sm:text-lg italic">Un cursus progressif conçu pour bâtir des fondations solides.</p>
           </div>
 
           <motion.div 
@@ -89,61 +89,61 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           >
-            {/* Crypto Card */}
+            {/* Arabe Card */}
             <motion.div variants={fadeIn}>
-              <Card className="h-full border-border/50 bg-background/50 backdrop-blur hover:border-primary/50 transition-colors duration-300">
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
-                    <Bitcoin className="h-6 w-6" />
+                    <Languages className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Marketplace Crypto Halal</CardTitle>
-                  <CardDescription className="text-base line-clamp-2">
-                    Investissez dans des cryptomonnaies filtrées et auditées selon les standards de la finance islamique.
+                  <CardTitle className="text-xl">Langue Arabe</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    De l&apos;alphabet à la lecture autonome. Une progression logique pour maîtriser les bases de la langue classique.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/marketplaces/crypto" className="text-primary font-medium flex items-center group">
-                    Accéder au marché <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <Link href="/langue-arabe" className="text-primary font-medium flex items-center group">
+                    Commencer l&apos;alphabet <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Stocks Card */}
+            {/* Sciences Card */}
             <motion.div variants={fadeIn}>
-              <Card className="h-full border-border/50 bg-background/50 backdrop-blur hover:border-primary/50 transition-colors duration-300">
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
-                    <BarChart3 className="h-6 w-6" />
+                    <GraduationCap className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Marketplace Actions Halal</CardTitle>
-                  <CardDescription className="text-base line-clamp-2">
-                    Accédez aux actions de sociétés conformes via notre intégration de données du marché (Interactive Trader).
+                  <CardTitle className="text-xl">Sciences</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    Comprendre la tradition sunnite : Histoire, Hadith, Fiqh. Un cursus académique simplifié et sourcé.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/marketplaces/stocks" className="text-primary font-medium flex items-center group">
-                    Découvrir les actions <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <Link href="/sciences" className="text-primary font-medium flex items-center group">
+                    Découvrir le cursus <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Zakat Card */}
+            {/* Ressources Card */}
             <motion.div variants={fadeIn}>
-              <Card className="h-full border-border/50 bg-background/50 backdrop-blur hover:border-primary/50 transition-colors duration-300">
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
-                    <Calculator className="h-6 w-6" />
+                    <BookOpen className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Calcul de la Zakat</CardTitle>
-                  <CardDescription className="text-base line-clamp-2">
-                    Un outil précis et conforme pour évaluer la Nisab et calculer votre Zakat Al-Maal sur tous vos actifs.
+                  <CardTitle className="text-xl">Ressources & Articles</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    Bibliothèque d&apos;articles, guides et outils pédagogiques pour approfondir vos connaissances au quotidien.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/services/zakat" className="text-primary font-medium flex items-center group">
-                    Calculer ma Zakat <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <Link href="/ressources" className="text-primary font-medium flex items-center group">
+                    Lire les articles <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>
               </Card>
@@ -152,16 +152,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-12 sm:py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8 text-center border-t border-border/50 pt-12 sm:pt-16 lg:pt-24">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-8 sm:mb-12 text-muted-foreground">Ils nous font confiance pour leur investissement éthique</h2>
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {/* Logos Placeholders - Emulating Fintech Partners */}
-            <div className="text-base sm:text-xl lg:text-2xl font-bold font-heading">Interactive Trader</div>
-            <div className="text-base sm:text-xl lg:text-2xl font-bold font-heading flex items-center"><Briefcase className="mr-2 h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" /> Islamic Finance Hub</div>
-            <div className="text-base sm:text-xl lg:text-2xl font-bold font-heading">Halal Investors Network</div>
+      {/* Methodology Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading mb-6">La Méthode Rissala : Rigueur et Clarté</h2>
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                Notre approche repose sur trois piliers fondamentaux pour garantir un apprentissage sain et durable du savoir.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  { title: "Rigueur Académique", desc: "Des contenus basés sur les sources classiques et authentifiées." },
+                  { title: "Progression Logique", desc: "Un découpage par étapes pour ne jamais se sentir perdu." },
+                  { title: "Authenticité du Savoir", desc: "Une transmission fidèle à l'esprit de la tradition originelle." }
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="font-bold text-foreground">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative aspect-square bg-gradient-to-br from-primary/20 to-transparent rounded-2xl overflow-hidden flex items-center justify-center border border-primary/10"
+            >
+              <div className="p-12 text-center">
+                <BookOpen className="h-24 w-24 text-primary/40 mb-6 mx-auto" />
+                <p className="text-primary font-heading text-xl font-medium italic opacity-60">
+                  « La connaissance est une lumière qu&apos;Allah place dans le cœur. »
+                </p>
+              </div>
+            </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="py-20 lg:py-32">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading mb-6">Commencez votre voyage aujourd&apos;hui</h2>
+            <p className="text-muted-foreground text-lg mb-10">
+              Rejoignez une communauté d&apos;étudiants sérieux et accédez à des contenus conçus pour élever votre compréhension.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/formations" className={buttonVariants({ size: "lg", className: "px-8 rounded-xl h-14" })}>
+                Voir toutes les formations
+              </Link>
+              <Link href="/a-propos" className={buttonVariants({ variant: "outline", size: "lg", className: "px-8 rounded-xl h-14" })}>
+                En savoir plus
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const mainRoutes = [
     "",
     "/langue-arabe",
-    "/sciences-islamiques",
+    "/sciences",
     "/finance-islamique",
     "/ressources",
     "/formations",
@@ -20,13 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1.0 : 0.9,
   }));
 
-  // 2. Sous-routes : Sciences Islamiques (Niveau 2)
+  // 2. Sous-routes : Sciences (Niveau 2)
   const sciencesRoutes = [
-    "/sciences-islamiques/islam-sunnite-sources",
-    "/sciences-islamiques/vie-prophete-muhammad",
-    "/sciences-islamiques/transmission-message-islamique",
-    "/sciences-islamiques/science-hadith-bukhari",
-    "/sciences-islamiques/ecoles-juridiques-sunnites",
+    "/sciences/islam-sunnite-sources",
+    "/sciences/vie-prophete-muhammad",
+    "/sciences/transmission-message-islamique",
+    "/sciences/science-hadith-bukhari",
+    "/sciences/ecoles-juridiques-sunnites",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),

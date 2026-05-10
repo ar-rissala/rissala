@@ -15,8 +15,8 @@ export default function TransmissionMessagePage() {
       subtitle="Le Coran a été mémorisé, puis écrit, puis compilé, puis standardisé. La Sunna a circulé oralement pendant des décennies. Comprendre cette chronologie est essentiel."
       articleNumber={3}
       totalArticles={5}
-      prevArticle={{ href: "/sciences-islamiques/vie-prophete-muhammad", title: "La vie du Prophète Muhammad" }}
-      nextArticle={{ href: "/sciences-islamiques/science-hadith-bukhari", title: "La science du hadith" }}
+      prevArticle={{ href: "/sciences/vie-prophete-muhammad", title: "La vie du Prophète Muhammad" }}
+      nextArticle={{ href: "/sciences/science-hadith-bukhari", title: "La science du hadith" }}
     >
       <p>
         Le Prophète Muhammad est décédé en 632. Il laisse derrière lui un <strong>Coran révélé</strong> sur 23 ans et une <strong>Sunna transmise oralement</strong> à ses compagnons. Mais le Coran n&apos;est pas encore un livre relié. La Sunna n&apos;est pas encore compilée en recueils. Comment passe-t-on du message vivant à un corpus fixe et authentifié ?

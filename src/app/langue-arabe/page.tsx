@@ -4,7 +4,7 @@ import { BookOpen, Type, Baseline, Languages, GraduationCap, ArrowLeft } from "l
 
 export const metadata: Metadata = {
   title: "Langue Arabe | Rissala",
-  description: "Découvrez notre méthode pour apprendre la langue arabe, clé essentielle pour comprendre les sciences islamiques.",
+  description: "Découvrez notre méthode pour apprendre la langue arabe, clé essentielle pour comprendre les sciences.",
 };
 
 const articles = [
@@ -66,7 +66,7 @@ export default function LangueArabePage() {
             Langue <span className="text-primary">Arabe</span>
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-6">
-            Découvrez notre méthode d'apprentissage de la langue arabe, clé essentielle pour comprendre les sciences islamiques.
+            Découvrez notre méthode d'apprentissage de la langue arabe, clé essentielle pour comprendre les sciences.
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
             <BookOpen className="h-4 w-4" />

@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/langue-arabe", label: "Langue arabe" },
-  { href: "/sciences-islamiques", label: "Sciences islamiques" },
+  { href: "/sciences", label: "Sciences" },
   { href: "/finance-islamique", label: "Finance islamique" },
   { href: "/ressources", label: "Ressources" },
   { href: "/formations", label: "Formations" },

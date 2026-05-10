@@ -32,8 +32,8 @@ export default function VieProhpetePage() {
       subtitle="Le message islamique naît dans un contexte social, politique et tribal précis. Comprendre ce contexte est indispensable pour comprendre le message lui-même."
       articleNumber={2}
       totalArticles={5}
-      prevArticle={{ href: "/sciences-islamiques/islam-sunnite-sources", title: "L'islam sunnite : sources et structure" }}
-      nextArticle={{ href: "/sciences-islamiques/transmission-message-islamique", title: "La transmission du message" }}
+      prevArticle={{ href: "/sciences/islam-sunnite-sources", title: "L'islam sunnite : sources et structure" }}
+      nextArticle={{ href: "/sciences/transmission-message-islamique", title: "La transmission du message" }}
     >
       <p>
         Le Prophète Muhammad n&apos;est pas apparu dans le vide. Il est né dans une société tribale arabe du VIIe siècle, avec ses codes, ses alliances, ses conflits et sa religion polythéiste. Pour comprendre <strong>l&apos;islam sunnite</strong>, il faut d&apos;abord comprendre le monde dans lequel le message a été révélé.

@@ -26,9 +26,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Rissala | Sciences Islamiques & Arabe",
+  title: "Rissala | Sciences & Arabe",
   description:
-    "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
+    "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
   verification: {
     google: "g0SbH6Uv0UaRtCHKt7uTqQZqFFXKMdSaNt5mspGuR9A",
   },
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Rissala | Sciences Islamiques & Arabe",
+    title: "Rissala | Sciences & Arabe",
     description:
-      "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
+      "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
     url: siteUrl,
     siteName: "Rissala",
     locale: "fr_FR",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rissala | Sciences Islamiques & Arabe",
+    title: "Rissala | Sciences & Arabe",
     description:
-      "Plateforme premium de sciences islamiques : apprendre l'arabe, fiqh, aqida et finance islamique.",
+      "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
   },
   icons: {
     icon: "/favicon.ico",

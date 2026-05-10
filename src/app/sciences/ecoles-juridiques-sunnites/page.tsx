@@ -15,7 +15,7 @@ export default function EcolesJuridiquesPage() {
       subtitle="Le sunnisme possède un corpus textuel unique (Coran et Sunna) mais accepte une diversité d'interprétations. Comprendre les 4 madhāhib, c'est comprendre la flexibilité de la loi islamique."
       articleNumber={5}
       totalArticles={5}
-      prevArticle={{ href: "/sciences-islamiques/science-hadith-bukhari", title: "La science du hadith" }}
+      prevArticle={{ href: "/sciences/science-hadith-bukhari", title: "La science du hadith" }}
     >
       <p>
         Nous avons vu comment le <strong>Coran</strong> a été préservé et comment la <strong>Sunna</strong> a été authentifiée. Mais posséder des textes authentiques ne suffit pas. Il faut les <strong>comprendre</strong>, les <strong>contextualiser</strong> et en <strong>extraire des lois pratiques</strong> pour la vie de tous les jours. C&apos;est le rôle de la jurisprudence islamique : le <strong>fiqh</strong>.

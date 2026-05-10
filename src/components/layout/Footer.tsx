@@ -13,7 +13,7 @@ export function Footer() {
             </span>
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            La référence en sciences islamiques. Étudiez l&apos;arabe et approfondissez votre foi avec des contenus rigoureux et authentiques.
+            La référence en sciences. Étudiez l&apos;arabe et approfondissez votre foi avec des contenus rigoureux et authentiques.
           </p>
           <div className="flex items-center gap-4 mt-6">
             <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all duration-300" aria-label="Instagram Rissala">
@@ -29,7 +29,7 @@ export function Footer() {
           <h4 className="text-sm font-semibold mb-6 text-foreground">Apprendre</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li><Link href="/langue-arabe" className="hover:text-primary transition-colors">Langue arabe</Link></li>
-            <li><Link href="/sciences-islamiques" className="hover:text-primary transition-colors">Sciences islamiques</Link></li>
+            <li><Link href="/sciences" className="hover:text-primary transition-colors">Sciences</Link></li>
             <li><Link href="/finance-islamique" className="hover:text-primary transition-colors">Finance islamique</Link></li>
           </ul>
         </div>

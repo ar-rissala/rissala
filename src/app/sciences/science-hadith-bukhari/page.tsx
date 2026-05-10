@@ -15,8 +15,8 @@ export default function ScienceHadithPage() {
       subtitle="La tradition islamique n'est pas une accumulation aveugle de récits. C'est un système de filtrage extrêmement rigoureux basé sur la critique historique."
       articleNumber={4}
       totalArticles={5}
-      prevArticle={{ href: "/sciences-islamiques/transmission-message-islamique", title: "La transmission du message" }}
-      nextArticle={{ href: "/sciences-islamiques/ecoles-juridiques-sunnites", title: "Les écoles juridiques sunnites" }}
+      prevArticle={{ href: "/sciences/transmission-message-islamique", title: "La transmission du message" }}
+      nextArticle={{ href: "/sciences/ecoles-juridiques-sunnites", title: "Les écoles juridiques sunnites" }}
     >
       <p>
         Dans l&apos;article précédent, nous avons vu que la Sunna (les paroles et actes du Prophète) a circulé oralement pendant des décennies avant d&apos;être massivement compilée à l&apos;écrit. Cette transmission orale pose une question évidente : <strong>comment être sûr que ce qui est rapporté est vrai ?</strong>

@@ -15,7 +15,7 @@ export default function IslamSunnitePage() {
       subtitle="L'islam sunnite n'est pas un bloc monolithique. C'est une architecture de transmission et d'interprétation, construite sur des sources hiérarchisées et une méthodologie rigoureuse."
       articleNumber={1}
       totalArticles={5}
-      nextArticle={{ href: "/sciences-islamiques/vie-prophete-muhammad", title: "La vie du Prophète Muhammad" }}
+      nextArticle={{ href: "/sciences/vie-prophete-muhammad", title: "La vie du Prophète Muhammad" }}
     >
       <p>
         Le terme <strong>« sunnite »</strong> est omniprésent, mais rarement expliqué avec précision. La plupart des gens savent vaguement que c&apos;est « la branche majoritaire de l&apos;islam ». Mais que signifie-t-il réellement ? Sur quoi repose-t-il ? Comment est-il structuré ?
