@@ -9,8 +9,8 @@ interface ArticleNavItem {
 interface ArticleLayoutProps {
   children: React.ReactNode;
   title: string;
-  titleAccent: string;
-  subtitle: string;
+  titleAccent?: string;
+  subtitle?: string;
   prevArticle?: ArticleNavItem;
   nextArticle?: ArticleNavItem;
   articleNumber: number;
@@ -39,11 +39,13 @@ export function ArticleLayout({
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 font-heading">
             {title}{" "}
-            <span className="text-primary">{titleAccent}</span>
+            {titleAccent && <span className="text-primary">{titleAccent}</span>}
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            {subtitle}
-          </p>
+          {subtitle && (
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
         </div>
       </section>
 
