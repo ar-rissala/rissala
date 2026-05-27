@@ -10,7 +10,7 @@ const blogPosts = [
     category: "Zakat",
     readTime: "5 min",
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
-    href: "/finance-islamique/zakat-ere-moderne",
+    href: "/fr/finance-islamique/zakat-ere-moderne",
   },
   {
     title: "Le filtrage Halal (Sharia Screening) : Méthode AAOIFI",

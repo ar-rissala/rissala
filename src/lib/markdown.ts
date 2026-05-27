@@ -1,69 +1,158 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import {
+  type ContentSection,
+  type Locale,
+  articlePath,
+  isContentSection,
+} from "@/lib/i18n";
 
-const articlesDirectory = path.join(process.cwd(), 'content/articles');
+const contentRoot = path.join(process.cwd(), "content");
+
+export interface ArticleNavItem {
+  href: string;
+  title: string;
+}
 
 export interface ArticleData {
   slug: string;
+  lang: Locale;
+  section: ContentSection;
   title: string;
   titleAccent?: string;
   subtitle?: string;
   description?: string;
   date: string;
-  category: string;
   tag?: string;
   articleNumber?: number;
   totalArticles?: number;
-  prevArticle?: { href: string; title: string };
-  nextArticle?: { href: string; title: string };
+  prevArticle?: ArticleNavItem;
+  nextArticle?: ArticleNavItem;
   content: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
-export function getArticleBySlug(slug: string): ArticleData | null {
+function sectionDir(lang: Locale, section: ContentSection): string {
+  return path.join(contentRoot, lang, section);
+}
+
+function resolveNav(
+  lang: Locale,
+  section: ContentSection,
+  data: Record<string, unknown>,
+  key: "prev" | "next"
+): ArticleNavItem | undefined {
+  const articleKey = key === "prev" ? "prevArticle" : "nextArticle";
+  const slugKey = key === "prev" ? "prevArticleSlug" : "nextArticleSlug";
+  const titleKey = key === "prev" ? "prevArticleTitle" : "nextArticleTitle";
+
+  const embedded = data[articleKey] as
+    | { href?: string; title?: string; slug?: string }
+    | undefined;
+
+  if (embedded?.title) {
+    if (embedded.slug) {
+      return {
+        href: articlePath(lang, section, embedded.slug),
+        title: embedded.title,
+      };
+    }
+    if (embedded.href) {
+      const slugFromHref = embedded.href.split("/").filter(Boolean).pop();
+      if (slugFromHref) {
+        return {
+          href: articlePath(lang, section, slugFromHref),
+          title: embedded.title,
+        };
+      }
+    }
+  }
+
+  const slug = data[slugKey] as string | undefined;
+  const title = data[titleKey] as string | undefined;
+  if (slug && title) {
+    return { href: articlePath(lang, section, slug), title };
+  }
+
+  return undefined;
+}
+
+export function getArticleBySlug(
+  lang: Locale,
+  section: ContentSection,
+  slug: string
+): ArticleData | null {
   try {
-    const fullPath = path.join(articlesDirectory, `${slug}.md`);
+    const fullPath = path.join(sectionDir(lang, section), `${slug}.md`);
     if (!fs.existsSync(fullPath)) return null;
-    
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
 
     return {
       slug,
+      lang,
+      section,
       content,
-      title: data.title || '',
-      titleAccent: data.titleAccent,
-      subtitle: data.subtitle,
-      description: data.description,
-      date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
-      category: data.category || '',
-      tag: data.tag,
-      articleNumber: data.articleNumber,
-      totalArticles: data.totalArticles,
-      prevArticle: data.prevArticle,
-      nextArticle: data.nextArticle,
-      ...data,
-    } as ArticleData;
+      title: (data.title as string) || "",
+      titleAccent: data.titleAccent as string | undefined,
+      subtitle: data.subtitle as string | undefined,
+      description: data.description as string | undefined,
+      date: data.date
+        ? new Date(data.date as string).toISOString()
+        : new Date().toISOString(),
+      tag: data.tag as string | undefined,
+      articleNumber: data.articleNumber as number | undefined,
+      totalArticles: data.totalArticles as number | undefined,
+      prevArticle: resolveNav(lang, section, data, "prev"),
+      nextArticle: resolveNav(lang, section, data, "next"),
+    };
   } catch (error) {
-    console.error(`Error reading article ${slug}:`, error);
+    console.error(`Error reading article ${lang}/${section}/${slug}:`, error);
     return null;
   }
 }
 
-export function getAllArticles(): ArticleData[] {
-  const fileNames = fs.readdirSync(articlesDirectory);
-  const allArticlesData = fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.md$/, '');
-      return getArticleBySlug(slug);
-    })
-    .filter((article): article is ArticleData => article !== null);
+export function getSectionSlugs(
+  lang: Locale,
+  section: ContentSection
+): string[] {
+  const dir = sectionDir(lang, section);
+  if (!fs.existsSync(dir)) return [];
 
-  return allArticlesData.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return fs
+    .readdirSync(dir)
+    .filter((name) => name.endsWith(".md"))
+    .map((name) => name.replace(/\.md$/, ""));
 }
 
-export function getArticlesByCategory(category: string): ArticleData[] {
-  return getAllArticles().filter((article) => article.category === category);
+export function getArticlesInSection(
+  lang: Locale,
+  section: ContentSection
+): ArticleData[] {
+  return getSectionSlugs(lang, section)
+    .map((slug) => getArticleBySlug(lang, section, slug))
+    .filter((article): article is ArticleData => article !== null)
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function getAllLocalizedArticles(): ArticleData[] {
+  const articles: ArticleData[] = [];
+
+  for (const lang of ["fr", "en", "ar"] as Locale[]) {
+    for (const section of [
+      "apprendre-arabe",
+      "sciences-islamiques",
+      "finance-islamique",
+    ] as ContentSection[]) {
+      articles.push(...getArticlesInSection(lang, section));
+    }
+  }
+
+  return articles;
+}
+
+export function parseSectionParam(section: string): ContentSection | null {
+  return isContentSection(section) ? section : null;
 }

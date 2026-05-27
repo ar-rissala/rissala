@@ -1,68 +1,78 @@
 import { MetadataRoute } from "next";
+import { locales, type ContentSection } from "@/lib/i18n";
+import { getSectionSlugs } from "@/lib/markdown";
+import { hreflangByLocale, toAbsoluteUrl } from "@/lib/seo";
+
+const sections: ContentSection[] = [
+  "apprendre-arabe",
+  "sciences-islamiques",
+  "finance-islamique",
+];
+
+function languageAlternates(
+  pathForLocale: (lang: (typeof locales)[number]) => string,
+  section?: ContentSection
+): Record<string, string> {
+  const languages: Record<string, string> = {};
+  for (const lang of locales) {
+    if (section === "apprendre-arabe" && lang === "ar") continue;
+    languages[hreflangByLocale[lang]] = toAbsoluteUrl(pathForLocale(lang));
+  }
+  languages["x-default"] = toAbsoluteUrl(pathForLocale("fr"));
+  return languages;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Remplacez cette URL par votre vrai nom de domaine en production
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rissala.net";
+  const now = new Date().toISOString();
 
-  // 1. Routes Principales (Niveau 1) - Les plus importantes (Priorité haute)
-  const mainRoutes = [
-    "",
-    "/langue-arabe",
-    "/sciences",
-    "/finance-islamique",
-    "/ressources",
-    "/formations",
-    "/a-propos",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : 0.9,
+  const staticPaths = ["", "/ressources", "/formations", "/a-propos"];
+
+  const entries: MetadataRoute.Sitemap = staticPaths.map((route) => ({
+    url: toAbsoluteUrl(route),
+    lastModified: now,
+    changeFrequency: route === "" ? "weekly" : "monthly",
+    priority: route === "" ? 1 : 0.8,
   }));
 
-  // 2. Sous-routes : Sciences (Niveau 2)
-  const sciencesRoutes = [
-    "/sciences/islam-sunnite-sources",
-    "/sciences/vie-prophete-muhammad",
-    "/sciences/transmission-message-islamique",
-    "/sciences/science-hadith-bukhari",
-    "/sciences/ecoles-juridiques-sunnites",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  for (const section of sections) {
+    entries.push({
+      url: toAbsoluteUrl(`/fr/${section}`),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: { languages: languageAlternates((lang) => `/${lang}/${section}`, section) },
+    });
 
-  // 3. Sous-routes : Finance Islamique (Niveau 2)
-  const financeRoutes = [
-    "/finance-islamique/fondements-commerce-islam",
-    "/finance-islamique/regles-vente-contrats",
-    "/finance-islamique/riba-usure-explication",
-    "/finance-islamique/zakat-mecanisme-economique",
-    "/finance-islamique/zakat-ere-moderne",
-    "/finance-islamique/finance-islamique-moderne",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+    const slugs = new Set<string>();
+    for (const lang of locales) {
+      getSectionSlugs(lang, section).forEach((s) => slugs.add(s));
+    }
 
-  // 4. Sous-routes : Langue Arabe (Niveau 2)
-  const arabeRoutes = [
-    "/langue-arabe/alphabet-arabe",
-    "/langue-arabe/formes-lettres-arabes",
-    "/langue-arabe/voyelles-courtes-arabe",
-    "/langue-arabe/voyelles-longues-arabe",
-    "/langue-arabe/methode-rissala-30-jours",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+    for (const slug of slugs) {
+      const langsWithSlug = locales.filter((lang) =>
+        getSectionSlugs(lang, section).includes(slug)
+      );
+      if (langsWithSlug.length === 0) continue;
 
-  // On fusionne toutes les routes et on les envoie à Google
-  return [...mainRoutes, ...sciencesRoutes, ...financeRoutes, ...arabeRoutes];
+      entries.push({
+        url: toAbsoluteUrl(`/${langsWithSlug[0]}/${section}/${slug}`),
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates: {
+          languages: Object.fromEntries(
+            [
+              ...langsWithSlug.map((lang) => [
+                hreflangByLocale[lang],
+                toAbsoluteUrl(`/${lang}/${section}/${slug}`),
+              ]),
+              ["x-default", toAbsoluteUrl(`/fr/${section}/${slug}`)],
+            ] as [string, string][]
+          ),
+        },
+      });
+    }
+  }
+
+  return entries;
 }

@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://rissala.net";
@@ -26,9 +27,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Rissala | Sciences & Arabe",
+  title: "Rissala | Fondements & Arabe",
   description:
-    "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
+    "Plateforme premium de fondements : apprendre l'arabe, fiqh, aqida et finance islamique.",
   verification: {
     google: "g0SbH6Uv0UaRtCHKt7uTqQZqFFXKMdSaNt5mspGuR9A",
   },
@@ -36,9 +37,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Rissala | Sciences & Arabe",
+    title: "Rissala | Fondements & Arabe",
     description:
-      "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
+      "Plateforme premium de fondements : apprendre l'arabe, fiqh, aqida et finance islamique.",
     url: siteUrl,
     siteName: "Rissala",
     locale: "fr_FR",
@@ -46,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rissala | Sciences & Arabe",
+    title: "Rissala | Fondements & Arabe",
     description:
-      "Plateforme premium de sciences : apprendre l'arabe, fiqh, aqida et finance islamique.",
+      "Plateforme premium de fondements : apprendre l'arabe, fiqh, aqida et finance islamique.",
   },
   icons: {
     icon: "/icon.png",
@@ -69,6 +70,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

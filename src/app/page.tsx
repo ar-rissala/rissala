@@ -51,17 +51,17 @@ export default function Home() {
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
               <Link 
-                href="/sciences" 
+                href="/fr/sciences-islamiques" 
                 className={cn(
                   buttonVariants({ variant: "default" }),
                   "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-sm flex items-center justify-center"
                 )}
               >
-                Explorer les Sciences
+                Explorer les Fondements
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
-                href="/langue-arabe" 
+                href="/fr/apprendre-arabe" 
                 className={cn(
                   buttonVariants({ variant: "outline" }),
                   "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-primary/20 hover:bg-primary/5 transition-all flex items-center justify-center"
@@ -102,7 +102,7 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/langue-arabe" className="text-primary font-medium flex items-center group">
+                  <Link href="/fr/apprendre-arabe" className="text-primary font-medium flex items-center group">
                     Commencer l&apos;alphabet <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>
@@ -116,13 +116,13 @@ export default function Home() {
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
                     <GraduationCap className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Sciences</CardTitle>
+                  <CardTitle className="text-xl">Fondements</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
                     Comprendre la tradition sunnite : Histoire, Hadith, Fiqh. Un cursus académique simplifié et sourcé.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/sciences" className="text-primary font-medium flex items-center group">
+                  <Link href="/fr/sciences-islamiques" className="text-primary font-medium flex items-center group">
                     Découvrir le cursus <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>

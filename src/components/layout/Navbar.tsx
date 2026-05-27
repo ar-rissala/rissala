@@ -8,12 +8,15 @@ import { buttonVariants } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Instagram, Youtube } from "@/components/ui/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+
+const defaultLang = "fr";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
-  { href: "/langue-arabe", label: "Langue arabe" },
-  { href: "/sciences", label: "Sciences" },
-  { href: "/finance-islamique", label: "Finance islamique" },
+  { href: `/${defaultLang}/apprendre-arabe`, label: "Langue arabe" },
+  { href: `/${defaultLang}/sciences-islamiques`, label: "Fondements" },
+  { href: `/${defaultLang}/finance-islamique`, label: "Finance islamique" },
   { href: "/ressources", label: "Ressources" },
   { href: "/formations", label: "Formations" },
   { href: "/a-propos", label: "À propos" },
@@ -88,7 +91,7 @@ export function Navbar() {
 
           {/* Desktop CTA & Socials */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            {/* Social Icons */}
+            <LanguageSwitcher />
             <div className="flex items-center gap-1 mr-2">
               <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
                 <Instagram className="h-4 w-4" />
@@ -119,6 +122,11 @@ export function Navbar() {
             >
               S&apos;inscrire
             </a>
+          </div>
+
+          {/* Tablet Language Switcher */}
+          <div className="hidden sm:flex lg:hidden items-center mr-4">
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Toggle */}
@@ -208,6 +216,11 @@ export function Navbar() {
                 transition={{ delay: 0.4, duration: 0.3 }}
                 className="flex flex-col gap-3 w-full max-w-sm mt-8 pt-8 border-t border-border/50"
               >
+                {/* Mobile/Tablet Language Switcher */}
+                <div className="flex justify-center mb-4">
+                  <LanguageSwitcher />
+                </div>
+
                 <div className="flex justify-center gap-4 mb-2">
                   <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-3 text-muted-foreground hover:text-primary bg-muted/30 hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
                     <Instagram className="h-5 w-5" />
