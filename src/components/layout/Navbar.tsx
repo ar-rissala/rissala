@@ -67,7 +67,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1 flex-1 justify-center">
+          <div className="hidden xl:flex items-center gap-1 flex-1 justify-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -90,8 +90,8 @@ export function Navbar() {
           </div>
 
           {/* Desktop CTA & Socials */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <LanguageSwitcher />
+          <div className="hidden xl:flex items-center gap-3 shrink-0">
+            <LanguageSwitcher variant="dropdown" />
             <div className="flex items-center gap-1 mr-2">
               <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="Instagram Rissala">
                 <Instagram className="h-4 w-4" />
@@ -125,14 +125,14 @@ export function Navbar() {
           </div>
 
           {/* Tablet Language Switcher */}
-          <div className="hidden sm:flex lg:hidden items-center mr-4">
+          <div className="hidden sm:flex xl:hidden items-center mr-4">
             <LanguageSwitcher />
           </div>
 
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden relative z-50 flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors"
+            className="xl:hidden relative z-50 flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors"
             aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -170,7 +170,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 lg:hidden"
+            className="fixed inset-0 z-40 xl:hidden"
           >
             {/* Backdrop */}
             <div

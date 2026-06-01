@@ -26,10 +26,19 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-background pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-36 lg:pb-40 border-b border-border/40">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background z-0" />
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] lg:w-[800px] lg:h-[800px] bg-primary/10 rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] opacity-40 z-0" />
-        
+      <section
+        className="relative overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-36 lg:pb-40 border-b border-border/40"
+        style={{
+          backgroundColor: "#000",
+          backgroundImage: "url('/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Dark overlay with brand colors (black and green) */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-primary/20 to-black/90 pointer-events-none" />
+        <div className="absolute inset-0 z-[1] bg-black/40 pointer-events-none" />
         <div className="container relative z-10 mx-auto px-4 lg:px-8 flex flex-col items-center text-center">
           <motion.div 
             initial="hidden"
@@ -37,15 +46,15 @@ export default function Home() {
             variants={staggerContainer}
             className="max-w-4xl"
           >
-            <motion.div variants={fadeIn} className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs sm:text-sm font-medium text-primary mb-6 sm:mb-8 backdrop-blur-sm">
+            <motion.div variants={fadeIn} className="inline-flex items-center rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-xs sm:text-sm font-medium text-primary mb-6 sm:mb-8 backdrop-blur-sm shadow-lg shadow-black/20">
               <ShieldCheck className="mr-2 h-4 w-4" /> La science Authentique
             </motion.div>
             
-            <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-foreground font-heading leading-tight">
+            <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-white font-heading leading-tight drop-shadow-lg">
               Étudiez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>.
             </motion.h1>
             
-            <motion.p variants={fadeIn} className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
+            <motion.p variants={fadeIn} className="text-base sm:text-lg md:text-xl text-white/75 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
               Rissala vous accompagne dans votre quête de savoir, nous croyons que la vraie connaissance élève l&apos;âme et rapproche du Créateur.
             </motion.p>
             
@@ -64,7 +73,7 @@ export default function Home() {
                 href="/fr/apprendre-arabe" 
                 className={cn(
                   buttonVariants({ variant: "outline" }),
-                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-primary/20 hover:bg-primary/5 transition-all flex items-center justify-center"
+                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 rounded-xl border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all flex items-center justify-center backdrop-blur-sm"
                 )}
               >
                 Apprendre l&apos;Arabe
