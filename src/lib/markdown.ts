@@ -25,6 +25,7 @@ export interface ArticleData {
   description?: string;
   date: string;
   tag?: string;
+  image?: string;
   articleNumber?: number;
   totalArticles?: number;
   prevArticle?: ArticleNavItem;
@@ -95,19 +96,11 @@ export function getArticleBySlug(
       lang,
       section,
       content,
-      title: (data.title as string) || "",
-      titleAccent: data.titleAccent as string | undefined,
-      subtitle: data.subtitle as string | undefined,
-      description: data.description as string | undefined,
-      date: data.date
-        ? new Date(data.date as string).toISOString()
-        : new Date().toISOString(),
-      tag: data.tag as string | undefined,
-      articleNumber: data.articleNumber as number | undefined,
-      totalArticles: data.totalArticles as number | undefined,
-      prevArticle: resolveNav(lang, section, data, "prev"),
-      nextArticle: resolveNav(lang, section, data, "next"),
-    };
+      ...data,
+      title: data.title as string,
+      date: data.date as string,
+      image: data.image as string | undefined,
+    } as ArticleData;
   } catch (error) {
     console.error(`Error reading article ${lang}/${section}/${slug}:`, error);
     return null;
@@ -123,7 +116,7 @@ export function getSectionSlugs(
 
   return fs
     .readdirSync(dir)
-    .filter((name) => name.endsWith(".md"))
+    .filter((name) => name.endsWith(".md") && name.toLowerCase() !== "readme.md")
     .map((name) => name.replace(/\.md$/, ""));
 }
 
@@ -145,6 +138,7 @@ export function getAllLocalizedArticles(): ArticleData[] {
       "apprendre-arabe",
       "sciences-islamiques",
       "finance-islamique",
+      "ressources",
     ] as ContentSection[]) {
       articles.push(...getArticlesInSection(lang, section));
     }

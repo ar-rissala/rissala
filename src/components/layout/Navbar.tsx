@@ -17,9 +17,8 @@ const navLinks = [
   { href: `/${defaultLang}/apprendre-arabe`, label: "Langue arabe" },
   { href: `/${defaultLang}/sciences-islamiques`, label: "Fondements" },
   { href: `/${defaultLang}/finance-islamique`, label: "Finance islamique" },
-  { href: "/ressources", label: "Ressources" },
+  { href: `/${defaultLang}/ressources`, label: "Ressources" },
   { href: "/formations", label: "Formations" },
-  { href: "/a-propos", label: "À propos" },
 ];
 
 export function Navbar() {

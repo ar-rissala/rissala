@@ -347,12 +347,36 @@ export const financeCatalog: SectionArticleCard[] = [
     },
     tag: { fr: "Époque Moderne", en: "Modern era", ar: "عصر حديث" },
   },
+  {
+    slug: "essor-immobilier-conforme-mourabaha-ijara",
+    icon: Building2,
+    number: 7,
+    title: {
+      fr: "L'essor de l'immobilier conforme",
+      en: "The Rise of Sharia-Compliant Real Estate",
+      ar: "صعود التمويل العقاري المتوافق",
+    },
+    subtitle: {
+      fr: "Comprendre la Mourabaha et l'Ijara",
+      en: "Understanding Murabaha and Ijara",
+      ar: "فهم المرابحة والإجارة",
+    },
+    description: {
+      fr: "Comment devenir propriétaire sans passer par le crédit classique usuraire.",
+      en: "How to become a homeowner without going through conventional usurious loans.",
+      ar: "كيف تصبح مالكاً للعقار دون المرور بالقروض الربوية التقليدية.",
+    },
+    tag: { fr: "Finance Perso", en: "Personal Finance", ar: "المالية الشخصية" },
+  },
 ];
+
+export const ressourcesCatalog: SectionArticleCard[] = [];
 
 export const sectionCatalogs: Record<ContentSection, SectionArticleCard[]> = {
   "apprendre-arabe": apprendreArabeCatalog,
   "sciences-islamiques": sciencesCatalog,
   "finance-islamique": financeCatalog,
+  "ressources": ressourcesCatalog,
 };
 
 export function catalogHref(

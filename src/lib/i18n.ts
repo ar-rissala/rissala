@@ -7,6 +7,7 @@ export const contentSections = [
   "apprendre-arabe",
   "sciences-islamiques",
   "finance-islamique",
+  "ressources",
 ] as const;
 
 export type ContentSection = (typeof contentSections)[number];

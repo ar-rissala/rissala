@@ -19,6 +19,19 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Redirect /ressources and /ressources/[slug] to localized versions
+  if (pathname === "/ressources") {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${defaultLocale}/ressources`;
+    return NextResponse.redirect(url, 308);
+  }
+  if (pathname.startsWith("/ressources/")) {
+    const slug = pathname.slice("/ressources/".length);
+    const url = request.nextUrl.clone();
+    url.pathname = `/${defaultLocale}/ressources/${slug}`;
+    return NextResponse.redirect(url, 308);
+  }
+
   const legacySections = Object.keys(legacySectionRedirects);
   for (const legacy of legacySections) {
     if (pathname === `/${legacy}`) {

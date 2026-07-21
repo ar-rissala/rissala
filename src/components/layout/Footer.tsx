@@ -37,7 +37,7 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-6 text-foreground">Ressources</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><Link href="/ressources" className="hover:text-primary transition-colors">Ressources &amp; Articles</Link></li>
+            <li><Link href="/fr/ressources" className="hover:text-primary transition-colors">Ressources &amp; Articles</Link></li>
             <li><Link href="/a-propos" className="hover:text-primary transition-colors">À propos de Rissala</Link></li>
           </ul>
         </div>

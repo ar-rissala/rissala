@@ -151,7 +151,7 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/ressources" className="text-primary font-medium flex items-center group">
+                  <Link href="/fr/ressources" className="text-primary font-medium flex items-center group">
                     Lire les articles <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>

@@ -7,6 +7,7 @@ const sections: ContentSection[] = [
   "apprendre-arabe",
   "sciences-islamiques",
   "finance-islamique",
+  "ressources",
 ];
 
 function languageAlternates(

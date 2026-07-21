@@ -45,6 +45,15 @@ const sectionConfigs: Record<ContentSection, SectionPageConfig> = {
       ar: "العودة إلى التمويل الإسلامي",
     },
   },
+  "ressources": {
+    siteNameSuffix: "Rissala",
+    backLabel: {
+      fr: "Retour aux ressources",
+      en: "Back to resources",
+      ar: "العودة إلى الموارد",
+    },
+    useSimpleLayout: true,
+  },
 };
 
 export function createArticlePage(section: ContentSection) {
