@@ -3,7 +3,7 @@ title: "L'essor de l'immobilier conforme (Mourabaha & Ijara)"
 subtitle: "Comment devenir propriétaire sans passer par le modèle de la banque classique et des crédits usuraires. Explication des montages."
 description: "Découvrez les alternatives au crédit immobilier classique. Analyse détaillée des contrats Mourabaha et Ijara pour une acquisition sans riba."
 date: "2026-06-03"
-image: "https://source.unsplash.com/800x600/?real-estate,building"
+image: "/images/ressources/essor-immobilier.jpg"
 tag: "Finance Perso"
 ---
 

@@ -3,6 +3,7 @@ title: "Halal Stock Filtering (Sharia Screening): The AAOIFI Method"
 subtitle: "A deep dive into the 3 strict financial ratios that allow a stock to be declared Halal."
 description: "Discover how stock filtering works according to AAOIFI standards. Sector filters and three key financial ratios."
 date: "2026-06-03"
+image: "/images/ressources/filtrage-halal.jpg"
 tag: "Investment"
 ---
 

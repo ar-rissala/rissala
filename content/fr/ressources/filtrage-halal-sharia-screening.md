@@ -3,7 +3,7 @@ title: "Le filtrage Halal (Sharia Screening) : Méthode AAOIFI"
 subtitle: "Plongée en profondeur dans les 3 ratios financiers stricts permettant à une action d'être déclarée Halal."
 description: "Découvrez le fonctionnement du filtrage d'actions selon les normes de l'AAOIFI. Les filtres sectoriels et les trois ratios financiers clés."
 date: "2026-06-03"
-image: "https://source.unsplash.com/800x600/?stock-market,finance"
+image: "/images/ressources/filtrage-halal.jpg"
 ---
 
 ## Qu'est-ce que le Sharia Screening ?

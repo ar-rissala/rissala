@@ -3,6 +3,7 @@ title: "Practical Guide to Murabaha"
 subtitle: "Understand the most used financing contract in Islamic banking."
 description: "Discover how Murabaha works, the contract's validity conditions, and how it differs from a conventional credit."
 date: "2026-06-03"
+image: "/images/ressources/guide-mourabaha.jpg"
 tag: "Financing"
 ---
 

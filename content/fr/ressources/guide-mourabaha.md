@@ -3,7 +3,7 @@ title: "Guide Pratique de la Mourabaha"
 subtitle: "Comprendre le contrat de financement le plus utilisé dans la banque islamique."
 description: "Découvrez le fonctionnement de la Mourabaha, les conditions de validité du contrat et comment elle se distingue d'un crédit traditionnel."
 date: "2026-06-03"
-image: "https://source.unsplash.com/800x600/?mortgage,finance"
+image: "/images/ressources/guide-mourabaha.jpg"
 ---
 
 La **Mourabaha** (vente à marge bénéficiaire) est le contrat de financement le plus répandu au sein des institutions financières islamiques. Elle représente souvent plus de 80% des actifs des banques islamiques.

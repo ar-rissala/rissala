@@ -121,7 +121,7 @@ export default async function RessourcesPage({ params }: { params: Promise<{ lan
               <Card className="overflow-hidden border-border/50 bg-card/60 hover:bg-card hover:border-primary/50 transition-all duration-300 group cursor-pointer flex flex-col h-full">
                 <div className="h-36 sm:h-48 overflow-hidden relative">
                   <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
-                  <ImageWithFallback src={post.image ?? `https://source.unsplash.com/800x600/?${encodeURIComponent(post.title)}`} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" fallbackSrc="https://source.unsplash.com/800x600/?finance" />
+                  <ImageWithFallback src={post.image ?? "/images/ressources/default-finance.jpg"} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" fallbackSrc="/images/ressources/default-finance.jpg" />
                 </div>
                 <CardHeader className="flex-1">
                   <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3 font-medium">

@@ -6,7 +6,7 @@ export default function ImageWithFallback({
   src,
   alt,
   className,
-  fallbackSrc = 'https://source.unsplash.com/800x600/?finance',
+  fallbackSrc = '/images/ressources/default-finance.jpg',
 }: {
   src: string;
   alt: string;

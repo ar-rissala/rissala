@@ -3,6 +3,7 @@ title: "The Rise of Compliant Real Estate (Murabaha & Ijara)"
 subtitle: "How to become a homeowner without conventional bank models and interest-bearing loans. Explanation of structures."
 description: "Discover alternatives to traditional mortgages. Detailed analysis of Murabaha and Ijara contracts for a riba-free acquisition."
 date: "2026-06-03"
+image: "/images/ressources/essor-immobilier.jpg"
 tag: "Personal Finance"
 ---
 
