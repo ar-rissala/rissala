@@ -15,13 +15,14 @@ const navLinks = [
   { href: "/", label: "Accueil" },
   { href: `/${defaultLang}/apprendre-arabe`, label: "Langue arabe" },
   { href: `/${defaultLang}/sciences-islamiques`, label: "Fondements" },
-  { href: `/${defaultLang}/fiqh-al-muamalat`, label: "fiqh  al-Mumalat" },
+  { href: `/${defaultLang}/fiqh-al-muamalat`, label: "fiqh  al-muamalat" },
   { href: `/${defaultLang}/actualites`, label: "Actualités" },
   { href: "/parcours", label: "Parcours" },
 ];
 
 export function Navbar() {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname ? decodeURIComponent(rawPathname) : "";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "The Rise of Compliant Real Estate (Murabaha & Ijara)"
 subtitle: "How to become a homeowner without conventional bank models and interest-bearing loans. Explanation of structures."
 description: "Discover alternatives to traditional mortgages. Detailed analysis of Murabaha and Ijara contracts for a riba-free acquisition."
@@ -9,7 +9,7 @@ tag: "Personal Finance"
 
 ## Introduction
 
-For decades, homeownership for a growing part of the world population has faced a deep dilemma: how to reconcile the legitimate desire to buy a home with the refusal to do so through interest-bearing loans, strictly prohibited by Islamic commercial law (*Fiqh al-Muamalat*). Today, the Islamic finance industry, with nearly $4 trillion in assets under management globally, has industrialized structural responses to this impasse.
+For decades, homeownership for a growing part of the world population has faced a deep dilemma: how to reconcile the legitimate desire to buy a home with the refusal to do so through interest-bearing loans, strictly prohibited by Islamic commercial law (*Fiqh al-muamalat*). Today, the Islamic finance industry, with nearly $4 trillion in assets under management globally, has industrialized structural responses to this impasse.
 
 Far from being a marginal banking system, compliant real estate financing has become an extremely sophisticated branch of financial engineering. It relies on named contracts (Murabaha, Ijara, Musharaka) that transform a money loan into a commercial transaction on a tangible asset. This real-economy-backed financialization appeals far beyond its natural client base, attracting ethical and participatory investors seeking to avoid pure speculation.
 

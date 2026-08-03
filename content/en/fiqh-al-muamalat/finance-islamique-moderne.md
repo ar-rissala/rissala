@@ -13,7 +13,7 @@ prevArticleSlug: "zakat-ere-moderne"
 prevArticleTitle: "Zakāt and the modern era"
 ---
 
-For centuries, trade in the Muslim world operated according to the rules of *fiqh al-muʿāmalāt* we have seen in previous articles: direct commerce, partnerships for maritime trade, lawful deferred payment.
+For centuries, trade in the Muslim world operated according to the rules of *fiqh al-muamalat* we have seen in previous articles: direct commerce, partnerships for maritime trade, lawful deferred payment.
 
 But with the rise of the modern banking system, intrinsically based on interest-bearing loans (ribā) for consumption and investment, Muslims faced a dilemma.
 
@@ -88,4 +88,4 @@ Across these articles, we have traced the full path of the economy according to 
 5. We applied zakāt in the **modern era** (Article 5).
 6. Finally, we discovered **contemporary application**: how banks attempt to revive old contracts (murābaḥa, ijāra, mushāraka) in the face of modern capitalism (this article).
 
-*Fiqh al-muʿāmalāt* is not merely a set of legal constraints. It is a complete system designed to ensure that money remains the servant of humanity and the real economy, not a capricious and destructive master.
+*Fiqh al-muamalat* is not merely a set of legal constraints. It is a complete system designed to ensure that money remains the servant of humanity and the real economy, not a capricious and destructive master.

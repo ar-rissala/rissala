@@ -40,7 +40,7 @@ const sectionConfigs: Record<ContentSection, SectionPageConfig> = {
   "fiqh-al-muamalat": {
     siteNameSuffix: "Rissala",
     backLabel: {
-      fr: "Retour à fiqh al-Mumalat",
+      fr: "Retour à fiqh al-muamalat",
       en: "Back to fiqh al-Mu'amalat",
       ar: "العودة إلى فقه المعاملات",
     },

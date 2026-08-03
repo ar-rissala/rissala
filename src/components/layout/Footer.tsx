@@ -1,8 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Instagram, Youtube } from "@/components/ui/icons";
+import { usePathname } from "next/navigation";
+import { type Locale, getLocalizedSlug } from "@/lib/i18n";
 
 export function Footer() {
+  const rawPathname = usePathname();
+  const pathname = rawPathname ? decodeURIComponent(rawPathname) : "";
+  const match = pathname?.match(/^\/(fr|en|ar)(\/|$)/);
+  const currentLang = (match?.[1] as Locale) ?? "fr";
+
   return (
     <footer className="w-full border-t border-border bg-background pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
@@ -28,17 +37,17 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-6 text-foreground">Apprendre</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><Link href="/fr/apprendre-arabe" className="hover:text-primary transition-colors">Langue arabe</Link></li>
-            <li><Link href="/fr/sciences-islamiques" className="hover:text-primary transition-colors">Fondements</Link></li>
-            <li><Link href="/fr/fiqh-al-muamalat" className="hover:text-primary transition-colors">fiqh  al-Mumalat</Link></li>
+            <li><Link href={`/${currentLang}/${getLocalizedSlug("apprendre-arabe", currentLang)}`} className="hover:text-primary transition-colors">Langue arabe</Link></li>
+            <li><Link href={`/${currentLang}/${getLocalizedSlug("sciences-islamiques", currentLang)}`} className="hover:text-primary transition-colors">Fondements</Link></li>
+            <li><Link href={`/${currentLang}/${getLocalizedSlug("fiqh-al-muamalat", currentLang)}`} className="hover:text-primary transition-colors">Finance islamique</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-sm font-semibold mb-6 text-foreground">Actualités</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><Link href="/fr/actualites" className="hover:text-primary transition-colors">Actualités &amp; Articles</Link></li>
-            <li><Link href="/a-propos" className="hover:text-primary transition-colors">À propos de Rissala</Link></li>
+            <li><Link href={`/${currentLang}/${getLocalizedSlug("actualites", currentLang)}`} className="hover:text-primary transition-colors">Actualités &amp; Articles</Link></li>
+            <li><Link href={`/${currentLang}/${getLocalizedSlug("about", currentLang)}`} className="hover:text-primary transition-colors">À propos de Rissala</Link></li>
           </ul>
         </div>
 

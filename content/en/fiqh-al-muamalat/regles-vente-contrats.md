@@ -1,8 +1,8 @@
 ---
 title: "The Rules of Sale (Bayʿ)"
 titleAccent: "Conditions for a Valid Contract"
-subtitle: "Fiqh al-muʿāmalāt establishes strict rules to protect buyer and seller. A contract is valid only if it meets precise conditions regarding the parties, the object, and form."
-description: "What are the conditions for a valid sale contract in Islamic law? Ijāb, qabūl, possession, absence of gharar. Fiqh al-muʿāmalāt."
+subtitle: "Fiqh al-muamalat establishes strict rules to protect buyer and seller. A contract is valid only if it meets precise conditions regarding the parties, the object, and form."
+description: "What are the conditions for a valid sale contract in Islamic law? Ijāb, qabūl, possession, absence of gharar. Fiqh al-muamalat."
 category: "fiqh-al-muamalat"
 slug: "regles-vente-contrats"
 date: "2024-05-10"
@@ -76,7 +76,7 @@ The prohibition of gharar is why conventional commercial insurance (paying a cer
 
 ## Hidden Defects and the Right of Rescission (Khiyār)
 
-*Fiqh al-muʿāmalāt* strongly protects the buyer. The seller has an absolute religious duty to disclose any defect (*ʿayb*) in the goods.
+*Fiqh al-muamalat* strongly protects the buyer. The seller has an absolute religious duty to disclose any defect (*ʿayb*) in the goods.
 
 If the buyer discovers a defect that was hidden from him, Islam grants him **khiyār al-ʿayb** (the defect option): the legal right to cancel the sale and recover his money, or to accept the item with a proportional price reduction.
 

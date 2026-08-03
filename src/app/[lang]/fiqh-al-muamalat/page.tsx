@@ -9,20 +9,20 @@ import { openGraphLocale, sectionIndexAlternates } from "@/lib/seo";
 
 const pageCopy: Record<Locale, { metaTitle: string; metaDesc: string; description: string; badge: string; titleMain: string; titleAccent: string; ctaTitle: string; ctaDesc: string; ctaBtn: string }> = {
   fr: {
-    metaTitle: "fiqh al-Mumalat | Rissala — Jurisprudence des Transactions",
-    metaDesc: "Fiqh al-muʿāmalāt : commerce, ribā, zakāt et finance moderne.",
-    description: "Découvrez le fiqh al-muʿāmalāt : la jurisprudence des transactions. Un système économique complet visant l'équité, le partage des risques et la connexion avec l'économie réelle.",
+    metaTitle: "fiqh al-muamalat | Rissala — Jurisprudence des Transactions",
+    metaDesc: "Fiqh al-muamalat : commerce, ribā, zakāt et finance moderne.",
+    description: "Découvrez le fiqh al-muamalat : la jurisprudence des transactions. Un système économique complet visant l'équité, le partage des risques et la connexion avec l'économie réelle.",
     badge: "Cursus Économique Complet • 6 Articles Fondamentaux",
     titleMain: "fiqh",
-    titleAccent: "al-Mumalat",
+    titleAccent: "al-muamalat",
     ctaTitle: "Du fiqh classique à l'application moderne",
     ctaDesc: "L'économie islamique n'est pas qu'une série d'interdits. C'est une vision éthique du commerce où la rentabilité s'allie à la justice sociale.",
     ctaBtn: "Commencer par le Fondement",
   },
   en: {
     metaTitle: "Fiqh al-Mu'amalat | Rissala",
-    metaDesc: "Fiqh al-muʿāmalāt: trade, ribā, zakāt, and modern finance.",
-    description: "Explore fiqh al-muʿāmalāt — transactional jurisprudence built on equity, shared risk, and real-economy ties.",
+    metaDesc: "Fiqh al-muamalat: trade, ribā, zakāt, and modern finance.",
+    description: "Explore fiqh al-muamalat — transactional jurisprudence built on equity, shared risk, and real-economy ties.",
     badge: "Complete Economic Course • 6 Core Articles",
     titleMain: "Fiqh",
     titleAccent: "al-Mu'amalat",

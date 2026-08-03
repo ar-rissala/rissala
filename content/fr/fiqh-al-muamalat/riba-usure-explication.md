@@ -64,7 +64,7 @@ Si vous échangez de l'Or contre de l'Argent (ou aujourd'hui des Euros contre de
 
 C'était la pratique de la Jāhiliyya (l'Arabie préislamique). Un homme prêtait 100 dirhams pour un an. À l'échéance, si le débiteur ne pouvait pas payer, le créancier disait : *« Tu paies maintenant, ou j'augmente la dette en échange d'un nouveau délai ? »*.
 
-Ce principe englobe **tout prêt conditionné par un surplus**. La règle d'or en fiqh al-muʿāmalāt est :
+Ce principe englobe **tout prêt conditionné par un surplus**. La règle d'or en fiqh al-muamalat est :
 **« Tout prêt qui attire un profit (financier ou en nature) est du ribā. »** (Kullu qarḍ jarra manfaʿa fahuwa ribā).
 
 :::warning

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { defaultLocale, legacySectionRedirects } from "@/lib/i18n";
+import { defaultLocale, legacySectionRedirects, getInternalSection, type Locale } from "@/lib/i18n";
 
 const localePrefix = /^\/(fr|en|ar)(\/|$)/;
 
@@ -15,7 +15,24 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (localePrefix.test(pathname)) {
+  const match = pathname.match(localePrefix);
+  if (match) {
+    const lang = match[1] as Locale;
+    const pathAfterLang = pathname.slice(lang.length + 1); // removes /fr
+    
+    if (pathAfterLang && pathAfterLang !== "/") {
+      const parts = pathAfterLang.split('/').filter(Boolean);
+      const slug = parts[0];
+      
+      const internalSection = getInternalSection(slug, lang);
+      if (internalSection && internalSection !== slug) {
+        // Rewrite /fr/a-propos to /fr/about internally
+        const rewrittenUrl = request.nextUrl.clone();
+        parts[0] = internalSection;
+        rewrittenUrl.pathname = `/${lang}/${parts.join('/')}`;
+        return NextResponse.rewrite(rewrittenUrl);
+      }
+    }
     return NextResponse.next();
   }
 

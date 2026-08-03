@@ -13,7 +13,7 @@ nextArticleSlug: "regles-vente-contrats"
 nextArticleTitle: "Rules of sale (bayʿ)"
 ---
 
-In the Islamic tradition, the mosque and the marketplace are not two opposing worlds. *Fiqh al-muʿāmalāt* (the jurisprudence of transactions) is a major branch of Islamic law, as fully developed as the *fiqh* of acts of worship (*ʿibādāt*).
+In the Islamic tradition, the mosque and the marketplace are not two opposing worlds. *Fiqh al-muamalat* (the jurisprudence of transactions) is a major branch of Islamic law, as fully developed as the *fiqh* of acts of worship (*ʿibādāt*).
 
 The starting point of all Islamic economics is formulated in a fundamental Qurʾānic verse:
 

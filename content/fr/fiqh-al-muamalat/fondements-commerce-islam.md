@@ -14,7 +14,7 @@ nextArticle:
   title: "Les règles de la vente (bayʿ)"
 ---
 
-Dans la tradition islamique, la mosquée et le marché ne sont pas deux mondes opposés. Le fiqh al-muʿāmalāt (la jurisprudence des transactions) est une branche majeure du droit islamique, tout aussi développée que le fiqh des actes d'adoration (ʿibādāt).
+Dans la tradition islamique, la mosquée et le marché ne sont pas deux mondes opposés. Le fiqh al-muamalat (la jurisprudence des transactions) est une branche majeure du droit islamique, tout aussi développée que le fiqh des actes d'adoration (ʿibādāt).
 
 Le point de départ de toute l'économie islamique est formulé dans un verset coranique fondamental :
 

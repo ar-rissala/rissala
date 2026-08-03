@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { locales, type Locale } from "@/lib/i18n";
+import { locales, type Locale, getInternalSection, getLocalizedSlug } from "@/lib/i18n";
 import { ChevronDown, Check } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -22,7 +22,10 @@ const fullNames: Record<Locale, string> = {
 };
 
 export function LanguageSwitcher({ dropUp = false }: { dropUp?: boolean }) {
-  const pathname = usePathname() ?? "/";
+  const rawPathname = usePathname() ?? "/";
+  // Decode URI component to handle Arabic characters correctly
+  const pathname = decodeURIComponent(rawPathname);
+  
   const match = pathname.match(localePrefix);
   const currentLang = (match?.[1] as Locale) ?? "fr";
   const suffix = match
@@ -50,12 +53,25 @@ export function LanguageSwitcher({ dropUp = false }: { dropUp?: boolean }) {
 
   function hrefFor(lang: Locale): string {
     if (localePrefix.test(pathname)) {
+      const parts = suffix.split('/').filter(Boolean);
+      if (parts.length > 0) {
+        const slug = parts[0];
+        const internalSection = getInternalSection(slug, currentLang);
+        if (internalSection) {
+          parts[0] = getLocalizedSlug(internalSection, lang);
+          return `/${lang}/${parts.join('/')}`;
+        }
+      }
       return `/${lang}${suffix}`;
     }
     return `/${lang}${pathname === "/" ? "" : pathname}`;
   }
 
-  const isApprendreArabe = suffix === "/apprendre-arabe" || suffix.startsWith("/apprendre-arabe/");
+  const parts = suffix.split('/').filter(Boolean);
+  const slug = parts[0];
+  const internalSection = slug ? getInternalSection(slug, currentLang) : undefined;
+  const isApprendreArabe = internalSection === "apprendre-arabe";
+
   const displayedLocales = isApprendreArabe
     ? locales.filter((lang) => lang !== "ar")
     : locales;

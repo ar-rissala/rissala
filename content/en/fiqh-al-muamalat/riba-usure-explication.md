@@ -62,7 +62,7 @@ If you exchange gold for silver (or today euros for dollars), quantities may dif
 
 This was the practice of the Jāhiliyya (pre-Islamic Arabia). A man would lend 100 dirhams for a year. At maturity, if the debtor could not pay, the creditor would say: *« Pay now, or I increase the debt in exchange for a new delay. »*
 
-This principle encompasses **every loan conditioned on a surplus**. The golden rule in *fiqh al-muʿāmalāt* is:
+This principle encompasses **every loan conditioned on a surplus**. The golden rule in *fiqh al-muamalat* is:
 **« Every loan that attracts a benefit (financial or in kind) is ribā. »** (*Kullu qarḍ jarra manfaʿa fahuwa ribā*).
 
 :::warning

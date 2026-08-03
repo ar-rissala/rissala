@@ -14,7 +14,7 @@ prevArticle:
   title: "La Zakāt et l'ère moderne"
 ---
 
-Pendant des siècles, le commerce dans le monde musulman s'est opéré selon les règles du *fiqh al-muʿāmalāt* que nous avons vues dans les articles précédents : commerce direct, associations pour le commerce maritime, paiements différés licites. 
+Pendant des siècles, le commerce dans le monde musulman s'est opéré selon les règles du *fiqh al-muamalat* que nous avons vues dans les articles précédents : commerce direct, associations pour le commerce maritime, paiements différés licites. 
 
 Mais avec l'apparition du système bancaire moderne, basé intrinsèquement sur le prêt à intérêt (Ribā) pour la consommation et l'investissement, les musulmans se sont retrouvés face à un dilemme.
 
@@ -88,4 +88,4 @@ La finance islamique moderne (environ 3000 milliards de dollars aujourd'hui) n'e
 4. Nous avons vu le **mécanisme de solidarité** : la Zakāt, qui force la circulation de la richesse vers les plus faibles (Article 4).
 5. Enfin, nous avons découvert l'**application contemporaine** : comment les banques tentent de faire revivre les vieux contrats (Murābaḥa, Ijāra, Mushāraka) face au capitalisme moderne (Article 5).
 
-Le *fiqh al-muʿāmalāt* n'est pas qu'une série de contraintes légales. C'est un système complet conçu pour assurer que l'argent reste le serviteur de l'homme et de l'économie réelle, et non un maître capricieux et destructeur.
+Le *fiqh al-muamalat* n'est pas qu'une série de contraintes légales. C'est un système complet conçu pour assurer que l'argent reste le serviteur de l'homme et de l'économie réelle, et non un maître capricieux et destructeur.

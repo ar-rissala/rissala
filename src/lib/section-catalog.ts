@@ -331,7 +331,7 @@ export const financeCatalog: SectionArticleCard[] = [
     icon: Building2,
     number: 6,
     title: {
-      fr: "La fiqh  al-Mumalat Moderne",
+      fr: "La fiqh  al-muamalat Moderne",
       en: "Modern Islamic Finance",
       ar: "التمويل الإسلامي الحديث",
     },

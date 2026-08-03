@@ -1,8 +1,8 @@
 ---
 title: "Les Règles de la Vente (Bayʿ)"
 titleAccent: "Conditions de Validité d'un Contrat"
-subtitle: "Le fiqh al-muʿāmalāt établit des règles strictes pour protéger l'acheteur et le vendeur. Un contrat n'est valide que s'il respecte des conditions précises sur les contractants, l'objet et la forme."
-description: "Quelles sont les conditions de validité d'un contrat de vente en droit islamique ? Ijab, Qabul, possession, absence de gharar. Fiqh al-muʿāmalāt."
+subtitle: "Le fiqh al-muamalat établit des règles strictes pour protéger l'acheteur et le vendeur. Un contrat n'est valide que s'il respecte des conditions précises sur les contractants, l'objet et la forme."
+description: "Quelles sont les conditions de validité d'un contrat de vente en droit islamique ? Ijab, Qabul, possession, absence de gharar. Fiqh al-muamalat."
 category: "fiqh-al-muamalat"
 slug: "regles-vente-contrats"
 date: "2024-05-10"
@@ -78,7 +78,7 @@ L'interdiction du gharar est la raison pour laquelle les assurances commerciales
 
 ## Les Vices Cachés et le Droit de Rétractation (Khiyār)
 
-Le fiqh al-muʿāmalāt protège puissamment l'acheteur. Le vendeur a l'obligation religieuse absolue de signaler tout défaut (ʿayb) de la marchandise.
+Le fiqh al-muamalat protège puissamment l'acheteur. Le vendeur a l'obligation religieuse absolue de signaler tout défaut (ʿayb) de la marchandise.
 
 Si l'acheteur découvre un défaut qui lui a été caché, l'islam lui accorde le **khiyār al-ʿayb** (l'option de défaut) : le droit légal d'annuler la vente et de récupérer son argent, ou d'accepter l'objet avec une réduction de prix proportionnelle.
 
