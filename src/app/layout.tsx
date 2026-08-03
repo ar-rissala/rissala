@@ -67,7 +67,7 @@ export default function RootLayout({
       lang="fr"
       className={`${inter.variable} ${outfit.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
