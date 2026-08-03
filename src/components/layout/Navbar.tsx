@@ -89,7 +89,7 @@ export function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden xl:flex items-center gap-3 shrink-0">
-            <LanguageSwitcher variant="dropdown" />
+            <LanguageSwitcher />
             {/* Unified Auth CTA */}
             <Link
               href="/connexion"
