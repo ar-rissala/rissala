@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2, Coins } from "lucide-react";
+import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2, Coins, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -23,6 +24,20 @@ const staggerContainer = {
 };
 
 export default function Home() {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+    setNewsletterLoading(true);
+    setTimeout(() => {
+      setNewsletterLoading(false);
+      setNewsletterSubmitted(true);
+    }, 800);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -208,27 +223,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-20 lg:py-32">
+      {/* Newsletter Capture Section */}
+      <section className="py-20 lg:py-28 relative overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
+            className="max-w-2xl mx-auto bg-card border border-border/80 rounded-3xl p-8 sm:p-12 shadow-xl shadow-black/[0.02] dark:shadow-black/20 relative z-10"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading mb-6">Commencez votre voyage aujourd&apos;hui</h2>
-            <p className="text-muted-foreground text-lg mb-10">
-              Rejoignez une communauté d&apos;étudiants sérieux et accédez à des contenus conçus pour élever votre compréhension.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/formations" className={buttonVariants({ size: "lg", className: "px-8 rounded-xl h-14" })}>
-                Voir toutes les formations
-              </Link>
-              <Link href="/a-propos" className={buttonVariants({ variant: "outline", size: "lg", className: "px-8 rounded-xl h-14" })}>
-                En savoir plus
-              </Link>
+            <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6">
+              <Mail className="w-6 h-6" />
             </div>
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading mb-4 text-foreground">
+              Rejoignez la Lettre Rissala
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-base mb-8 leading-relaxed">
+              Recevez nos meilleures analyses, conseils d&apos;investissement éthique et synthèses exclusives directement dans votre boîte mail.
+            </p>
+
+            {newsletterSubmitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-4 rounded-2xl bg-primary/10 border border-primary/20 text-primary font-medium text-sm flex items-center justify-center gap-2"
+              >
+                <CheckCircle2 className="w-5 h-5 shrink-0" />
+                <span>Merci ! Vous êtes bien inscrit à la lettre Rissala.</span>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  required
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="Votre adresse e-mail"
+                  className="flex-1 h-12 px-4 rounded-xl border border-border/80 bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterLoading}
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "h-12 px-6 rounded-xl font-medium text-sm flex items-center justify-center gap-2 shrink-0 shadow-sm"
+                  )}
+                >
+                  {newsletterLoading ? (
+                    <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <span>S&apos;inscrire</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+
+            <p className="text-xs text-muted-foreground/70 mt-4">
+              Pas de spam. Désinscription possible en un clic.
+            </p>
           </motion.div>
         </div>
       </section>

@@ -26,7 +26,7 @@ function languageAlternates(
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
 
-  const staticPaths = ["", "/actualites", "/formations", "/a-propos"];
+  const staticPaths = ["", "/actualites", "/parcours", "/a-propos", "/connexion"];
 
   const entries: MetadataRoute.Sitemap = staticPaths.map((route) => ({
     url: toAbsoluteUrl(route),

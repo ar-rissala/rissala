@@ -6,11 +6,11 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Formation Investissement Halal | Rissala",
+  title: "Parcours Investissement Halal | Rissala",
   description: "Découvrez comment faire fructifier votre patrimoine en respectant les principes de la finance islamique.",
 };
 
-export default function FormationsPage() {
+export default function ParcoursPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -23,7 +23,7 @@ export default function FormationsPage() {
             {/* Text Content */}
             <div className="max-w-2xl">
               <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs sm:text-sm font-medium text-primary mb-6">
-                <TrendingUp className="mr-2 h-4 w-4" /> Nouvelle Formation
+                <TrendingUp className="mr-2 h-4 w-4" /> Nouveau Parcours
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 font-heading leading-tight">
                 Maîtrisez l'<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">Investissement Halal</span>
@@ -41,7 +41,7 @@ export default function FormationsPage() {
                     "h-12 sm:h-14 px-8 text-base font-semibold group rounded-xl shadow-lg w-full sm:w-auto flex items-center justify-center"
                   )}
                 >
-                  Accéder à la formation
+                  Accéder au parcours
                   <ExternalLink className="ml-2 h-5 w-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </Link>
                 <div className="flex items-center text-sm text-muted-foreground ml-2 sm:ml-4">
@@ -55,7 +55,7 @@ export default function FormationsPage() {
             <div className="relative mx-auto w-full max-w-md lg:max-w-full aspect-[4/3] rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden flex items-center justify-center group">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent z-0"></div>
               {/* Le jour où vous aurez une image, remplacez cette div par : */}
-              {/* <img src="/votre-image.jpg" alt="Formation Investissement" className="w-full h-full object-cover" /> */}
+              {/* <img src="/votre-image.jpg" alt="Parcours Investissement" className="w-full h-full object-cover" /> */}
               
               <div className="relative z-10 text-center p-6">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 border border-primary/20">
@@ -65,7 +65,7 @@ export default function FormationsPage() {
                   Emplacement Image
                 </p>
                 <p className="text-xs text-muted-foreground/50 mt-2 max-w-[200px] mx-auto">
-                  Insérez ici un mockup de votre formation (ordinateur + téléphone)
+                  Insérez ici un mockup de votre parcours (ordinateur + téléphone)
                 </p>
               </div>
             </div>
