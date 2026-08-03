@@ -7,7 +7,7 @@ content/
 ├── fr/
 │   ├── apprendre-arabe/
 │   ├── sciences-islamiques/
-│   └── finance-islamique/
+│   └── fiqh-al-muamalat/
 ├── en/
 │   └── … (même arborescence)
 └── ar/

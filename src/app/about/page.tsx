@@ -3,7 +3,7 @@ import { Shield, BookOpen, HeartHandshake } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "À propos | Rissala - Finance Islamique",
+  title: "À propos | Rissala - fiqh  al-Mumalat",
   description: "Découvrez la vision, l'éthique et l'équipe derrière Rissala, la référence de la finance islamique moderne et transparente.",
 };
 

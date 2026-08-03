@@ -327,11 +327,11 @@ export const financeCatalog: SectionArticleCard[] = [
     tag: { fr: "Haute Science", en: "Advanced", ar: "متقدّم" },
   },
   {
-    slug: "finance-islamique-moderne",
+    slug: "fiqh-al-muamalat-moderne",
     icon: Building2,
     number: 6,
     title: {
-      fr: "La Finance Islamique Moderne",
+      fr: "La fiqh  al-Mumalat Moderne",
       en: "Modern Islamic Finance",
       ar: "التمويل الإسلامي الحديث",
     },
@@ -370,13 +370,13 @@ export const financeCatalog: SectionArticleCard[] = [
   },
 ];
 
-export const ressourcesCatalog: SectionArticleCard[] = [];
+export const actualitesCatalog: SectionArticleCard[] = [];
 
 export const sectionCatalogs: Record<ContentSection, SectionArticleCard[]> = {
   "apprendre-arabe": apprendreArabeCatalog,
   "sciences-islamiques": sciencesCatalog,
-  "finance-islamique": financeCatalog,
-  "ressources": ressourcesCatalog,
+  "fiqh-al-muamalat": financeCatalog,
+  "actualites": actualitesCatalog,
 };
 
 export function catalogHref(

@@ -137,8 +137,8 @@ export function getAllLocalizedArticles(): ArticleData[] {
     for (const section of [
       "apprendre-arabe",
       "sciences-islamiques",
-      "finance-islamique",
-      "ressources",
+      "fiqh-al-muamalat",
+      "actualites",
     ] as ContentSection[]) {
       articles.push(...getArticlesInSection(lang, section));
     }

@@ -6,8 +6,8 @@ import { hreflangByLocale, toAbsoluteUrl } from "@/lib/seo";
 const sections: ContentSection[] = [
   "apprendre-arabe",
   "sciences-islamiques",
-  "finance-islamique",
-  "ressources",
+  "fiqh-al-muamalat",
+  "actualites",
 ];
 
 function languageAlternates(
@@ -26,7 +26,7 @@ function languageAlternates(
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
 
-  const staticPaths = ["", "/ressources", "/formations", "/a-propos"];
+  const staticPaths = ["", "/actualites", "/formations", "/a-propos"];
 
   const entries: MetadataRoute.Sitemap = staticPaths.map((route) => ({
     url: toAbsoluteUrl(route),

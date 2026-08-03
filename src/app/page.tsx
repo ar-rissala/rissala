@@ -138,20 +138,20 @@ export default function Home() {
               </Card>
             </motion.div>
 
-            {/* Ressources Card */}
+            {/* Actualités Card */}
             <motion.div variants={fadeIn}>
               <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
                     <BookOpen className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Ressources & Articles</CardTitle>
+                  <CardTitle className="text-xl">Actualités & Articles</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
                     Bibliothèque d&apos;articles, guides et outils pédagogiques pour approfondir vos connaissances au quotidien.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Link href="/fr/ressources" className="text-primary font-medium flex items-center group">
+                  <Link href="/fr/actualites" className="text-primary font-medium flex items-center group">
                     Lire les articles <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>

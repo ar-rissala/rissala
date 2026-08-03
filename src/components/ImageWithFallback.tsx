@@ -6,7 +6,7 @@ export default function ImageWithFallback({
   src,
   alt,
   className,
-  fallbackSrc = '/images/ressources/default-finance.jpg',
+  fallbackSrc = '/images/actualites/default-finance.jpg',
 }: {
   src: string;
   alt: string;

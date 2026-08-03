@@ -37,20 +37,20 @@ const sectionConfigs: Record<ContentSection, SectionPageConfig> = {
       ar: "العودة إلى الأسس",
     },
   },
-  "finance-islamique": {
+  "fiqh-al-muamalat": {
     siteNameSuffix: "Rissala",
     backLabel: {
-      fr: "Retour à la finance islamique",
-      en: "Back to Islamic finance",
-      ar: "العودة إلى التمويل الإسلامي",
+      fr: "Retour à fiqh al-Mumalat",
+      en: "Back to fiqh al-Mu'amalat",
+      ar: "العودة إلى فقه المعاملات",
     },
   },
-  "ressources": {
+  "actualites": {
     siteNameSuffix: "Rissala",
     backLabel: {
-      fr: "Retour aux ressources",
-      en: "Back to resources",
-      ar: "العودة إلى الموارد",
+      fr: "Retour aux actualités",
+      en: "Back to news",
+      ar: "العودة إلى الأخبار",
     },
     useSimpleLayout: true,
   },

@@ -6,8 +6,8 @@ export const defaultLocale: Locale = "fr";
 export const contentSections = [
   "apprendre-arabe",
   "sciences-islamiques",
-  "finance-islamique",
-  "ressources",
+  "fiqh-al-muamalat",
+  "actualites",
 ] as const;
 
 export type ContentSection = (typeof contentSections)[number];
@@ -16,8 +16,9 @@ export type ContentSection = (typeof contentSections)[number];
 export const legacySectionRedirects: Record<string, ContentSection> = {
   "langue-arabe": "apprendre-arabe",
   sciences: "sciences-islamiques",
-  "finance-islamique": "finance-islamique",
+  "fiqh-al-muamalat": "fiqh-al-muamalat",
   "apprendre-arabe": "apprendre-arabe",
+  actualites: "actualites",
 };
 
 export function isLocale(value: string): value is Locale {

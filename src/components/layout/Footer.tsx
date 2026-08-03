@@ -30,14 +30,14 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li><Link href="/fr/apprendre-arabe" className="hover:text-primary transition-colors">Langue arabe</Link></li>
             <li><Link href="/fr/sciences-islamiques" className="hover:text-primary transition-colors">Fondements</Link></li>
-            <li><Link href="/fr/finance-islamique" className="hover:text-primary transition-colors">Finance islamique</Link></li>
+            <li><Link href="/fr/fiqh-al-muamalat" className="hover:text-primary transition-colors">fiqh  al-Mumalat</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-6 text-foreground">Ressources</h4>
+          <h4 className="text-sm font-semibold mb-6 text-foreground">Actualités</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><Link href="/fr/ressources" className="hover:text-primary transition-colors">Ressources &amp; Articles</Link></li>
+            <li><Link href="/fr/actualites" className="hover:text-primary transition-colors">Actualités &amp; Articles</Link></li>
             <li><Link href="/a-propos" className="hover:text-primary transition-colors">À propos de Rissala</Link></li>
           </ul>
         </div>

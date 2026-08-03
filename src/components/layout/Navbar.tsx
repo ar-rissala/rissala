@@ -16,8 +16,8 @@ const navLinks = [
   { href: "/", label: "Accueil" },
   { href: `/${defaultLang}/apprendre-arabe`, label: "Langue arabe" },
   { href: `/${defaultLang}/sciences-islamiques`, label: "Fondements" },
-  { href: `/${defaultLang}/finance-islamique`, label: "Finance islamique" },
-  { href: `/${defaultLang}/ressources`, label: "Ressources" },
+  { href: `/${defaultLang}/fiqh-al-muamalat`, label: "fiqh  al-Mumalat" },
+  { href: `/${defaultLang}/actualites`, label: "Actualités" },
   { href: "/formations", label: "Formations" },
 ];
 

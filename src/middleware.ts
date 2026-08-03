@@ -19,16 +19,16 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Redirect /ressources and /ressources/[slug] to localized versions
-  if (pathname === "/ressources") {
+  // Redirect /actualites and /actualites/[slug] to localized versions
+  if (pathname === "/actualites") {
     const url = request.nextUrl.clone();
-    url.pathname = `/${defaultLocale}/ressources`;
+    url.pathname = `/${defaultLocale}/actualites`;
     return NextResponse.redirect(url, 308);
   }
-  if (pathname.startsWith("/ressources/")) {
-    const slug = pathname.slice("/ressources/".length);
+  if (pathname.startsWith("/actualites/")) {
+    const slug = pathname.slice("/actualites/".length);
     const url = request.nextUrl.clone();
-    url.pathname = `/${defaultLocale}/ressources/${slug}`;
+    url.pathname = `/${defaultLocale}/actualites/${slug}`;
     return NextResponse.redirect(url, 308);
   }
 
