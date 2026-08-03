@@ -376,7 +376,8 @@ export const sectionCatalogs: Record<ContentSection, SectionArticleCard[]> = {
   "apprendre-arabe": apprendreArabeCatalog,
   "sciences-islamiques": sciencesCatalog,
   "fiqh-al-muamalat": financeCatalog,
-  "actualites": actualitesCatalog,
+  actualites: actualitesCatalog,
+  "about": [],
 };
 
 export function catalogHref(

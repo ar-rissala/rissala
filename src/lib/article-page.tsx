@@ -45,8 +45,8 @@ const sectionConfigs: Record<ContentSection, SectionPageConfig> = {
       ar: "العودة إلى فقه المعاملات",
     },
   },
-  "actualites": {
-    siteNameSuffix: "Rissala",
+  actualites: {
+    siteNameSuffix: "Actualités",
     backLabel: {
       fr: "Retour aux actualités",
       en: "Back to news",
@@ -54,6 +54,15 @@ const sectionConfigs: Record<ContentSection, SectionPageConfig> = {
     },
     useSimpleLayout: true,
   },
+  "about": {
+    siteNameSuffix: "À propos",
+    backLabel: {
+      fr: "Retour",
+      en: "Back",
+      ar: "العودة",
+    },
+    useSimpleLayout: true,
+  }
 };
 
 export function createArticlePage(section: ContentSection) {
