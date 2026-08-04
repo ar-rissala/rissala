@@ -195,10 +195,10 @@ export default function ConnexionPage() {
       <footer className="w-full max-w-5xl flex items-center justify-between text-xs text-muted-foreground z-10 py-2">
         <span>© {new Date().getFullYear()} Rissala. Tous droits réservés.</span>
         <div className="flex items-center gap-4">
-          <Link href="/privacy" className="hover:text-foreground transition-colors">
+          <Link href="/fr/privacy" className="hover:text-foreground transition-colors">
             Confidentialité
           </Link>
-          <Link href="/legal" className="hover:text-foreground transition-colors">
+          <Link href="/fr/legal" className="hover:text-foreground transition-colors">
             Mentions légales
           </Link>
         </div>

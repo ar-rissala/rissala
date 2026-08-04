@@ -61,8 +61,8 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12 lg:mt-16 pt-6 sm:pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground pb-[env(safe-area-inset-bottom,0px)]">
         <p>&copy; {new Date().getFullYear()} Rissala. Tous droits réservés.</p>
         <div className="flex gap-4 sm:gap-6 mt-3 sm:mt-0">
-          <Link href="/legal" className="hover:text-primary transition-colors">Mentions légales</Link>
-          <Link href="/privacy" className="hover:text-primary transition-colors">Politique de confidentialité</Link>
+          <Link href={`/${currentLang}/legal`} className="hover:text-primary transition-colors">Mentions légales</Link>
+          <Link href={`/${currentLang}/privacy`} className="hover:text-primary transition-colors">Politique de confidentialité</Link>
         </div>
       </div>
     </footer>
