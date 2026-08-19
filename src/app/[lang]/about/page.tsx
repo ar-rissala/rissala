@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BookOpen, Scale, Globe, Target } from "lucide-react";
 import { type Locale } from "@/lib/i18n";
+import { PageHero } from "@/components/ui/page-hero";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -98,7 +99,7 @@ export default async function AboutLocalizedPage({ params }: { params: Promise<{
   return (
     <div className={`flex flex-col min-h-screen ${isRtl ? "text-right" : "text-left"}`} dir={isRtl ? "rtl" : "ltr"}>
       {/* Hero Section */}
-      <section className="bg-primary/5 py-14 sm:py-18 lg:py-24 border-b border-border/50">
+      <PageHero>
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 font-heading">
             {t.h1} <span className="text-primary">{t.h1Span}</span>
@@ -110,7 +111,7 @@ export default async function AboutLocalizedPage({ params }: { params: Promise<{
             {t.intro}
           </p>
         </div>
-      </section>
+      </PageHero>
 
       {/* Main Content Section */}
       <section className="py-14 sm:py-18 lg:py-24">

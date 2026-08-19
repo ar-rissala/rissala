@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2, Coins, Mail } from "lucide-react";
+import { ArrowRight, BookOpen, Languages, GraduationCap, ShieldCheck, CheckCircle2, Coins, Mail, Scale, Book, Feather, Compass, Library, History } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -61,9 +61,7 @@ export default function Home() {
             variants={staggerContainer}
             className="max-w-4xl"
           >
-            <motion.div variants={fadeIn} className="inline-flex items-center rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-xs sm:text-sm font-medium text-primary mb-6 sm:mb-8 backdrop-blur-sm shadow-lg shadow-black/20">
-              <ShieldCheck className="mr-2 h-4 w-4" /> La science Authentique
-            </motion.div>
+
             
             <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-white font-heading leading-tight drop-shadow-lg">
               Étudiez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>.
@@ -95,6 +93,95 @@ export default function Home() {
               </Link>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Sciences Islamiques Section */}
+      <section className="py-16 sm:py-24 lg:py-32 bg-muted/20 relative border-b border-border/40">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 font-heading uppercase">
+                Sciences Islamiques
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Explorez le savoir islamique structuré et sourcé, pour bâtir une compréhension saine et profonde.
+              </p>
+            </div>
+            <Link 
+              href="/fr/sciences-islamiques"
+              className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm hover:text-primary/80 transition-colors"
+            >
+              Voir le cursus complet <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                title: "Fiqh",
+                desc: "Comprendre les règles et principes du droit islamique.",
+                icon: Scale,
+                link: "/fr/sciences-islamiques/fiqh"
+              },
+              {
+                title: "Hadith",
+                desc: "Étudier les hadiths et les sciences qui permettent de les comprendre.",
+                icon: Library,
+                link: "/fr/sciences-islamiques/hadith"
+              },
+              {
+                title: "Tafsir",
+                desc: "Approfondir la compréhension et l'interprétation du Coran.",
+                icon: Book,
+                link: "/fr/sciences-islamiques/tafsir"
+              },
+              {
+                title: "Sîra",
+                desc: "Découvrir la vie du Prophète ﷺ et son contexte historique.",
+                icon: Compass,
+                link: "/fr/sciences-islamiques/sira"
+              },
+              {
+                title: "Fondements",
+                desc: "Étudier les bases essentielles des sciences islamiques.",
+                icon: Feather,
+                link: "/fr/sciences-islamiques/fondements"
+              },
+              {
+                title: "Histoire islamique",
+                desc: "Découvrir les grandes périodes et événements de l'histoire islamique.",
+                icon: History,
+                link: "/fr/sciences-islamiques/histoire"
+              }
+            ].map((theme, i) => (
+              <Link 
+                key={i} 
+                href={theme.link}
+                className="group relative flex flex-col p-8 rounded-2xl bg-background border border-border/50 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-500 overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none text-primary">
+                  <theme.icon className="w-32 h-32" />
+                </div>
+                
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                  <theme.icon className="w-6 h-6" />
+                </div>
+                
+                <h3 className="text-xl font-bold font-heading mb-3 text-foreground group-hover:text-primary transition-colors">
+                  {theme.title}
+                </h3>
+                
+                <p className="text-sm text-muted-foreground leading-relaxed mb-8 flex-1">
+                  {theme.desc}
+                </p>
+                
+                <div className="flex items-center text-sm font-bold text-primary uppercase tracking-wider">
+                  Explorer <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

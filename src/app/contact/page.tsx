@@ -41,8 +41,8 @@ export default function ContactPage() {
           </div>
           <div className="flex flex-col">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">Email</span>
-            <a href="mailto:rissala.contact@gmail.com" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-              rissala.contact@gmail.com
+            <a href="mailto:rissala@tutamail.com" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+              rissala@tutamail.com
             </a>
           </div>
         </motion.div>
@@ -58,7 +58,7 @@ export default function ContactPage() {
           <div className="flex flex-col">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">Siège social</span>
             <address className="text-lg font-medium text-foreground not-italic">
-              24 avenue du Prado 13006, Marseille, France
+              4 rue des fenals 13010, Marseille, France
             </address>
           </div>
         </motion.div>

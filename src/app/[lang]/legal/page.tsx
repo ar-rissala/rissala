@@ -3,6 +3,7 @@ import { type Locale } from "@/lib/i18n";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Server, Globe, Scale, AlertTriangle, ShieldCheck, Cookie, Link as LinkIcon, Gavel, Scale as ScaleIcon } from "lucide-react";
 import Link from "next/link";
+import { PageHero } from "@/components/ui/page-hero";
 
 const pageCopy = {
   fr: {
@@ -16,7 +17,7 @@ const pageCopy = {
     publisherSiret: "Numéro SIRET : 88909075900024",
     publisherVat: "Numéro de TVA intracommunautaire : FR45889090759",
     publisherContact: "Adresse e-mail de contact :",
-    publisherEmail: "rissala.contact@gmail.com",
+    publisherEmail: "rissala@tutamail.com",
     publisherDirector: "Directeur de la publication :\nMickael Bon",
     hostingTitle: "2. Hébergement du site",
     hostingText1: "Le site Rissala est hébergé par :",
@@ -173,13 +174,15 @@ export default async function LegalNoticeLocalizedPage({ params }: { params: Pro
 
   return (
     <div className={`container mx-auto px-4 lg:px-8 py-16 max-w-4xl ${isRtl ? "text-right" : "text-left"}`} dir={isRtl ? "rtl" : "ltr"}>
-      <div className="text-center mb-12">
-        <Scale className="h-12 w-12 text-primary mx-auto mb-4" />
-        <h1 className="text-4xl font-bold font-heading mb-4">{t.title}</h1>
-        <p className="text-muted-foreground text-lg">
-          {t.description}
-        </p>
-      </div>
+      <PageHero className="rounded-2xl mb-12 -mx-4 lg:-mx-8">
+        <div className="text-center py-4 px-4">
+          <Scale className="h-12 w-12 text-primary mx-auto mb-4" />
+          <h1 className="text-4xl font-bold font-heading mb-4">{t.title}</h1>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            {t.description}
+          </p>
+        </div>
+      </PageHero>
 
       <div className="space-y-8">
         <Card className="border-border/50 bg-background/50 backdrop-blur">

@@ -22,9 +22,6 @@ export default function ParcoursPage() {
             
             {/* Text Content */}
             <div className="max-w-2xl">
-              <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs sm:text-sm font-medium text-primary mb-6">
-                <TrendingUp className="mr-2 h-4 w-4" /> Nouveau Parcours
-              </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 font-heading leading-tight">
                 Maîtrisez l'<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">Investissement Halal</span>
               </h1>

@@ -6,6 +6,7 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { getSectionSlugs } from "@/lib/markdown";
 import { financeCatalog, catalogHref } from "@/lib/section-catalog";
 import { openGraphLocale, sectionIndexAlternates } from "@/lib/seo";
+import { PageHero } from "@/components/ui/page-hero";
 
 const pageCopy: Record<Locale, { metaTitle: string; metaDesc: string; description: string; badge: string; titleMain: string; titleAccent: string; ctaTitle: string; ctaDesc: string; ctaBtn: string }> = {
   fr: {
@@ -76,18 +77,14 @@ export default async function FinanceIslamiqueIndexPage({ params }: { params: Pr
 return (
     <div className="flex flex-col min-h-screen">
       {/* Hero */}
-      <section className="relative bg-primary/5 py-14 sm:py-18 lg:py-24 border-b border-border/50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center relative z-10">
+      <PageHero>
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 font-heading">
             {t.titleMain}{" "}<span className="text-primary">{t.titleAccent}</span></h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-6">{t.description}</p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-            <BookOpen className="h-4 w-4" />
-            <span>{t.badge}</span>
-          </div>
+
         </div>
-      </section>
+      </PageHero>
 
       {/* Articles Grid */}
       <section className="py-10 sm:py-14 lg:py-20">

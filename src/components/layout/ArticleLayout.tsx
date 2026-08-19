@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { PageHero } from "@/components/ui/page-hero";
 
 interface ArticleNavItem {
   href: string;
@@ -30,9 +31,8 @@ export function ArticleLayout({
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero */}
-      <section className="relative bg-primary/5 py-14 sm:py-18 lg:py-24 border-b border-border/50 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center relative z-10">
+      <PageHero>
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             <BookOpen className="h-4 w-4" />
             <span>Méthode Rissala — Article {articleNumber}/{totalArticles}</span>
@@ -47,7 +47,7 @@ export function ArticleLayout({
             </p>
           )}
         </div>
-      </section>
+      </PageHero>
 
       {/* Article Content */}
       <section className="py-10 sm:py-14 lg:py-20">

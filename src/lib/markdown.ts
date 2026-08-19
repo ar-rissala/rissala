@@ -130,18 +130,24 @@ export function getArticlesInSection(
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
+export function getAllArticles(lang: Locale): ArticleData[] {
+  const articles: ArticleData[] = [];
+  for (const section of [
+    "apprendre-arabe",
+    "sciences-islamiques",
+    "fiqh-al-muamalat",
+    "actualites",
+  ] as ContentSection[]) {
+    articles.push(...getArticlesInSection(lang, section));
+  }
+  return articles.sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
 export function getAllLocalizedArticles(): ArticleData[] {
   const articles: ArticleData[] = [];
 
   for (const lang of ["fr", "en", "ar"] as Locale[]) {
-    for (const section of [
-      "apprendre-arabe",
-      "sciences-islamiques",
-      "fiqh-al-muamalat",
-      "actualites",
-    ] as ContentSection[]) {
-      articles.push(...getArticlesInSection(lang, section));
-    }
+    articles.push(...getAllArticles(lang));
   }
 
   return articles;

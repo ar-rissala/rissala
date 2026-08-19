@@ -7,6 +7,7 @@ import { getArticleBySlug, getSectionSlugs } from "@/lib/markdown";
 import { articleAlternates, openGraphLocale } from "@/lib/seo";
 import { ArticleLayout } from "@/components/layout/ArticleLayout";
 import { MarkdownContent } from "@/components/articles/MarkdownContent";
+import { PageHero } from "@/components/ui/page-hero";
 
 type ArticlePageParams = {
   lang: string;
@@ -120,18 +121,22 @@ export function createArticlePage(section: ContentSection) {
 
     if (config.useSimpleLayout) {
       return (
-        <article className="container mx-auto px-4 lg:px-8 py-10 max-w-4xl">
-          <SectionBackLink lang={lang} section={section} label={config.backLabel[lang]} />
-          <header className="mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 font-heading text-foreground">
-              {article.title}
-            </h1>
-            {article.subtitle && (
-              <p className="text-xl text-muted-foreground">{article.subtitle}</p>
-            )}
-          </header>
-          <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
-            <MarkdownContent content={article.content} />
+        <article className="flex flex-col min-h-screen">
+          <PageHero>
+            <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+              <SectionBackLink lang={lang} section={section} label={config.backLabel[lang]} />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 font-heading text-foreground">
+                {article.title}
+              </h1>
+              {article.subtitle && (
+                <p className="text-xl text-muted-foreground">{article.subtitle}</p>
+              )}
+            </div>
+          </PageHero>
+          <div className="container mx-auto px-4 lg:px-8 py-10 max-w-4xl">
+            <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
+              <MarkdownContent content={article.content} />
+            </div>
           </div>
         </article>
       );
