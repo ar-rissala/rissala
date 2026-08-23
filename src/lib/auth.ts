@@ -10,7 +10,7 @@
  *  3. include credentials: 'include' on every request
  */
 
-const API_BASE = "/api/django/accounts";
+const API_BASE = `${process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000"}/api/accounts`;
 
 // ── CSRF ──────────────────────────────────────────────────────────────────────
 
@@ -28,7 +28,11 @@ function getCsrfToken(): string {
  */
 async function ensureCsrf(): Promise<void> {
   if (!getCsrfToken()) {
-    await fetch(`${API_BASE}/csrf/`, { credentials: "include" });
+    try {
+      await fetch(`${API_BASE}/csrf/`, { credentials: "include" });
+    } catch (error) {
+      console.warn("Failed to fetch CSRF token:", error);
+    }
   }
 }
 
@@ -46,21 +50,110 @@ async function apiFetch<T>(
   const method = (options.method ?? "GET").toUpperCase();
   if (["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
     await ensureCsrf();
-    headers["X-CSRFToken"] = getCsrfToken();
+    const csrfToken = getCsrfToken();
+    if (csrfToken) {
+      headers["X-CSRFToken"] = csrfToken;
+    }
   }
 
-  const res = await fetch(`${API_BASE}${path}`, {
-    ...options,
-    headers,
-    credentials: "include",
-  });
+  const url = `${API_BASE}${path}`;
+  
+  // Debug log sans le mot de passe
+  if (process.env.NODE_ENV !== "production") {
+    let debugBody = options.body;
+    if (typeof debugBody === "string") {
+      try {
+        const parsed = JSON.parse(debugBody);
+        if (parsed.password) parsed.password = "***";
+        if (parsed.password2) parsed.password2 = "***";
+        if (parsed.new_password) parsed.new_password = "***";
+        if (parsed.new_password2) parsed.new_password2 = "***";
+        debugBody = JSON.stringify(parsed);
+      } catch (e) {
+        // Ignorer les erreurs de parsing pour les logs
+      }
+    }
+    console.log("[AUTH] URL:", url, "Method:", method, "Body:", debugBody);
+  }
 
-  if (res.status === 204) return { data: null, error: null, status: 204 };
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      ...options,
+      headers,
+      credentials: "include",
+    });
+  } catch (error) {
+    console.error("[AUTH] Erreur réseau interceptée :", error);
+    return { data: null, error: { non_field_errors: ["Erreur réseau : Impossible de contacter le serveur."] }, status: 0 };
+  }
 
-  const json = await res.json().catch(() => null);
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[AUTH] Status:", res.status);
+  }
+
+  if (res.status === 204) {
+    if (process.env.NODE_ENV !== "production") console.log("[AUTH] Response: 204 No Content");
+    return { data: null, error: null, status: 204 };
+  }
+
+  const text = await res.text();
+  let json: any = null;
+  try {
+    json = text ? JSON.parse(text) : null;
+  } catch (e) {
+    // Si la réponse n'est pas du JSON
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[AUTH] Response:", json || text);
+  }
 
   if (!res.ok) {
-    return { data: null, error: json ?? { non_field_errors: ["Erreur réseau."] }, status: res.status };
+    let errorObj: Record<string, string[]> = {};
+    
+    if (json) {
+      if (typeof json === "string") {
+        errorObj = { non_field_errors: [json] };
+      } else if (json.detail) {
+        errorObj = { non_field_errors: [json.detail] };
+      } else if (json.message) {
+        errorObj = { non_field_errors: [json.message] };
+      } else if (json.error) {
+        errorObj = { non_field_errors: [json.error] };
+      } else if (typeof json === "object") {
+        // Format DRF classique (ex: { email: ["Ce champ est obligatoire."] })
+        for (const [key, value] of Object.entries(json)) {
+          if (Array.isArray(value)) {
+            errorObj[key] = value.map(String);
+          } else if (typeof value === "string") {
+            errorObj[key] = [value];
+          }
+        }
+      }
+    }
+    
+    // Si l'objet d'erreur est toujours vide après parsing, on utilise des messages par défaut
+    if (Object.keys(errorObj).length === 0) {
+      switch (res.status) {
+        case 400:
+          errorObj = { non_field_errors: ["Données invalides."] };
+          break;
+        case 401:
+          errorObj = { non_field_errors: ["Email ou mot de passe incorrect."] };
+          break;
+        case 403:
+          errorObj = { non_field_errors: ["Accès refusé / CSRF manquant."] };
+          break;
+        case 500:
+          errorObj = { non_field_errors: ["Erreur serveur interne."] };
+          break;
+        default:
+          errorObj = { non_field_errors: [`Erreur HTTP ${res.status}.`] };
+      }
+    }
+    
+    return { data: null, error: errorObj, status: res.status };
   }
 
   return { data: json as T, error: null, status: res.status };

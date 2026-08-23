@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rissala — Frontend Next.js
 
-## Getting Started
+Il s'agit du frontend du projet Rissala, construit avec [Next.js](https://nextjs.org), React, TypeScript et Tailwind CSS. 
+Ce projet est totalement indépendant du backend Django et communique avec lui via une API REST.
 
-First, run the development server:
+## Installation
+
+### 1. Prérequis
+
+- Node.js 18+ installé
+
+### 2. Installer les dépendances
+
+```bash
+npm install
+```
+
+### 3. Configurer l'environnement
+
+Créer un fichier `.env.local` à la racine (s'il n'existe pas) basé sur `.env.example` :
+
+```env
+# URL du backend Django (ex: http://127.0.0.1:8000 en dev ou https://api.rissala.net en prod)
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+```
+
+### 4. Lancer le serveur de développement
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Déploiement (Production)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Pour construire le projet pour la production :
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ce projet est prêt à être déployé sur [Vercel](https://vercel.com).
+Assurez-vous de définir la variable d'environnement `NEXT_PUBLIC_API_URL` dans les paramètres de votre projet Vercel vers l'URL de production de votre API Django.
