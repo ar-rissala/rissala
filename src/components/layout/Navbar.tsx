@@ -453,7 +453,7 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
-                className="flex flex-col gap-3 w-full max-w-sm mt-auto pt-6 pb-6 border-t border-border/50"
+                className="flex flex-col gap-3 w-full max-w-sm mt-8 pt-6 pb-12 border-t border-border/50"
               >
                 <div className="flex justify-center mb-2">
                   <LanguageSwitcher dropUp={true} />
