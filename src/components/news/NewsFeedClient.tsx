@@ -106,12 +106,12 @@ export default function NewsFeedClient({ initialArticles, lang }: NewsFeedClient
         <>
           {/* SECTION : À LA UNE */}
           {heroArticle && (
-            <section className="mb-16 sm:mb-24">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <section className="mb-10 sm:mb-16">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
                 <div className="lg:col-span-8">
                   <ArticleHero article={heroArticle} lang={lang} />
                 </div>
-                <div className="lg:col-span-4 flex flex-col gap-8 sm:grid sm:grid-cols-2 lg:flex lg:flex-col">
+                <div className="lg:col-span-4 flex flex-col gap-8 sm:grid sm:grid-cols-2 lg:flex lg:flex-col lg:gap-6">
                   {secondaryArticles.map((article) => (
                     <ArticleSecondary key={article.slug} article={article} lang={lang} />
                   ))}
@@ -143,7 +143,7 @@ export default function NewsFeedClient({ initialArticles, lang }: NewsFeedClient
               
               <div 
                 ref={carouselRef}
-                className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-4 sm:gap-6 pb-8 -mx-4 px-4 lg:mx-0 lg:px-0"
+                className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-4 sm:gap-6 pb-4 -mx-4 px-4 lg:mx-0 lg:px-0"
               >
                 {feedArticles.map((article) => (
                   <div key={article.slug} className="w-[260px] sm:w-[300px] lg:w-[320px] snap-start shrink-0">

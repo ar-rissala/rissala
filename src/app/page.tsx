@@ -76,10 +76,10 @@ export default function Home() {
                 href="/parcours" 
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base w-full sm:w-56 group rounded-xl shadow-sm flex items-center justify-center"
+                  "h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-auto sm:w-56 group rounded-xl shadow-sm flex items-center justify-center"
                 )}
               >
-                Découvrez nos parcours &rarr;
+                Découvrez nos parcours
               </Link>
             </motion.div>
           </motion.div>

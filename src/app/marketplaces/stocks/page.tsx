@@ -39,7 +39,7 @@ export default function StocksMarketplace() {
               className="w-full bg-background border border-input rounded-md pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
             />
           </div>
-          <Button className="bg-[#1a365d] text-white hover:bg-[#1a365d]/90 border-transparent shadow-md">
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 border-transparent shadow-md">
              Connexion Interactive Trader
           </Button>
         </div>
@@ -59,8 +59,8 @@ export default function StocksMarketplace() {
               <AreaChart data={stockData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#4db389" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#4db389" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="date" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
@@ -70,7 +70,7 @@ export default function StocksMarketplace() {
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #27272a", borderRadius: "8px" }}
                   itemStyle={{ color: "#fff" }}
                 />
-                <Area type="monotone" dataKey="value" stroke="#4db389" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
+                <Area type="monotone" dataKey="value" stroke="var(--primary)" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
               </AreaChart>
             </ResponsiveContainer>
           </CardContent>
@@ -119,7 +119,7 @@ export default function StocksMarketplace() {
                 </div>
                 <div className="flex justify-between items-end">
                   <span className="font-semibold text-foreground">{stock.price}</span>
-                  <span className="text-xs px-2 py-1 bg-green-500/10 text-green-500 rounded-md border border-green-500/20">{stock.status}</span>
+                  <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-md border border-primary/20">{stock.status}</span>
                 </div>
               </div>
             ))}

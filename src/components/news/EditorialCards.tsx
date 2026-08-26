@@ -16,7 +16,7 @@ export function ArticleHero({ article, lang, className = "" }: ArticleCardProps)
   
   return (
     <Link href={`/${lang}/${article.section}/${article.slug}`} className={`group flex flex-col h-full cursor-pointer ${className}`}>
-      <div className="relative w-full aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-xl mb-4 sm:mb-6">
+      <div className="relative w-full aspect-[16/9] md:aspect-[4/3] lg:aspect-[2.5/1] overflow-hidden rounded-xl mb-3 sm:mb-4">
         <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
         <ImageWithFallback 
           src={image} 
@@ -33,15 +33,15 @@ export function ArticleHero({ article, lang, className = "" }: ArticleCardProps)
           <span className="text-muted-foreground flex items-center"><Clock className="w-3.5 h-3.5 mr-1" /> 5 min</span>
         </div>
         
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-bold font-heading leading-tight mb-4 group-hover:text-primary transition-colors text-foreground">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-bold font-heading leading-tight mb-2 group-hover:text-primary transition-colors text-foreground">
           {article.title}
         </h2>
         
-        <p className="text-base sm:text-lg text-muted-foreground line-clamp-3 leading-relaxed">
+        <p className="text-base sm:text-lg text-muted-foreground line-clamp-2 leading-relaxed">
           {article.description || article.subtitle || "Découvrez cet article exclusif sur notre plateforme."}
         </p>
         
-        <div className="mt-auto pt-6 flex items-center text-sm font-medium text-muted-foreground">
+        <div className="mt-auto pt-3 flex items-center text-sm font-medium text-muted-foreground">
           <span>{new Date(article.date || "2026-08-19").toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
         </div>
       </div>
@@ -55,7 +55,7 @@ export function ArticleSecondary({ article, lang, className = "" }: ArticleCardP
 
   return (
     <Link href={`/${lang}/${article.section}/${article.slug}`} className={`group flex flex-col h-full cursor-pointer ${className}`}>
-      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg mb-4">
+      <div className="relative w-full aspect-[16/9] md:aspect-[16/10] lg:aspect-[21/9] overflow-hidden rounded-lg mb-2">
         <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
         <ImageWithFallback 
           src={image} 
@@ -70,7 +70,7 @@ export function ArticleSecondary({ article, lang, className = "" }: ArticleCardP
           <span>{categoryLabel}</span>
         </div>
         
-        <h3 className="text-lg sm:text-xl font-bold font-heading leading-tight mb-2 group-hover:text-primary transition-colors text-foreground line-clamp-3">
+        <h3 className="text-lg sm:text-xl font-bold font-heading leading-tight mb-1 group-hover:text-primary transition-colors text-foreground line-clamp-2">
           {article.title}
         </h3>
         

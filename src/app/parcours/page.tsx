@@ -29,20 +29,19 @@ export default function ParcoursPage() {
                 Faites fructifier votre épargne en toute sérénité. Apprenez à filtrer les actions, comprendre la Zakat sur investissement et bâtir un portefeuille performant et 100% conforme à l'éthique islamique.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row items-center sm:justify-start gap-4">
                 <Link 
                   href="https://votre-lien-systeme.io/checkout" 
                   target="_blank"
                   className={cn(
                     buttonVariants({ variant: "default" }),
-                    "h-12 sm:h-14 px-8 text-base font-semibold group rounded-xl shadow-lg w-full sm:w-auto flex items-center justify-center"
+                    "h-12 sm:h-14 px-8 text-base font-semibold group rounded-xl shadow-lg w-fit sm:w-auto flex items-center justify-center"
                   )}
                 >
                   Accéder au parcours
-                  <ExternalLink className="ml-2 h-5 w-5 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </Link>
                 <div className="flex items-center text-sm text-muted-foreground ml-2 sm:ml-4">
-                  <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                  <ShieldCheck className="h-5 w-5 text-primary mr-2" />
                   Paiement 100% sécurisé
                 </div>
               </div>

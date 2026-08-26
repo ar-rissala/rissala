@@ -54,8 +54,8 @@ export default function CryptoMarketplace() {
               <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#00b381" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#00b381" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="date" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
@@ -65,7 +65,7 @@ export default function CryptoMarketplace() {
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #27272a", borderRadius: "8px" }}
                   itemStyle={{ color: "#fff" }}
                 />
-                <Area type="monotone" dataKey="price" stroke="#00b381" strokeWidth={3} fillOpacity={1} fill="url(#colorPrice)" />
+                <Area type="monotone" dataKey="price" stroke="var(--primary)" strokeWidth={3} fillOpacity={1} fill="url(#colorPrice)" />
               </AreaChart>
             </ResponsiveContainer>
           </CardContent>
@@ -116,7 +116,7 @@ export default function CryptoMarketplace() {
                       </div>
                     </td>
                     <td className="px-6 py-4">{token.price}</td>
-                    <td className={`px-6 py-4 font-medium ${token.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                    <td className={`px-6 py-4 font-medium ${token.change.startsWith('+') ? 'text-primary' : 'text-red-500'}`}>
                       {token.change}
                     </td>
                     <td className="px-6 py-4">
