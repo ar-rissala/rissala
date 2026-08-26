@@ -44,8 +44,10 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           th: ({node, ...props}) => <th className="bg-muted/50 px-4 py-3 font-bold text-foreground border-b border-border/50" {...props} />,
           td: ({node, ...props}) => <td className="px-4 py-3 border-b border-border/50 text-muted-foreground" {...props} />,
           // Map placeholder to real icons
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           span: ({node, className, ...props}: any) => {
             if (className === 'icon-placeholder') {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               const iconName = (props as any)['data-icon'];
               if (iconName === 'Calendar') return <Calendar className="w-6 h-6" />;
               if (iconName === 'Target') return <Target className="w-6 h-6" />;
