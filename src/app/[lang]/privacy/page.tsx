@@ -12,7 +12,7 @@ const pageCopy = {
     controllerTitle: "1. Responsable du traitement",
     controllerText1: "Le responsable du traitement des données collectées sur le site Rissala est l’éditeur du site.",
     controllerText2: "Pour toute question relative à vos données personnelles :",
-    controllerEmail: "rissala.contact@gmail.com",
+    controllerEmail: "rissala@tutamail.com",
     collectedTitle: "2. Données collectées",
     collectedIntro: "Rissala limite la collecte au strict nécessaire.",
     collectedId: "Données d’identification (collectées lors de la création de compte, de l’inscription à la newsletter, du téléchargement d’un contenu gratuit ou de l’utilisation de certaines fonctionnalités) :",
@@ -82,7 +82,7 @@ const pageCopy = {
     controllerTitle: "1. Data Controller",
     controllerText1: "The controller of the data collected on the Rissala website is the site publisher.",
     controllerText2: "For any questions relating to your personal data:",
-    controllerEmail: "rissala.contact@gmail.com",
+    controllerEmail: "rissala@tutamail.com",
     collectedTitle: "2. Data Collected",
     collectedIntro: "Rissala limits collection to what is strictly necessary.",
     collectedId: "Identification data (collected during account creation, newsletter subscription, free content download, or use of certain features):",
@@ -152,7 +152,7 @@ const pageCopy = {
     controllerTitle: "1. مراقب البيانات",
     controllerText1: "مراقب البيانات التي يتم جمعها على موقع رسالة هو ناشر الموقع.",
     controllerText2: "لأي أسئلة تتعلق ببياناتك الشخصية:",
-    controllerEmail: "rissala.contact@gmail.com",
+    controllerEmail: "rissala@tutamail.com",
     collectedTitle: "2. البيانات التي تم جمعها",
     collectedIntro: "تقصر رسالة الجمع على ما هو ضروري للغاية.",
     collectedId: "بيانات الهوية (التي يتم جمعها أثناء إنشاء الحساب، أو الاشتراك في النشرة الإخبارية، أو تنزيل المحتوى المجاني، أو استخدام ميزات معينة):",
@@ -225,7 +225,7 @@ export default async function PrivacyPolicyLocalizedPage({ params }: { params: P
 
   return (
     <div className={`container mx-auto px-4 lg:px-8 py-16 max-w-4xl ${isRtl ? "text-right" : "text-left"}`} dir={isRtl ? "rtl" : "ltr"}>
-      <PageHero className="rounded-2xl mb-12 -mx-4 lg:-mx-8">
+      <div className="mb-12 border-b border-border/50 pb-8">
         <div className="text-center py-4 px-4">
           <ShieldCheck className="h-12 w-12 text-primary mx-auto mb-4" />
           <h1 className="text-4xl font-bold font-heading mb-4">{t.title}</h1>
@@ -233,7 +233,7 @@ export default async function PrivacyPolicyLocalizedPage({ params }: { params: P
             {t.description}
           </p>
         </div>
-      </PageHero>
+      </div>
 
       <div className="space-y-8">
         <Card className="border-border/50 bg-background/50 backdrop-blur">

@@ -18,7 +18,7 @@ const pageCopy = {
     publisherVat: "Numéro de TVA intracommunautaire : FR45889090759",
     publisherContact: "Adresse e-mail de contact :",
     publisherEmail: "rissala@tutamail.com",
-    publisherDirector: "Directeur de la publication :\nMickael Bon",
+    publisherDirector: "Directeur de la publication et développeur du site :\nMickael Bon",
     hostingTitle: "2. Hébergement du site",
     hostingText1: "Le site Rissala est hébergé par :",
     hostingName: "Vercel Inc.",
@@ -70,8 +70,8 @@ const pageCopy = {
     publisherSiret: "SIRET number: 88909075900024",
     publisherVat: "Intra-community VAT number: FR45889090759",
     publisherContact: "Contact email:",
-    publisherEmail: "rissala.contact@gmail.com",
-    publisherDirector: "Director of Publication:\nMickael Bon",
+    publisherEmail: "rissala@tutamail.com",
+    publisherDirector: "Director of Publication and Site Developer:\nMickael Bon",
     hostingTitle: "2. Site Hosting",
     hostingText1: "The Rissala website is hosted by:",
     hostingName: "Vercel Inc.",
@@ -123,8 +123,8 @@ const pageCopy = {
     publisherSiret: "رقم SIRET: 88909075900024",
     publisherVat: "رقم ضريبة القيمة المضافة: FR45889090759",
     publisherContact: "عنوان البريد الإلكتروني للتواصل:",
-    publisherEmail: "rissala.contact@gmail.com",
-    publisherDirector: "مدير النشر:\nMickael Bon",
+    publisherEmail: "rissala@tutamail.com",
+    publisherDirector: "مدير النشر ومطور الموقع:\nMickael Bon",
     hostingTitle: "2. استضافة الموقع",
     hostingText1: "تتم استضافة موقع رسالة بواسطة:",
     hostingName: "Vercel Inc.",
@@ -174,7 +174,7 @@ export default async function LegalNoticeLocalizedPage({ params }: { params: Pro
 
   return (
     <div className={`container mx-auto px-4 lg:px-8 py-16 max-w-4xl ${isRtl ? "text-right" : "text-left"}`} dir={isRtl ? "rtl" : "ltr"}>
-      <PageHero className="rounded-2xl mb-12 -mx-4 lg:-mx-8">
+      <div className="mb-12 border-b border-border/50 pb-8">
         <div className="text-center py-4 px-4">
           <Scale className="h-12 w-12 text-primary mx-auto mb-4" />
           <h1 className="text-4xl font-bold font-heading mb-4">{t.title}</h1>
@@ -182,7 +182,7 @@ export default async function LegalNoticeLocalizedPage({ params }: { params: Pro
             {t.description}
           </p>
         </div>
-      </PageHero>
+      </div>
 
       <div className="space-y-8">
         <Card className="border-border/50 bg-background/50 backdrop-blur">

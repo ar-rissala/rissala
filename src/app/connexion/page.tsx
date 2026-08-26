@@ -52,9 +52,9 @@ export default function ConnexionPage() {
       <header className="w-full max-w-5xl flex items-center justify-between z-10">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group py-2 px-3 rounded-lg hover:bg-muted/40"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group py-3 px-4 -ml-4 rounded-lg hover:bg-muted/40"
         >
-          <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+          <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
           <span>Retour à l&apos;accueil</span>
         </Link>
 

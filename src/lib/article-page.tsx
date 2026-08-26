@@ -173,9 +173,9 @@ function SectionBackLink({
     <div className="mb-8">
       <Link
         href={sectionIndexPath(lang, section)}
-        className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+        className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-3 px-4 -ml-4 rounded-lg hover:bg-muted/50"
       >
-        <ArrowLeft className="mr-2 h-4 w-4" />
+        <ArrowLeft className="mr-2 h-5 w-5" />
         {label}
       </Link>
     </div>

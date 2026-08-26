@@ -17,12 +17,21 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
         <div className="col-span-2 sm:col-span-2 md:col-span-1">
           <Link href="/" className="inline-block mb-4 group">
-            <span className="text-2xl font-bold text-primary tracking-tight font-heading transition-colors group-hover:text-primary/80">
-              Rissala
-            </span>
+            <div className="relative w-48 sm:w-64 h-14 sm:h-20 -ml-2 overflow-hidden flex items-center">
+              <img 
+                src="/LogoRissala.svg" 
+                alt="Logo officiel de Rissala - Apprendre l'arabe et les sciences islamiques" 
+                title="Retour à l'accueil de Rissala"
+                loading="lazy"
+                width="256"
+                height="80"
+                className="w-full h-full object-contain object-left group-hover:opacity-80 transition-all" 
+              />
+            </div>
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            La référence en fondements. Étudiez l&apos;arabe et approfondissez votre foi avec des contenus rigoureux et authentiques.
+            Une plateforme dédiée à l&apos;étude et à la transmission du savoir islamique.
+            <span className="block mt-2 font-medium">Étudier. Comprendre. Transmettre.</span>
           </p>
           <div className="flex items-center gap-4 mt-6">
             <a href="https://instagram.com/rissala.officiel/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all duration-300" aria-label="Instagram Rissala">
@@ -38,13 +47,13 @@ export function Footer() {
           <h4 className="text-sm font-semibold mb-6 text-foreground">Apprendre</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li><Link href={`/${currentLang}/${getLocalizedSlug("apprendre-arabe", currentLang)}`} className="hover:text-primary transition-colors">Langue arabe</Link></li>
-            <li><Link href={`/${currentLang}/${getLocalizedSlug("sciences-islamiques", currentLang)}`} className="hover:text-primary transition-colors">Fondements</Link></li>
+            <li><Link href={`/${currentLang}/${getLocalizedSlug("sciences-islamiques", currentLang)}`} className="hover:text-primary transition-colors">Sciences islamiques</Link></li>
             <li><Link href={`/${currentLang}/${getLocalizedSlug("fiqh-al-muamalat", currentLang)}`} className="hover:text-primary transition-colors">Finance islamique</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-6 text-foreground">Actualités</h4>
+          <h4 className="text-sm font-semibold mb-6 text-foreground">Ressources</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li><Link href={`/${currentLang}/${getLocalizedSlug("actualites", currentLang)}`} className="hover:text-primary transition-colors">Actualités &amp; Articles</Link></li>
             <li><Link href={`/${currentLang}/${getLocalizedSlug("about", currentLang)}`} className="hover:text-primary transition-colors">À propos de Rissala</Link></li>

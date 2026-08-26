@@ -26,6 +26,8 @@ export default function ImageWithFallback({
     <img
       src={imgSrc}
       alt={alt}
+      title={alt}
+      loading="lazy"
       className={className}
       onError={handleError}
     />

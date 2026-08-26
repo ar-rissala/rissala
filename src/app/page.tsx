@@ -62,24 +62,32 @@ export default function Home() {
             className="max-w-4xl"
           >
 
-            
             <motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-white font-heading leading-tight drop-shadow-lg">
-              Étudiez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>.
+              Étudiez selon vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>
             </motion.h1>
             
             <motion.p variants={fadeIn} className="text-base sm:text-lg md:text-xl text-white/75 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-              Rissala vous accompagne dans votre quête de savoir, nous croyons que la vraie connaissance élève l&apos;âme et rapproche du Créateur.
+              Rissala vous accompagne dans l&apos;étude et la transmission du savoir islamique. Des parcours structurés, des sources rigoureuses et une progression pensée pour comprendre, approfondir et transmettre.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
               <Link 
-                href="/parcours" 
+                href="/fr/apprendre-arabe" 
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-auto sm:w-56 group rounded-xl shadow-sm flex items-center justify-center"
+                  "h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto group rounded-xl shadow-sm flex items-center justify-center"
                 )}
               >
-                Découvrez nos parcours
+                Explorer les parcours
+              </Link>
+              <Link 
+                href="/fr/a-propos" 
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto group rounded-xl flex items-center justify-center border-white/20 text-white hover:bg-white/10 hover:text-white bg-transparent backdrop-blur-sm"
+                )}
+              >
+                Découvrir Rissala
               </Link>
             </motion.div>
           </motion.div>
@@ -92,8 +100,8 @@ export default function Home() {
       <section className="py-16 sm:py-20 lg:py-24 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-10 sm:mb-16 max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 sm:mb-4">Vos Parcours d&apos;Apprentissage</h2>
-            <p className="text-muted-foreground text-base sm:text-lg italic">Un cursus progressif conçu pour bâtir des fondations solides.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 sm:mb-4">Étudier. Comprendre. Approfondir.</h2>
+            <p className="text-muted-foreground text-base sm:text-lg">Des parcours structurés pour construire progressivement des bases solides et développer une compréhension claire du savoir.</p>
           </div>
 
           <motion.div 
@@ -101,23 +109,23 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6"
           >
             {/* Arabe Card */}
             <motion.div variants={fadeIn}>
-              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
                     <Languages className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Langue Arabe</CardTitle>
+                  <CardTitle className="text-xl">Langue arabe</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
-                    De l&apos;alphabet à la lecture autonome. Une progression logique pour maîtriser les bases de la langue classique.
+                    Maîtriser progressivement la langue arabe, de l&apos;alphabet à la lecture et à la compréhension des textes classiques.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <Link href="/fr/apprendre-arabe" className="text-primary font-medium flex items-center group">
-                    Commencer l&apos;alphabet <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <CardContent className="mt-auto pt-4">
+                  <Link href="/fr/langue-arabe" className="text-primary font-medium flex items-center group">
+                    Découvrir la langue arabe <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>
               </Card>
@@ -125,19 +133,39 @@ export default function Home() {
 
             {/* Sciences Card */}
             <motion.div variants={fadeIn}>
-              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
                     <GraduationCap className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Fondements</CardTitle>
+                  <CardTitle className="text-xl">Sciences islamiques</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
-                    Comprendre la tradition sunnite : Histoire, Hadith, Fiqh. Un cursus académique simplifié et sourcé.
+                    Étudier les fondements de la tradition sunnite à travers la croyance, le hadith, le fiqh et l&apos;histoire, avec une approche progressive et sourcée.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="mt-auto pt-4">
                   <Link href="/fr/sciences-islamiques" className="text-primary font-medium flex items-center group">
-                    Découvrir le cursus <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    Découvrir les sciences islamiques <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Finance Card */}
+            <motion.div variants={fadeIn}>
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+                    <Scale className="h-6 w-6" />
+                  </div>
+                  <CardTitle className="text-xl">Finance islamique</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    Comprendre les principes de la finance islamique, ses fondements et ses mécanismes à travers une approche pédagogique et structurée.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="mt-auto pt-4">
+                  <Link href="/fr/finance-islamique" className="text-primary font-medium flex items-center group">
+                    Découvrir la finance islamique <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </CardContent>
               </Card>
@@ -145,17 +173,17 @@ export default function Home() {
 
             {/* Actualités Card */}
             <motion.div variants={fadeIn}>
-              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
+              <Card className="h-full border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
                     <BookOpen className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-xl">Actualités & Articles</CardTitle>
+                  <CardTitle className="text-xl">Articles & actualités</CardTitle>
                   <CardDescription className="text-base leading-relaxed">
-                    Bibliothèque d&apos;articles, guides et outils pédagogiques pour approfondir vos connaissances au quotidien.
+                    Approfondir ses connaissances à travers des articles, analyses, guides et ressources pédagogiques consacrés aux grandes thématiques de Rissala.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="mt-auto pt-4">
                   <Link href="/fr/actualites" className="text-primary font-medium flex items-center group">
                     Lire les articles <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
@@ -176,15 +204,15 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl sm:text-3xl font-bold font-heading mb-6">La Méthode Rissala : Rigueur et Clarté</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading mb-6">La méthode Rissala</h2>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                Notre approche repose sur trois piliers fondamentaux pour garantir un apprentissage sain et durable du savoir.
+                Étudier avec rigueur. Comprendre avec clarté. Transmettre avec fidélité.
               </p>
               <ul className="space-y-4">
                 {[
-                  { title: "Rigueur Académique", desc: "Des contenus basés sur les sources classiques et authentifiées." },
-                  { title: "Progression Logique", desc: "Un découpage par étapes pour ne jamais se sentir perdu." },
-                  { title: "Authenticité du Savoir", desc: "Une transmission fidèle à l'esprit de la tradition originelle." }
+                  { title: "Rigueur", desc: "Des contenus construits à partir de sources reconnues et présentés avec précision." },
+                  { title: "Progression", desc: "Une organisation par étapes pour avancer progressivement, sans perdre de vue les fondements." },
+                  { title: "Transmission", desc: "Un effort constant pour transmettre le savoir avec clarté, fidélité et respect de la tradition." }
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
@@ -204,8 +232,8 @@ export default function Home() {
             >
               <div className="p-12 text-center">
                 <BookOpen className="h-24 w-24 text-primary/40 mb-6 mx-auto" />
-                <p className="text-primary font-heading text-xl font-medium italic opacity-60">
-                  « La connaissance est une lumière qu&apos;Allah place dans le cœur. »
+                <p className="text-primary font-heading text-xl font-medium italic opacity-80">
+                  « Le savoir se cultive par l&apos;étude, s&apos;affermit par la compréhension et se transmet par la pratique. »
                 </p>
               </div>
             </motion.div>
@@ -226,10 +254,13 @@ export default function Home() {
               <Mail className="w-6 h-6" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading mb-4 text-foreground">
-              Rejoignez la Lettre Rissala
+              La Lettre Rissala
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-base mb-8 leading-relaxed">
-              Recevez nos meilleures analyses, conseils d&apos;investissement éthique et synthèses exclusives directement dans votre boîte mail.
+            <p className="text-muted-foreground text-sm sm:text-base mb-2 leading-relaxed">
+              Recevez les nouvelles publications de Rissala, nos analyses, ressources pédagogiques et synthèses directement dans votre boîte mail.
+            </p>
+            <p className="text-xs text-muted-foreground/60 mb-8">
+              Pas de spam. Désinscription possible en un clic.
             </p>
 
             {newsletterSubmitted ? (

@@ -66,6 +66,7 @@ export function RecentlyRead({ lang }: RecentlyReadProps) {
                   <Image
                     src={book.coverUrl}
                     alt={book.title}
+                    title={book.title}
                     fill
                     sizes="180px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"

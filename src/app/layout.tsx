@@ -46,15 +46,25 @@ export const metadata: Metadata = {
     siteName: "Rissala",
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: "/logo-icon.png",
+        width: 1200,
+        height: 630,
+        alt: "Logo Rissala",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rissala | Fondements & Arabe",
     description:
       "Plateforme premium de fondements : apprendre l'arabe, fiqh, aqida et finance islamique.",
+    images: ["/logo-icon.png"],
   },
   icons: {
-    icon: "/icon.png",
+    icon: "/logo-icon.png",
+    apple: "/logo-icon.png",
   },
 };
 

@@ -116,10 +116,17 @@ export function Navbar() {
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 relative">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 shrink-0 group z-10" onClick={() => setHoveredMenu(null)}>
-            <span className="text-2xl font-bold text-primary tracking-tight font-heading group-hover:opacity-90 transition-opacity">
-              Rissala
-            </span>
+          <Link href="/" className="flex items-center shrink-0 group z-10" onClick={() => setHoveredMenu(null)}>
+            <div className="relative w-48 sm:w-64 h-14 sm:h-20 -ml-2 overflow-hidden flex items-center">
+              <img 
+                src="/LogoRissala.svg" 
+                alt="Logo officiel de Rissala - Institut d'apprentissage de l'arabe et des fondements islamiques" 
+                title="Rissala - Accueil"
+                width="256"
+                height="80"
+                className="w-full h-full object-contain object-left group-hover:opacity-90 transition-all" 
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -380,7 +387,7 @@ export function Navbar() {
                       <div className="w-full">
                         <button
                           onClick={() => toggleMobileAccordion(link.label)}
-                          className={`flex items-center justify-between w-full py-4 px-4 text-lg font-medium transition-colors ${openMobileAccordions[link.label] || isActive(link.href)
+                          className={`flex items-center justify-center gap-2 w-full py-5 px-4 text-xl font-medium transition-colors ${openMobileAccordions[link.label] || isActive(link.href)
                             ? "text-primary"
                             : "text-foreground hover:text-primary"
                             }`}
@@ -400,13 +407,13 @@ export function Navbar() {
                               transition={{ duration: 0.3, ease: "easeInOut" }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-1 pb-4 px-6">
+                              <div className="flex flex-col items-center gap-1 pb-5 px-6">
                                 {link.megaMenu.items.map((item, idx) => (
                                   <Link
                                     key={idx}
                                     href={item.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="py-2.5 text-base text-muted-foreground hover:text-primary transition-colors"
+                                    className="w-full text-center py-3 text-lg text-muted-foreground hover:text-primary transition-colors block"
                                   >
                                     {item.label}
                                   </Link>
@@ -414,10 +421,10 @@ export function Navbar() {
                                 <Link
                                   href={link.megaMenu.footerLink.href}
                                   onClick={() => setMobileOpen(false)}
-                                  className="mt-2 py-2.5 text-base font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center"
+                                  className="mt-3 py-3 w-full text-center text-lg font-semibold text-primary hover:text-primary/80 transition-colors inline-flex justify-center items-center"
                                 >
                                   {link.megaMenu.footerLink.label}
-                                  <ArrowRight className="ml-1.5 w-4 h-4" />
+                                  <ArrowRight className="ml-1.5 w-5 h-5" />
                                 </Link>
                               </div>
                             </motion.div>
@@ -428,7 +435,7 @@ export function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setMobileOpen(false)}
-                        className={`flex items-center w-full py-4 px-4 text-lg font-medium transition-colors ${isActive(link.href)
+                        className={`flex items-center justify-center w-full py-5 px-4 text-xl font-medium transition-colors block text-center ${isActive(link.href)
                           ? "text-primary"
                           : "text-foreground hover:text-primary"
                           }`}
@@ -445,7 +452,7 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
-                className="flex flex-col gap-3 w-full max-w-sm mt-8 pt-8 border-t border-border/50"
+                className="flex flex-col gap-3 w-full max-w-sm mt-auto pt-6 pb-6 border-t border-border/50"
               >
                 <div className="flex justify-center mb-2">
                   <LanguageSwitcher dropUp={true} />
@@ -456,14 +463,14 @@ export function Navbar() {
                     <Link
                       href="/espace-membre"
                       onClick={() => setMobileOpen(false)}
-                      className={buttonVariants({ variant: "outline", size: "lg" }) + " w-full justify-center h-12 text-base font-medium"}
+                      className={buttonVariants({ variant: "outline", size: "lg" }) + " w-full justify-center h-14 text-lg font-medium"}
                     >
-                      <BookOpen className="w-4 h-4 mr-2" />
+                      <BookOpen className="w-5 h-5 mr-2" />
                       Espace membre
                     </Link>
                     <button
                       onClick={handleSignOut}
-                      className="w-full h-12 rounded-xl border border-destructive/40 text-destructive font-medium text-base hover:bg-destructive/10 transition-colors"
+                      className="w-full h-14 rounded-xl border border-destructive/40 text-destructive font-medium text-lg hover:bg-destructive/10 transition-colors"
                     >
                       Déconnexion
                     </button>
@@ -474,7 +481,7 @@ export function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className={
                       buttonVariants({ variant: "default", size: "lg" }) +
-                      " w-full justify-center h-12 text-base font-medium shadow-sm"
+                      " w-full justify-center h-14 text-lg font-medium shadow-sm"
                     }
                   >
                     Se connecter
