@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/TextLayer.css"; // Fixed the TextLayer styles missing warning
+import "react-pdf/dist/esm/Page/TextLayer.css";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 import {
   ChevronLeft,
@@ -20,7 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { saveReadingProgress } from "@/lib/books";
 
 // ── PDF.js worker ────────────────────────────────────────────────────────────
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -226,7 +227,18 @@ export function PdfViewer({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.2 }}
-                className="shadow-2xl rounded-lg overflow-hidden"
+                className="shadow-2xl rounded-lg overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = offset.x;
+                  if (swipe < -50 && pageNumber < numPages) {
+                    setPageNumber((p) => p + 1);
+                  } else if (swipe > 50 && pageNumber > 1) {
+                    setPageNumber((p) => p - 1);
+                  }
+                }}
               >
                 <Page
                   pageNumber={pageNumber}
