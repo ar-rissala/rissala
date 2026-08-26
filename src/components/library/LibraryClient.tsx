@@ -28,6 +28,7 @@ export function LibraryClient({ books, lang }: LibraryClientProps) {
 
   // Re-filter whenever category or query changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFiltered(filterBooks(books, activeCategory, query));
   }, [books, activeCategory, query]);
 

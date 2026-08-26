@@ -83,8 +83,9 @@ async function apiFetch<T>(
       headers,
       credentials: "include",
     });
-  } catch (error) {
-    console.error("[AUTH] Erreur réseau interceptée :", error);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn("[AUTH] Erreur réseau interceptée :", msg);
     return { data: null, error: { non_field_errors: ["Erreur réseau : Impossible de contacter le serveur."] }, status: 0 };
   }
 
@@ -98,7 +99,7 @@ async function apiFetch<T>(
   }
 
   const text = await res.text();
-  let json: any = null;
+  let json: unknown = null;
   try {
     json = text ? JSON.parse(text) : null;
   } catch (e) {

@@ -72,22 +72,13 @@ export default function Home() {
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
               <Link 
-                href="/fr/apprendre-arabe" 
+                href="/parcours" 
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto group rounded-xl shadow-sm flex items-center justify-center"
+                  "h-10 sm:h-12 px-8 sm:px-10 text-sm sm:text-base w-fit group rounded-xl shadow-sm flex items-center justify-center"
                 )}
               >
-                Explorer les parcours
-              </Link>
-              <Link 
-                href="/fr/a-propos" 
-                className={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto group rounded-xl flex items-center justify-center border-white/20 text-white hover:bg-white/10 hover:text-white bg-transparent backdrop-blur-sm"
-                )}
-              >
-                Découvrir Rissala
+                Découvrez nos parcours
               </Link>
             </motion.div>
           </motion.div>
