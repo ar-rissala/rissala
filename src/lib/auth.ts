@@ -116,12 +116,12 @@ async function apiFetch<T>(
     if (json) {
       if (typeof json === "string") {
         errorObj = { non_field_errors: [json] };
-      } else if (json.detail) {
-        errorObj = { non_field_errors: [json.detail] };
-      } else if (json.message) {
-        errorObj = { non_field_errors: [json.message] };
-      } else if (json.error) {
-        errorObj = { non_field_errors: [json.error] };
+      } else if ((json as any).detail) {
+        errorObj = { non_field_errors: [(json as any).detail] };
+      } else if ((json as any).message) {
+        errorObj = { non_field_errors: [(json as any).message] };
+      } else if ((json as any).error) {
+        errorObj = { non_field_errors: [(json as any).error] };
       } else if (typeof json === "object") {
         // Format DRF classique (ex: { email: ["Ce champ est obligatoire."] })
         for (const [key, value] of Object.entries(json)) {
