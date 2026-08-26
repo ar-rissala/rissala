@@ -60,6 +60,19 @@ export type Book = {
 
 export const mockBooks: Book[] = [
   {
+    id: "ne-sois-pas-triste",
+    title: "Ne sois pas triste",
+    author: "Aaidh ibn Abdullah al-Qarni",
+    description:
+      "Un guide spirituel majeur offrant des conseils pratiques et réconfortants, tirés du Coran et de la Sunna, pour surmonter les épreuves, l'anxiété et la tristesse au quotidien.",
+    category: "spiritualite",
+    coverUrl: "/images/covers/dont_be_sad_fr_cover.jpg",
+    pdfUrl: "/livres/dont_be_sad_fr.pdf",
+    pages: 464,
+    language: "fr",
+    featured: true,
+  },
+  {
     id: "risalat-ibn-abi-zayd",
     title: "La Risāla",
     author: "Ibn Abī Zayd al-Qayrawānī",
