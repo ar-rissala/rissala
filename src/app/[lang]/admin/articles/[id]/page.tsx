@@ -56,7 +56,7 @@ export default function EditArticlePage() {
     if (article) {
       setFormData({
         slug: article.slug,
-        categoryId: article.categoryId,
+        categoryId: article.categoryId || "",
         status: article.status,
         featured: article.featured,
         title: { fr: article.title.fr || "", en: article.title.en || "", ar: article.title.ar || "" },
@@ -229,7 +229,7 @@ export default function EditArticlePage() {
 
               <div className="space-y-2">
                 <Label>Catégorie <span className="text-destructive">*</span></Label>
-                <Select value={formData.categoryId} onValueChange={(v) => setFormData(prev => ({ ...prev, categoryId: v }))}>
+                <Select value={formData.categoryId} onValueChange={(v) => setFormData(prev => ({ ...prev, categoryId: v || "" }))}>
                   <SelectTrigger className={!formData.categoryId ? "border-destructive" : ""}>
                     <SelectValue placeholder="Sélectionnez une catégorie" />
                   </SelectTrigger>
