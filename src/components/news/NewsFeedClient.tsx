@@ -11,9 +11,11 @@ import {
   ArticleCompact,
 } from "./EditorialCards";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 interface NewsFeedClientProps {
-  initialArticles: ArticleData[];
+  initialArticles?: ArticleData[]; // Make optional as we now fetch from Convex
   lang: Locale;
 }
 
@@ -31,8 +33,28 @@ export default function NewsFeedClient({ initialArticles, lang }: NewsFeedClient
   const [visibleArchiveCount, setVisibleArchiveCount] = useState(12);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  const convexArticles = useQuery(api.articles.list, { status: "published" });
+
+  const articles = useMemo(() => {
+    if (!convexArticles) return initialArticles || [];
+    
+    return convexArticles.map(article => {
+      return {
+        slug: article.slug,
+        title: (article.title as any)[lang] || article.title.fr || "",
+        description: (article.excerpt as any)[lang] || article.excerpt.fr || "",
+        date: new Date(article.publishedAt || article.createdAt).toISOString(),
+        tag: article.category?.name?.fr || "Article",
+        image: article.coverUrl || undefined,
+        section: "actualites",
+        author: article.author?.name || "Rissala",
+        // The component might expect a specific URL structure, but usually slug is enough.
+      } as ArticleData;
+    });
+  }, [convexArticles, initialArticles, lang]);
+
   const filteredArticles = useMemo(() => {
-    return initialArticles.filter((article) => {
+    return articles.filter((article) => {
       const articleTag = (article.tag || "").toLowerCase();
       const isMatch = (catId: string) => {
         if (catId === "all") return true;
@@ -51,11 +73,11 @@ export default function NewsFeedClient({ initialArticles, lang }: NewsFeedClient
           article.description.toLowerCase().includes(searchQuery.toLowerCase()));
       return matchCategory && matchSearch;
     });
-  }, [initialArticles, selectedCategory, searchQuery]);
+  }, [articles, selectedCategory, searchQuery]);
 
   const isEditorialLayout = selectedCategory === "all" && searchQuery === "";
 
-  const latestArticles = initialArticles.slice(0, 10);
+  const latestArticles = articles.slice(0, 10);
   const heroArticle = latestArticles[0];
   const secondaryArticles = latestArticles.slice(1, 3);
   const feedArticles = latestArticles.slice(3, 10);
@@ -193,12 +215,12 @@ export default function NewsFeedClient({ initialArticles, lang }: NewsFeedClient
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
-             {initialArticles.slice(0, visibleArchiveCount).map((article) => (
+             {articles.slice(0, visibleArchiveCount).map((article) => (
                 <ArticleCompact key={article.slug} article={article} lang={lang} />
              ))}
           </div>
           
-          {visibleArchiveCount < initialArticles.length && (
+          {visibleArchiveCount < articles.length && (
             <div className="mt-12 flex justify-center">
               <Button 
                 variant="outline" 

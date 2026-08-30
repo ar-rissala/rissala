@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Valider",
+    "forgotPassword": "Mot de passe oublié ?"
+  },
+  "nav": {
+    "home": "Accueil",
+    "books": "Livres",
+    "sciences": "Sciences islamiques",
+    "arabic": "Langue arabe",
+    "finance": "Finance islamique",
+    "paths": "Parcours",
+    "news": "Actualités"
+  }
+}

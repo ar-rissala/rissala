@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { getBookById, getAllBooks, categoryLabels } from "@/lib/books";
-import { PdfViewer } from "@/components/library/PdfViewer";
+import { PdfViewer } from "@/components/library/PdfViewerWrapper";
 
 export function generateStaticParams() {
   const params: { lang: string; bookId: string }[] = [];

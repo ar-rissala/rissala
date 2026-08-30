@@ -5,8 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Lock, Mail, User, ShieldCheck, AlertCircle, Eye, EyeOff, CheckCircle2 } from "lucide-react";
-import { register, fieldError, type AuthError } from "@/lib/auth";
-import { useAuth } from "@/context/AuthContext";
+import { useAuthActions } from "@convex-dev/auth/react";
 
 const PASSWORD_RULES = [
   "Au moins 8 caractères",
@@ -16,7 +15,7 @@ const PASSWORD_RULES = [
 
 export default function InscriptionPage() {
   const router = useRouter();
-  const { setUser } = useAuth();
+  const { signIn } = useAuthActions();
 
   const [pseudo, setPseudo] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +25,7 @@ export default function InscriptionPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<AuthError | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const passwordStrength = (() => {
     if (!password) return 0;
@@ -44,39 +43,31 @@ export default function InscriptionPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors(null);
+    setError(null);
 
-    // Client-side check before sending
+    if (!acceptTerms) {
+      setError("Veuillez accepter les conditions d'utilisation.");
+      return;
+    }
+
     if (password !== password2) {
-      setErrors({ password2: ["Les mots de passe ne correspondent pas."] });
+      setError("Les mots de passe ne correspondent pas.");
       return;
     }
 
     setIsLoading(true);
 
-    const { user, error } = await register({
-      pseudo,
-      email,
-      password,
-      password2,
-      accept_terms: acceptTerms,
-    });
-
-    if (error) {
-      setErrors(error);
-      setIsLoading(false);
-      return;
-    }
-
-    if (user) {
-      setUser(user);
+    try {
+      await signIn("password", { email, password, pseudo, flow: "signUp" });
       router.push("/espace-membre");
+    } catch (err: any) {
+      console.error("Signup error:", err.message || err);
+      setError("Erreur : Compte déjà existant ou données invalides.");
+      setIsLoading(false);
     }
   };
 
-  const globalError =
-    fieldError(errors, "non_field_errors") ??
-    fieldError(errors, "accept_terms");
+  const globalError = error;
 
   return (
     <main className="min-h-screen w-full bg-background flex flex-col justify-between items-center px-4 py-8 relative overflow-hidden">
@@ -156,20 +147,12 @@ export default function InscriptionPage() {
                   onChange={(e) => setPseudo(e.target.value)}
                   placeholder="MonPseudo"
                   maxLength={50}
-                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all ${
-                    fieldError(errors, "pseudo")
-                      ? "border-destructive focus:border-destructive focus:ring-destructive/20"
-                      : "border-border/80 focus:border-primary focus:ring-primary/20"
-                  }`}
+                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all border-border/80 focus:border-primary focus:ring-primary/20`}
                 />
               </div>
-              {fieldError(errors, "pseudo") ? (
-                <p className="text-xs text-destructive mt-1">{fieldError(errors, "pseudo")}</p>
-              ) : (
-                <p className="text-xs text-muted-foreground/70 mt-1">
-                  Lettres, chiffres, points, tirets et underscores uniquement.
-                </p>
-              )}
+              <p className="text-xs text-muted-foreground/70 mt-1">
+                Lettres, chiffres, points, tirets et underscores uniquement.
+              </p>
             </div>
 
             {/* Email */}
@@ -187,16 +170,9 @@ export default function InscriptionPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nom@exemple.com"
-                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all ${
-                    fieldError(errors, "email")
-                      ? "border-destructive focus:border-destructive focus:ring-destructive/20"
-                      : "border-border/80 focus:border-primary focus:ring-primary/20"
-                  }`}
+                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all border-border/80 focus:border-primary focus:ring-primary/20`}
                 />
               </div>
-              {fieldError(errors, "email") && (
-                <p className="text-xs text-destructive mt-1">{fieldError(errors, "email")}</p>
-              )}
             </div>
 
             {/* Password */}
@@ -214,11 +190,7 @@ export default function InscriptionPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className={`w-full h-11 pl-10 pr-10 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all ${
-                    fieldError(errors, "password")
-                      ? "border-destructive focus:border-destructive focus:ring-destructive/20"
-                      : "border-border/80 focus:border-primary focus:ring-primary/20"
-                  }`}
+                  className={`w-full h-11 pl-10 pr-10 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all border-border/80 focus:border-primary focus:ring-primary/20`}
                 />
                 <button
                   type="button"
@@ -251,18 +223,14 @@ export default function InscriptionPage() {
                 </div>
               )}
 
-              {fieldError(errors, "password") ? (
-                <p className="text-xs text-destructive mt-1">{fieldError(errors, "password")}</p>
-              ) : (
-                <div className="mt-2 space-y-1">
-                  {PASSWORD_RULES.map((rule) => (
-                    <p key={rule} className="text-xs text-muted-foreground/70 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3 h-3 shrink-0" />
-                      {rule}
-                    </p>
-                  ))}
-                </div>
-              )}
+              <div className="mt-2 space-y-1">
+                {PASSWORD_RULES.map((rule) => (
+                  <p key={rule} className="text-xs text-muted-foreground/70 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 shrink-0" />
+                    {rule}
+                  </p>
+                ))}
+              </div>
             </div>
 
             {/* Confirm password */}
@@ -281,7 +249,7 @@ export default function InscriptionPage() {
                   onChange={(e) => setPassword2(e.target.value)}
                   placeholder="••••••••"
                   className={`w-full h-11 pl-10 pr-10 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all ${
-                    fieldError(errors, "password2") || (password2 && password !== password2)
+                    password2 && password !== password2
                       ? "border-destructive focus:border-destructive focus:ring-destructive/20"
                       : password2 && password === password2
                       ? "border-primary focus:border-primary focus:ring-primary/20"
@@ -297,9 +265,7 @@ export default function InscriptionPage() {
                   {showPassword2 ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              {fieldError(errors, "password2") ? (
-                <p className="text-xs text-destructive mt-1">{fieldError(errors, "password2")}</p>
-              ) : password2 && password !== password2 ? (
+              {password2 && password !== password2 ? (
                 <p className="text-xs text-destructive mt-1">Les mots de passe ne correspondent pas.</p>
               ) : password2 && password === password2 ? (
                 <p className="text-xs text-primary mt-1 flex items-center gap-1">
@@ -309,11 +275,7 @@ export default function InscriptionPage() {
             </div>
 
             {/* Terms */}
-            <div className={`flex items-start gap-3 p-3.5 rounded-xl border transition-colors ${
-              fieldError(errors, "accept_terms")
-                ? "bg-destructive/5 border-destructive/30"
-                : "bg-muted/20 border-border/40"
-            }`}>
+            <div className={`flex items-start gap-3 p-3.5 rounded-xl border transition-colors bg-muted/20 border-border/40`}>
               <input
                 id="accept_terms"
                 type="checkbox"

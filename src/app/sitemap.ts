@@ -54,14 +54,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
     const slugs = new Set<string>();
-    for (const lang of locales) {
-      if (section === "apprendre-arabe" && lang === "ar") continue;
-      getSectionSlugs(lang, section).forEach((s) => slugs.add(s));
+    
+    // Fetch articles from Convex if section is actualites
+    if (section === "actualites") {
+      try {
+        const { fetchQuery } = await import("convex/nextjs");
+        const { api } = await import("../../convex/_generated/api");
+        const articles = await fetchQuery(api.articles.list, { status: "published" });
+        articles.forEach(a => slugs.add(a.slug));
+      } catch (e) {
+        console.error("Failed to fetch articles for sitemap", e);
+      }
+    } else {
+      for (const lang of locales) {
+        if (section === "apprendre-arabe" && lang === "ar") continue;
+        getSectionSlugs(lang, section).forEach((s) => slugs.add(s));
+      }
     }
 
     for (const slug of slugs) {
       const langsWithSlug = locales.filter((lang) => {
         if (section === "apprendre-arabe" && lang === "ar") return false;
+        if (section === "actualites") return true; // Articles in Convex are multilingual
         return getSectionSlugs(lang, section).includes(slug);
       });
       if (langsWithSlug.length === 0) continue;

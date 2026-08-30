@@ -1,5 +1,17 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const nextConfig: NextConfig = {};
+const withNextIntl = createNextIntlPlugin();
 
-export default nextConfig;
+const nextConfig: NextConfig = {
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.devtool = "source-map";
+    }
+    // react-pdf canvas alias
+    config.resolve.alias.canvas = false;
+    return config;
+  },
+};
+
+export default withNextIntl(nextConfig);

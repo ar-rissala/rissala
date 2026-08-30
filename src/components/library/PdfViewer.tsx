@@ -47,6 +47,7 @@ export function PdfViewer({
 }: PdfViewerProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(initialPage);
+  const [direction, setDirection] = useState<number>(1);
   const [zoomIndex, setZoomIndex] = useState<number>(DEFAULT_ZOOM_INDEX);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -87,6 +88,16 @@ export function PdfViewer({
     }
   }, []);
 
+  const goToNextPage = useCallback(() => {
+    setDirection(1);
+    setPageNumber((p) => Math.min(p + 1, numPages));
+  }, [numPages]);
+
+  const goToPrevPage = useCallback(() => {
+    setDirection(-1);
+    setPageNumber((p) => Math.max(p - 1, 1));
+  }, []);
+
   // Save reading progress
   useEffect(() => {
     if (numPages > 0) {
@@ -102,14 +113,12 @@ export function PdfViewer({
   // Keyboard navigation
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "ArrowRight" || e.key === "ArrowDown")
-        setPageNumber((p) => Math.min(p + 1, numPages));
-      if (e.key === "ArrowLeft" || e.key === "ArrowUp")
-        setPageNumber((p) => Math.max(p - 1, 1));
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") goToNextPage();
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") goToPrevPage();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [numPages]);
+  }, [goToNextPage, goToPrevPage]);
 
   const onDocumentLoadSuccess = useCallback(
     ({ numPages: n }: { numPages: number }) => {
@@ -130,9 +139,9 @@ export function PdfViewer({
   const canZoomOut = zoomIndex > 0;
 
   return (
-    <div ref={viewerRef} className={`flex flex-col ${isFullscreen ? "bg-background" : ""}`}>
+    <div ref={viewerRef} className={`flex flex-col ${isFullscreen ? "bg-background h-screen overflow-y-auto" : ""}`}>
       {/* ── Top toolbar ── */}
-      <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-border/50 bg-card/80 backdrop-blur-sm sticky top-16 z-30 flex-wrap">
+      <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-border/50 bg-card/80 backdrop-blur-sm sticky top-0 sm:top-16 z-30 flex-wrap">
         {/* Back */}
         <Link
           href={`/${lang}/bibliotheque`}
@@ -196,7 +205,7 @@ export function PdfViewer({
       {/* ── PDF canvas area ── */}
       <div
         ref={containerRef}
-        className="flex-1 flex flex-col items-center py-8 px-4 overflow-x-auto bg-muted/10 min-h-[60vh]"
+        className="flex-1 flex flex-col items-center py-8 px-4 overflow-x-auto bg-muted/10 min-h-[70vh]"
       >
         {error ? (
           <div className="flex flex-col items-center gap-4 py-20 text-center">
@@ -220,23 +229,26 @@ export function PdfViewer({
               </div>
             }
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={pageNumber}
-                initial={{ opacity: 0, x: 20 }}
+                custom={direction}
+                initial={{ opacity: 0, x: direction * 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0, x: -direction * 50 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="shadow-2xl rounded-lg overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                onDragEnd={(e, { offset, velocity }) => {
+                dragElastic={0.1}
+                onDoubleClick={toggleFullscreen}
+                onDragEnd={(e, { offset }) => {
                   const swipe = offset.x;
-                  if (swipe < -50 && pageNumber < numPages) {
-                    setPageNumber((p) => p + 1);
-                  } else if (swipe > 50 && pageNumber > 1) {
-                    setPageNumber((p) => p - 1);
+                  // Lecture arabe : on tire de gauche à droite pour aller à la page suivante (swipe > 0)
+                  if (swipe > 60 && pageNumber < numPages) {
+                    goToNextPage();
+                  } else if (swipe < -60 && pageNumber > 1) {
+                    goToPrevPage();
                   }
                 }}
               >
@@ -266,7 +278,7 @@ export function PdfViewer({
           {/* Prev */}
           <button
             id="prev-page"
-            onClick={() => setPageNumber((p) => Math.max(p - 1, 1))}
+            onClick={goToPrevPage}
             disabled={pageNumber <= 1}
             aria-label="Page précédente"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border/60 text-sm font-medium text-foreground hover:bg-muted/60 disabled:opacity-30 disabled:cursor-not-allowed transition-all active:scale-95"
@@ -285,7 +297,10 @@ export function PdfViewer({
               value={pageNumber}
               onChange={(e) => {
                 const v = parseInt(e.target.value);
-                if (!isNaN(v) && v >= 1 && v <= numPages) setPageNumber(v);
+                if (!isNaN(v) && v >= 1 && v <= numPages) {
+                  setDirection(v > pageNumber ? 1 : -1);
+                  setPageNumber(v);
+                }
               }}
               aria-label="Numéro de page"
               className="w-14 h-8 text-center text-sm rounded-lg border border-border/60 bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition"
@@ -296,7 +311,7 @@ export function PdfViewer({
           {/* Next */}
           <button
             id="next-page"
-            onClick={() => setPageNumber((p) => Math.min(p + 1, numPages))}
+            onClick={goToNextPage}
             disabled={pageNumber >= numPages}
             aria-label="Page suivante"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border/60 text-sm font-medium text-foreground hover:bg-muted/60 disabled:opacity-30 disabled:cursor-not-allowed transition-all active:scale-95"

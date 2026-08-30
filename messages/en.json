@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Submit",
+    "forgotPassword": "Forgot password?"
+  },
+  "nav": {
+    "home": "Home",
+    "books": "Books",
+    "sciences": "Islamic Sciences",
+    "arabic": "Arabic Language",
+    "finance": "Islamic Finance",
+    "paths": "Paths",
+    "news": "News"
+  }
+}

@@ -5,40 +5,33 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Lock, Mail, ShieldCheck, AlertCircle } from "lucide-react";
-import { login, fieldError, type AuthError } from "@/lib/auth";
-import { useAuth } from "@/context/AuthContext";
+import { useAuthActions } from "@convex-dev/auth/react";
 
 export default function ConnexionPage() {
   const router = useRouter();
-  const { setUser } = useAuth();
+  const { signIn } = useAuthActions();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<AuthError | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors(null);
+    setError(null);
     setIsLoading(true);
 
-    const { user, error } = await login({ email, password });
-
-    if (error) {
-      setErrors(error);
-      setIsLoading(false);
-      return;
-    }
-
-    if (user) {
-      setUser(user);
+    try {
+      await signIn("password", { email, password, flow: "signIn" });
       router.push("/espace-membre");
+    } catch (err: any) {
+      console.error("Login error:", err.message || err);
+      setError("Identifiants incorrects ou compte inexistant.");
+      setIsLoading(false);
     }
   };
 
-  const globalError =
-    fieldError(errors, "non_field_errors") ??
-    (errors && !errors.email && !errors.password ? Object.values(errors).flat()[0] : undefined);
+  const globalError = error;
 
   return (
     <main className="min-h-screen w-full bg-background flex flex-col justify-between items-center px-4 py-8 relative overflow-hidden select-none">
@@ -121,16 +114,9 @@ export default function ConnexionPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nom@exemple.com"
-                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all ${
-                    fieldError(errors, "email")
-                      ? "border-destructive focus:border-destructive focus:ring-destructive/20"
-                      : "border-border/80 focus:border-primary focus:ring-primary/20"
-                  }`}
+                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all border-border/80 focus:border-primary focus:ring-primary/20`}
                 />
               </div>
-              {fieldError(errors, "email") && (
-                <p className="text-xs text-destructive mt-1">{fieldError(errors, "email")}</p>
-              )}
             </div>
 
             {/* Password */}
@@ -156,16 +142,9 @@ export default function ConnexionPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all ${
-                    fieldError(errors, "password")
-                      ? "border-destructive focus:border-destructive focus:ring-destructive/20"
-                      : "border-border/80 focus:border-primary focus:ring-primary/20"
-                  }`}
+                  className={`w-full h-11 pl-10 pr-4 rounded-xl border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 transition-all border-border/80 focus:border-primary focus:ring-primary/20`}
                 />
               </div>
-              {fieldError(errors, "password") && (
-                <p className="text-xs text-destructive mt-1">{fieldError(errors, "password")}</p>
-              )}
             </div>
 
             {/* Submit */}
