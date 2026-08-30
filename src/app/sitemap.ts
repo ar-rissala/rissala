@@ -23,7 +23,7 @@ function languageAlternates(
   return languages;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date().toISOString();
 
   const staticPaths = ["", "/parcours", "/connexion"];

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { isLocale } from "@/lib/i18n";
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const { lang } = params;
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
   if (!isLocale(lang)) return {};
 
   const titles = {

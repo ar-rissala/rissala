@@ -8,18 +8,19 @@ export default async function AdminLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang } = await params;
   const userId = await getAuthUserId();
 
   if (!userId) {
-    redirect(`/${params.lang}/connexion`);
+    redirect(`/${lang}/connexion`);
   }
 
   const user = await fetchQuery(api.users.getCurrentUser, {});
   
   if (user?.role !== "admin" && user?.role !== "editor") {
-    redirect(`/${params.lang}`);
+    redirect(`/${lang}`);
   }
   
   return (
@@ -30,16 +31,16 @@ export default async function AdminLayout({
           <h2 className="text-lg font-bold font-heading text-primary">Rissala Admin</h2>
         </div>
         <nav className="p-4 space-y-2 flex-1 overflow-y-auto">
-          <a href={`/${params.lang}/admin/dashboard`} className="block px-4 py-2 text-sm text-foreground rounded-lg bg-primary/10 text-primary font-medium">
+          <a href={`/${lang}/admin/dashboard`} className="block px-4 py-2 text-sm text-foreground rounded-lg bg-primary/10 text-primary font-medium">
             Dashboard
           </a>
-          <a href={`/${params.lang}/admin/articles`} className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors">
+          <a href={`/${lang}/admin/articles`} className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors">
             Articles
           </a>
-          <a href={`/${params.lang}/admin/categories`} className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors">
+          <a href={`/${lang}/admin/categories`} className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors">
             Catégories
           </a>
-          <a href={`/${params.lang}/admin/livres`} className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors">
+          <a href={`/${lang}/admin/livres`} className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors">
             Livres & PDF
           </a>
         </nav>

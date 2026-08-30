@@ -21,6 +21,7 @@
     "clsx": "^2.1.1",
     "convex": "^1.45.0",
     "convex-helpers": "^0.1.123",
+    "date-fns": "^4.4.0",
     "framer-motion": "^12.38.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.37.0",

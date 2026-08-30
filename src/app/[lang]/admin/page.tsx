@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default function AdminIndexPage({ params }: { params: { lang: string } }) {
-  redirect(`/${params.lang}/admin/dashboard`);
+export default async function AdminIndexPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  redirect(`/${lang}/admin/dashboard`);
 }
