@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { convexAuthNext } from "@convex-dev/auth/nextjs/server";
+import { isAuthenticatedNextjs, convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "../../../../convex/_generated/api";
 
@@ -11,13 +11,12 @@ export default async function AdminLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const { isAuthenticated, getToken } = convexAuthNext();
-
-  if (!(await isAuthenticated())) {
+  
+  if (!(await isAuthenticatedNextjs())) {
     redirect(`/${lang}/connexion`);
   }
 
-  const token = await getToken();
+  const token = await convexAuthNextjsToken();
   let user = null;
   try {
     user = await fetchQuery(api.users.getCurrentUser, {}, { token: token || undefined });
