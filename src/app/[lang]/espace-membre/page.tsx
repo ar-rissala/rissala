@@ -117,7 +117,7 @@ export default function EspaceMembre() {
               <div>
                 <p className="text-xs text-muted-foreground mb-0.5">Membre depuis</p>
                 <p className="text-sm font-medium text-foreground">
-                  {new Date(user.date_joined).toLocaleDateString("fr-FR", {
+                  {new Date(user._creationTime).toLocaleDateString("fr-FR", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
