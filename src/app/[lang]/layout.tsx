@@ -100,14 +100,14 @@ export default async function RootLayout({
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <NextIntlClientProvider messages={messages}>
-          <AuthProvider>
-            <ConvexClientProvider>
+          <ConvexClientProvider>
+            <AuthProvider>
               <LangSetter lang={lang as Locale} />
               <Navbar />
               <main className="flex-1 flex flex-col">{children}</main>
               <Footer />
-            </ConvexClientProvider>
-          </AuthProvider>
+            </AuthProvider>
+          </ConvexClientProvider>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
