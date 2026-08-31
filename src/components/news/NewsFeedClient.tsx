@@ -48,7 +48,8 @@ export default function NewsFeedClient({ initialArticles, lang }: NewsFeedClient
         image: article.coverUrl || undefined,
         section: "actualites",
         author: article.author?.name || "Rissala",
-        // The component might expect a specific URL structure, but usually slug is enough.
+        lang: lang,
+        content: (article.content as any)?.[lang] || "",
       } as ArticleData;
     });
   }, [convexArticles, initialArticles, lang]);
