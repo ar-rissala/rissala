@@ -52,7 +52,7 @@ export default function EditBookPage() {
         author: book.author,
         description: book.description,
         language: book.language,
-        categoryId: book.categoryId,
+        categoryId: book.categoryId || "",
         published: book.published,
         featured: book.featured,
       });
@@ -255,7 +255,7 @@ export default function EditBookPage() {
 
               <div className="space-y-2">
                 <Label>Catégorie <span className="text-destructive">*</span></Label>
-                <Select value={formData.categoryId} onValueChange={(v) => setFormData(prev => ({ ...prev, categoryId: v }))}>
+                <Select value={formData.categoryId} onValueChange={(v) => setFormData(prev => ({ ...prev, categoryId: v || "" }))}>
                   <SelectTrigger className={!formData.categoryId ? "border-destructive" : ""}>
                     <SelectValue placeholder="Sélectionnez une catégorie" />
                   </SelectTrigger>
