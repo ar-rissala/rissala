@@ -58,7 +58,8 @@ export default function InscriptionPage() {
     setIsLoading(true);
 
     try {
-      await signIn("password", { email, password, pseudo, flow: "signUp" });
+      const cleanEmail = email.trim().toLowerCase();
+      await signIn("password", { email: cleanEmail, password, pseudo, flow: "signUp" });
       router.push("/espace-membre");
     } catch (err: any) {
       console.error("Signup error:", err.message || err);

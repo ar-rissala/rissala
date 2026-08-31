@@ -1,67 +1,38 @@
 "use client";
 
-/**
- * AuthContext — Rissala
- *
- * Provides the current authenticated user (or null) across the entire app.
- * Fetches /api/django/accounts/me/ on mount to restore session from cookie.
- */
-
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { getMe, logout as apiLogout, type AuthUser } from "@/lib/auth";
+import React, { createContext, useContext } from "react";
+import { useConvexAuth } from "convex/react";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { useAuthActions } from "@convex-dev/auth/react";
 
 interface AuthContextValue {
-  user: AuthUser | null;
+  user: any | null;
   loading: boolean;
-  /** Call after a successful login/register to update context */
-  setUser: (user: AuthUser | null) => void;
-  /** Call to logout and clear user from context */
   signOut: () => Promise<void>;
-  /** Refetch current user from API */
-  refresh: () => Promise<void>;
+  isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextValue>({
   user: null,
   loading: true,
-  setUser: () => {},
   signOut: async () => {},
-  refresh: async () => {},
+  isAuthenticated: false,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { isAuthenticated, isLoading } = useConvexAuth();
+  const user = useQuery(api.users.getCurrentUser) || null;
+  const { signOut: convexSignOut } = useAuthActions();
 
-  const refresh = useCallback(async () => {
-    try {
-      const me = await getMe();
-      setUser(me);
-    } catch {
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const authLoading = isLoading || (isAuthenticated && user === undefined);
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    refresh();
-  }, [refresh]);
-
-  const signOut = useCallback(async () => {
-    await apiLogout();
-    setUser(null);
-  }, []);
+  const signOut = async () => {
+    await convexSignOut();
+  };
 
   return (
-    <AuthContext.Provider value={{ user, loading, setUser, signOut, refresh }}>
+    <AuthContext.Provider value={{ user, loading: authLoading, signOut, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

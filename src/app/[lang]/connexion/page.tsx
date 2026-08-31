@@ -22,7 +22,8 @@ export default function ConnexionPage() {
     setIsLoading(true);
 
     try {
-      await signIn("password", { email, password, flow: "signIn" });
+      const cleanEmail = email.trim().toLowerCase();
+      await signIn("password", { email: cleanEmail, password, flow: "signIn" });
       router.push("/espace-membre");
     } catch (err: any) {
       console.error("Login error:", err.message || err);
