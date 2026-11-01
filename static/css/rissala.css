@@ -108,6 +108,12 @@ img, video {
   display: none !important;
 }
 
+#mobile-nav-panel {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
