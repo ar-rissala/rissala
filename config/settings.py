@@ -101,9 +101,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-# Database: PostgreSQL on Railway via DATABASE_URL, SQLite fallback locally
+# Database: PostgreSQL on Railway via DATABASE_URL, SQLite fallback locally or via SQLITE_PATH
 DATABASE_URL = os.environ.get("DATABASE_URL")
-if DATABASE_URL:
+SQLITE_PATH = os.environ.get("SQLITE_PATH")
+FORCE_SQLITE = os.environ.get("FORCE_SQLITE", "False").lower() in ("true", "1")
+
+if DATABASE_URL and not FORCE_SQLITE:
     DATABASES = {
         "default": dj_database_url.parse(
             DATABASE_URL,
@@ -112,10 +115,19 @@ if DATABASE_URL:
         )
     }
 else:
+    db_path = Path(SQLITE_PATH) if SQLITE_PATH else (BASE_DIR / "db.sqlite3")
+    if SQLITE_PATH:
+        try:
+            db_path.parent.mkdir(parents=True, exist_ok=True)
+        except Exception:
+            pass
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": db_path,
+            "OPTIONS": {
+                "timeout": 30,  # 30-second timeout to prevent SQLite busy locks
+            },
         }
     }
 
