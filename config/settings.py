@@ -3,10 +3,12 @@ Django settings for Rissala.net platform.
 Configured for local development and Railway production deployment.
 """
 import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
 import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,7 +108,17 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 SQLITE_PATH = os.environ.get("SQLITE_PATH")
 FORCE_SQLITE = os.environ.get("FORCE_SQLITE", "False").lower() in ("true", "1")
 
-if DATABASE_URL and not FORCE_SQLITE:
+# If collectstatic is running during build, use an isolated in-memory SQLite database.
+# This guarantees that building static assets never requires or connects to a runtime database or volume.
+if "collectstatic" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": ":memory:",
+        }
+    }
+elif DATABASE_URL and not FORCE_SQLITE:
+    # Production PostgreSQL (active by default as long as DATABASE_URL exists and FORCE_SQLITE is not True)
     DATABASES = {
         "default": dj_database_url.parse(
             DATABASE_URL,
@@ -115,12 +127,37 @@ if DATABASE_URL and not FORCE_SQLITE:
         )
     }
 else:
-    db_path = Path(SQLITE_PATH) if SQLITE_PATH else (BASE_DIR / "db.sqlite3")
+    # SQLite configuration
     if SQLITE_PATH:
+        db_path = Path(SQLITE_PATH)
+        parent_dir = db_path.parent
+        if not parent_dir.exists():
+            try:
+                parent_dir.mkdir(parents=True, exist_ok=True)
+            except OSError as err:
+                raise ImproperlyConfigured(
+                    f"CRITICAL: SQLITE_PATH is set to '{SQLITE_PATH}', but the directory '{parent_dir}' "
+                    f"does not exist and cannot be created ({err}). "
+                    "Verify that the persistent Railway volume is properly attached and mounted. "
+                    "Aborting startup to prevent creating an unpersisted ephemeral database and losing data."
+                ) from err
+
+        # Verify write permission
+        test_file = parent_dir / ".perm_check"
         try:
-            db_path.parent.mkdir(parents=True, exist_ok=True)
-        except Exception:
-            pass
+            test_file.touch(exist_ok=True)
+            test_file.unlink(missing_ok=True)
+        except OSError as err:
+            raise ImproperlyConfigured(
+                f"CRITICAL: SQLITE_PATH is set to '{SQLITE_PATH}', but the directory '{parent_dir}' "
+                f"is not writable ({err}). "
+                "Verify volume mount permissions on Railway. "
+                "Aborting startup to prevent data loss."
+            ) from err
+    else:
+        # Local development fallback when neither DATABASE_URL nor SQLITE_PATH is configured
+        db_path = BASE_DIR / "db.sqlite3"
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
