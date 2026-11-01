@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-3xl mx-auto text-center mb-10">
+    <h1 class="text-3xl sm:text-4xl font-bold text-foreground font-heading">{{ ui.nav_search }}</h1>
+    <p class="mt-2 text-muted-foreground text-sm">{{ ui.search_placeholder }}</p>
+
+    <form action="{{ nav_urls.search }}" method="get" class="mt-6 space-y-3">
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input
+          type="search"
+          name="q"
+          value="{{ query }}"
+          placeholder="{{ ui.search_placeholder }}"
+          class="flex-1 px-4 py-3 rounded-xl border border-border bg-card text-foreground text-sm focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-muted-foreground"
+        >
+        <select name="section" class="px-4 py-3 rounded-xl border border-border text-sm bg-card text-foreground">
+          <option value="">{{ ui.filter_all }}</option>
+          <option value="books" {% if section_filter == 'books' %}selected{% endif %}>{{ ui.nav_books }}</option>
+          <option value="sciences" {% if section_filter == 'sciences' %}selected{% endif %}>{{ ui.nav_sciences }}</option>
+          <option value="arabic" {% if section_filter == 'arabic' %}selected{% endif %}>{{ ui.nav_arabic }}</option>
+          <option value="finance" {% if section_filter == 'finance' %}selected{% endif %}>{{ ui.nav_finance }}</option>
+          <option value="courses" {% if section_filter == 'courses' %}selected{% endif %}>{{ ui.nav_courses }}</option>
+          <option value="news" {% if section_filter == 'news' %}selected{% endif %}>{{ ui.nav_news }}</option>
+        </select>
+        <button type="submit" class="px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-colors shadow-sm">
+          {{ ui.search_btn }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  {% if query %}
+    <div class="mb-6 text-sm text-muted-foreground">
+      <strong>{{ total_count }}</strong> résultat(s) pour « <span class="text-primary font-semibold">{{ query }}</span> »
+    </div>
+
+    {% if books_results %}
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-foreground font-heading mb-4 pb-2 border-b border-border">{{ ui.nav_books }} ({{ books_results|length }})</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for book in books_results %}
+        <div class="p-5 rounded-xl bg-card border border-border flex gap-4 hover:border-primary/40 transition-colors">
+          {% if book.cover_image_url %}
+          <img src="{{ book.cover_image_url }}" alt="{{ book|localized_field:'title' }}" class="w-16 h-24 object-cover rounded-lg shrink-0">
+          {% endif %}
+          <div>
+            <h3 class="font-bold text-base text-foreground font-heading">
+              <a href="{{ book|book_url:current_lang }}" class="hover:text-primary transition-colors">{{ book|localized_field:'title' }}</a>
+            </h3>
+            <p class="text-xs text-muted-foreground mt-1 line-clamp-2">{{ book|localized_field:'short_description' }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if articles_results %}
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-foreground font-heading mb-4 pb-2 border-b border-border">Articles & Leçons ({{ articles_results|length }})</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {% for article in articles_results %}
+        <a href="{{ article.get_absolute_url }}" class="block p-5 rounded-xl bg-card border border-border hover:border-primary/40 transition-colors">
+          <div class="text-xs font-semibold text-primary uppercase tracking-wider">{{ article.get_section_type_display }}</div>
+          <h3 class="font-bold text-base text-foreground font-heading mt-1">{{ article.title }}</h3>
+          <p class="text-xs text-muted-foreground mt-1.5 line-clamp-2">{{ article.summary }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if courses_results %}
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-foreground font-heading mb-4 pb-2 border-b border-border">{{ ui.nav_courses }} ({{ courses_results|length }})</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for course in courses_results %}
+        <a href="{{ course|course_url:current_lang }}" class="block p-5 rounded-xl bg-card border border-border hover:border-primary/40 transition-colors">
+          <h3 class="font-bold text-base text-foreground font-heading">{{ course|localized_field:'title' }}</h3>
+          <p class="text-xs text-muted-foreground mt-1 line-clamp-2">{{ course|localized_field:'short_description' }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if total_count == 0 %}
+    <div class="text-center py-12 bg-muted/20 rounded-2xl border border-border">
+      <p class="text-muted-foreground font-medium">{{ ui.empty_results }}</p>
+    </div>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col min-h-screen bg-background text-foreground">
+  <!-- PageHero (Exact 1:1 match to Next.js /sciences-islamiques/fondements) -->
+  <section class="relative py-16 sm:py-20 lg:py-28 min-h-[380px] flex items-center border-b border-border/50 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/islamic-pattern-bg.jpg');"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 bg-background/[0.65] dark:bg-background/[0.70]"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 w-full">
+      <div class="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4 sm:mb-6 font-heading text-foreground">
+          {{ copy.heading }} <span class="text-primary">{{ copy.accent }}</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-6">
+          {{ copy.description }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4 lg:px-8 py-16 sm:py-24">
+    <!-- ARTICLES SECTION -->
+    <section class="mb-24">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight font-heading border-b-2 border-primary pb-2 pe-8 inline-block text-foreground">
+          {{ copy.fondementsTitle }}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for article in articles %}
+        <!-- ArticleNoImage (Exact match to Next.js ArticleNoImage) -->
+        <a
+          href="{{ article.get_absolute_url }}"
+          class="group flex flex-col h-full cursor-pointer p-6 rounded-xl border border-border/50 bg-background/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+        >
+          <div class="flex flex-col flex-1">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-3">
+              <span>{{ article.tag_label }}</span>
+            </div>
+
+            <h3 class="text-xl font-bold font-heading leading-snug mb-3 group-hover:text-primary transition-colors text-foreground line-clamp-2">
+              {{ article.title }}
+            </h3>
+
+            <p class="text-sm text-muted-foreground line-clamp-3 leading-relaxed mb-6">
+              {{ article.summary|default:article.title }}
+            </p>
+
+            <div class="mt-auto pt-4 flex items-center justify-between text-xs font-medium text-muted-foreground border-t border-border/40">
+              <span>{{ article.published_at|date:"j F Y" }}</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

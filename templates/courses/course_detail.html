@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col flex-1 bg-background pb-24">
+    {% if course.is_demo %}
+    <div class="bg-amber-50 border-b border-amber-200 px-4 py-2.5 text-center text-xs text-amber-900">
+        <strong class="font-bold uppercase tracking-wider me-2">Parcours de démonstration</strong>
+        Ce parcours présente une maquette pédagogique complète (modules, leçons, objectifs et suivi de progression). Aucun flux vidéo externe n'est raccordé sur cet environnement.
+    </div>
+    {% endif %}
+
+    <!-- Top Bar -->
+    <div class="border-b border-border bg-background/80 dark:bg-background/85 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl px-4 h-12 flex items-center justify-between text-xs sm:text-sm">
+            <a href="{% lang_url 'courses:course_list' %}" class="inline-flex items-center text-muted-foreground hover:text-foreground font-medium transition-colors">
+                <svg class="me-1.5 h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m12 19-7-7 7-7M19 12H5"/></svg>
+                {{ dict.nav.courses }}
+            </a>
+            <span class="text-muted-foreground font-serif italic">
+                {{ course.get_level_display }} • {{ course.estimated_hours }} h
+            </span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <section class="py-14 md:py-20 border-b border-border bg-muted/30">
+        <div class="container mx-auto max-w-5xl px-4 sm:px-6">
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+                <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
+                    {{ course.get_level_display }}
+                </span>
+                {% if course.is_demo %}
+                <span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950 dark:text-amber-300 text-amber-800 text-xs font-bold uppercase tracking-wider">
+                    Formation de démonstration
+                </span>
+                {% endif %}
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+                {{ localized_title }}
+            </h1>
+
+            <p class="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-8">
+                {{ localized_short_desc }}
+            </p>
+
+            <div class="flex flex-wrap items-center gap-6">
+                {% if user.is_authenticated %}
+                    {% if enrollment and first_lesson %}
+                    <a href="{{ course.get_absolute_url }}lecon/{{ first_lesson.slug }}/" class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-colors">
+                        Continuer le parcours ({{ enrollment.progress_percentage|floatformat:0 }}%)
+                    </a>
+                    {% else %}
+                    <form method="post" action="{% lang_url 'courses:course_enroll' identifier=course.slug_fr %}">
+                        {% csrf_token %}
+                        <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-colors">
+                            S'inscrire gratuitement au parcours
+                        </button>
+                    </form>
+                    {% endif %}
+                {% else %}
+                    {% if first_lesson %}
+                    <a href="{{ course.get_absolute_url }}lecon/{{ first_lesson.slug }}/" class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-colors">
+                        Voir la première leçon d'aperçu
+                    </a>
+                    {% endif %}
+                    <a href="{% lang_url 'accounts:login' %}" class="inline-flex items-center justify-center rounded-xl bg-card border border-border px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-muted/50 transition-colors">
+                        Se connecter pour suivre sa progression
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum & Objectives -->
+    <section class="py-16">
+        <div class="container mx-auto max-w-5xl px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Modules & Lessons (8 cols) -->
+            <div class="lg:col-span-8 space-y-6">
+                <h2 class="font-serif text-2xl font-bold text-foreground uppercase tracking-wide mb-6">
+                    Programme détaillé ({{ course.total_lessons_count }} leçons)
+                </h2>
+
+                {% for mod in modules %}
+                <div class="rounded-2xl border border-border bg-card overflow-hidden">
+                    <div class="bg-muted/40 px-6 py-4 border-b border-border flex items-center justify-between">
+                        <h3 class="font-serif font-bold text-lg text-foreground">
+                            Module {{ mod.order }} — {{ mod.localized_title }}
+                        </h3>
+                        <span class="text-xs text-muted-foreground">{{ mod.lessons_list|length }} leçons</span>
+                    </div>
+                    <div class="divide-y divide-border/60">
+                        {% for les in mod.lessons_list %}
+                        <a
+                            href="{{ course.get_absolute_url }}lecon/{{ les.slug }}/"
+                            class="flex items-center justify-between px-6 py-4 hover:bg-muted/50 transition-colors group"
+                        >
+                            <div class="flex items-center gap-3">
+                                {% if les.id in completed_lesson_ids %}
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">✓</span>
+                                {% else %}
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs font-serif">{{ les.order }}</span>
+                                {% endif %}
+                                <div>
+                                    <span class="font-medium text-sm text-foreground group-hover:text-primary transition-colors block">
+                                        {{ les.localized_title }}
+                                    </span>
+                                    {% if les.summary_fr %}
+                                    <span class="text-xs text-muted-foreground">{{ les.summary_fr }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 text-xs text-muted-foreground">
+                                {% if les.is_free_preview %}
+                                <span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold text-[10px] uppercase">Aperçu libre</span>
+                                {% endif %}
+                                <span>{{ les.duration_minutes }} min</span>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Sidebar Objectives (4 cols) -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="rounded-2xl border border-border bg-card p-6">
+                    <h3 class="font-serif text-lg font-bold text-foreground mb-4">
+                        Objectifs pédagogiques
+                    </h3>
+                    <ul class="space-y-3 text-sm text-muted-foreground">
+                        {% for obj in objectives %}
+                        <li class="flex items-start gap-2.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+                            <span>{{ obj }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="rounded-2xl border border-border bg-muted/30 p-6">
+                    <h4 class="font-serif font-bold text-foreground text-base mb-1">Enseignant</h4>
+                    <p class="text-sm font-semibold text-primary">{{ course.instructor_name }}</p>
+                    <p class="text-xs text-muted-foreground mt-1">{{ course.instructor_title }}</p>
+                </div>
+            </div>
+                    <h4 class="font-serif font-bold text-foreground text-base mb-1">Enseignant</h4>
+                    <p class="text-sm font-semibold text-accent">{{ course.instructor_name }}</p>
+                    <p class="text-xs text-muted-foreground mt-1">{{ course.instructor_title }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

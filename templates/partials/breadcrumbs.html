@@ -1,0 +1,19 @@
+{% if breadcrumbs %}
+<nav aria-label="Fil d'Ariane" class="bg-muted/30 border-b border-border/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <ol class="flex flex-wrap items-center gap-2 text-xs font-medium text-muted-foreground">
+      {% for crumb in breadcrumbs %}
+        <li class="flex items-center gap-2">
+          {% if not forloop.last %}
+            <a href="{{ crumb.url }}" class="hover:text-primary transition-colors">{{ crumb.label }}</a>
+            <span class="text-muted-foreground/50 rtl-mirror">/</span>
+          {% else %}
+            <span class="text-primary font-semibold truncate max-w-xs sm:max-w-md" aria-current="page">{{ crumb.label }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</nav>
+{% endif %}
+

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col flex-1 bg-background pb-24">
+    <section class="relative w-full py-20 md:py-28 overflow-hidden flex items-center justify-center border-b border-border">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/islamic-pattern-bg.jpg');"></div>
+            <div class="absolute inset-0 bg-background/80 dark:bg-background/85 backdrop-blur-[1px]"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+        </div>
+        <div class="container relative z-10 mx-auto max-w-4xl px-4 text-center">
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+                {{ dict.stocks.hero.title }} <span class="text-primary">{{ dict.stocks.hero.titleHighlight }}</span>
+            </h1>
+            <p class="text-lg text-foreground/80 max-w-2xl mx-auto">
+                {{ dict.stocks.hero.subtitle }}
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto max-w-5xl px-4 sm:px-6 space-y-8">
+            <div class="rounded-2xl border border-amber-200 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-950/40 p-5 text-xs text-amber-900 dark:text-amber-200">
+                <strong>{{ dict.stocks.disclaimerTitle }} :</strong> {{ dict.stocks.disclaimerText }}
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="rounded-xl border border-border bg-card p-6">
+                    <h3 class="font-serif text-lg font-bold text-foreground mb-2">Critère sectoriel (Activité licite)</h3>
+                    <p class="text-sm text-muted-foreground leading-relaxed">Exclusion des entreprises dont l'activité principale implique le prêt à intérêt (Riba), l'assurance conventionnelle, les jeux de hasard (Maysir), l'alcool, le tabac ou l'armement.</p>
+                </div>
+                <div class="rounded-xl border border-border bg-card p-6">
+                    <h3 class="font-serif text-lg font-bold text-foreground mb-2">Ratios financiers (AAOIFI)</h3>
+                    <p class="text-sm text-muted-foreground leading-relaxed">Dette portant intérêt inférieure à 30% de la capitalisation boursière, dépôts rémunérés inférieurs à 30%, et revenus non conformes marginaux inférieurs à 5% (soumis à purification).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

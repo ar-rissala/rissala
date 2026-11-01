@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-xl mx-auto px-4 sm:px-6 py-16">
+  <div class="rounded-2xl bg-[#f8fbf9] border border-[#d5e6e0] p-8 text-center space-y-4">
+    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-[#006b54] flex items-center justify-center mx-auto font-bold text-xl">
+      ✉
+    </div>
+    <h1 class="text-2xl font-bold text-[#102a24]">{{ ui.newsletter_title }}</h1>
+    {% if message_text %}
+      <p class="text-sm text-slate-700 leading-relaxed">{{ message_text }}</p>
+    {% endif %}
+    <div class="pt-4">
+      <a href="/{{ current_lang }}/" class="inline-block px-6 py-2.5 rounded-xl bg-[#006b54] text-white text-xs font-semibold">
+        {{ ui.404_cta }}
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

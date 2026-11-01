@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col min-h-screen">
+  <!-- Hero Section (Exact match to Next.js Home page) -->
+  <section
+    class="relative overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-36 lg:pb-40 border-b border-border/40"
+    style="background-color: #000; background-image: url('/hero-bg.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;"
+  >
+    <!-- Dark overlay with brand colors (black and green) -->
+    <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-primary/20 to-black/90 pointer-events-none"></div>
+    <div class="absolute inset-0 z-[1] bg-black/40 pointer-events-none"></div>
+    <div class="container relative z-10 mx-auto px-4 lg:px-8 flex flex-col items-center text-center">
+      <div class="max-w-4xl">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 text-white font-heading leading-tight drop-shadow-lg">
+          {% if lang == 'en' %}
+          Study according to your <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">belief</span>
+          {% elif lang == 'ar' %}
+          ادرس وفق <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">قناعاتك</span>
+          {% else %}
+          Étudiez selon vos <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-chart-3">convictions</span>
+          {% endif %}
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl text-white/75 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
+          {% if lang == 'en' %}
+          Rissala accompanies you in the study and transmission of Islamic knowledge. Structured curriculums, rigorous sources, and a progressive path designed to understand, deepen, and transmit.
+          {% elif lang == 'ar' %}
+          رسالة ترافقك في دراسة ونقل المعرفة الإسلامية الأصيلة. مناهج منظمة، ومصادر موثقة، وتدرج مصمم للفهم والتعمق والتبليغ.
+          {% else %}
+          Rissala vous accompagne dans l'étude et la transmission du savoir islamique. Des parcours structurés, des sources rigoureuses et une progression pensée pour comprendre, approfondir et transmettre.
+          {% endif %}
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
+          <a
+            href="{% localized_url 'courses' %}"
+            class="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 h-10 sm:h-12 px-8 sm:px-10 text-sm sm:text-base w-fit group rounded-xl shadow-sm transition-all font-medium"
+          >
+            {% if lang == 'en' %}
+            Discover our courses
+            {% elif lang == 'ar' %}
+            اكتشف مساراتنا
+            {% else %}
+            Découvrez nos parcours
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section (Exact match to Next.js Home page) -->
+  <section class="py-16 sm:py-20 lg:py-24 bg-background relative">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-10 sm:mb-16 max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 sm:mb-4">
+          {% if lang == 'en' %}Study. Understand. Deepen.{% elif lang == 'ar' %}ادرس. افهم. تعمّق.{% else %}Étudier. Comprendre. Approfondir.{% endif %}
+        </h2>
+        <p class="text-muted-foreground text-base sm:text-lg">
+          {% if lang == 'en' %}
+          Structured curriculums to progressively build solid foundations and develop a clear understanding of knowledge.
+          {% elif lang == 'ar' %}
+          مسارات منظمة لبناء أسس متينة تدريجياً وتطوير فهم واضح وشامل للمعرفة.
+          {% else %}
+          Des parcours structurés pour construire progressivement des bases solides et développer une compréhension claire du savoir.
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
+        <!-- Arabe Card -->
+        <div class="h-full border border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col rounded-xl p-6">
+          <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m5 8 6 6m-7 0 6-6 2-3M2 5h12M7 2h1m14 20-5-10-5 10m2-4h6"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">
+            {% if lang == 'en' %}Arabic language{% elif lang == 'ar' %}اللغة العربية{% else %}Langue arabe{% endif %}
+          </h3>
+          <p class="text-base leading-relaxed text-muted-foreground mb-4">
+            {% if lang == 'en' %}
+            Progressively master the Arabic language, from the alphabet to reading and understanding classical texts.
+            {% elif lang == 'ar' %}
+            إتقان اللغة العربية تدريجياً، من الأبجدية حتى القراءة والفهم العميق للنصوص التراثية.
+            {% else %}
+            Maîtriser progressivement la langue arabe, de l'alphabet à la lecture et à la compréhension des textes classiques.
+            {% endif %}
+          </p>
+          <div class="mt-auto pt-4">
+            <a href="{% localized_url 'arabic_language' %}" class="text-primary font-medium flex items-center group">
+              <span>{% if lang == 'en' %}Discover Arabic{% elif lang == 'ar' %}اكتشف اللغة العربية{% else %}Découvrir la langue arabe{% endif %}</span>
+              <svg class="ms-1 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sciences Islamiques Card -->
+        <div class="h-full border border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col rounded-xl p-6">
+          <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">
+            {% if lang == 'en' %}Islamic sciences{% elif lang == 'ar' %}العلوم الإسلامية{% else %}Sciences islamiques{% endif %}
+          </h3>
+          <p class="text-base leading-relaxed text-muted-foreground mb-4">
+            {% if lang == 'en' %}
+            Study Sunni foundations across theology, Hadith, Fiqh, and history, with a progressive and sourced approach.
+            {% elif lang == 'ar' %}
+            دراسة أصول أهل السنة في العقيدة والحديث والفقه والتاريخ بمنهجية تدريجية موثقة.
+            {% else %}
+            Étudier les fondements de la tradition sunnite à travers la croyance, le hadith, le fiqh et l'histoire, avec une approche progressive et sourcée.
+            {% endif %}
+          </p>
+          <div class="mt-auto pt-4">
+            <a href="{% localized_url 'islamic_sciences' %}" class="text-primary font-medium flex items-center group">
+              <span>{% if lang == 'en' %}Discover Islamic sciences{% elif lang == 'ar' %}اكتشف العلوم الإسلامية{% else %}Découvrir les sciences islamiques{% endif %}</span>
+              <svg class="ms-1 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Finance Islamique Card -->
+        <div class="h-full border border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col rounded-xl p-6">
+          <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+              <path d="M7 21h10"></path>
+              <path d="M12 3v18"></path>
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">
+            {% if lang == 'en' %}Islamic finance{% elif lang == 'ar' %}التمويل الإسلامي{% else %}Finance islamique{% endif %}
+          </h3>
+          <p class="text-base leading-relaxed text-muted-foreground mb-4">
+            {% if lang == 'en' %}
+            Understand the principles of Islamic finance, its foundations and mechanisms through an educational and structured approach.
+            {% elif lang == 'ar' %}
+            فهم مبادئ التمويل الإسلامي، وأسسه وضوابطه الشرعية من خلال منهجية بيداغوجية منظمة.
+            {% else %}
+            Comprendre les principes de la finance islamique, ses fondements et ses mécanismes à travers une approche pédagogique et structurée.
+            {% endif %}
+          </p>
+          <div class="mt-auto pt-4">
+            <a href="{% localized_url 'islamic_finance' %}" class="text-primary font-medium flex items-center group">
+              <span>{% if lang == 'en' %}Discover Islamic finance{% elif lang == 'ar' %}اكتشف التمويل الإسلامي{% else %}Découvrir la finance islamique{% endif %}</span>
+              <svg class="ms-1 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Articles & Actualités Card -->
+        <div class="h-full border border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col rounded-xl p-6">
+          <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">
+            {% if lang == 'en' %}Articles & news{% elif lang == 'ar' %}المقالات والأخبار{% else %}Articles & actualités{% endif %}
+          </h3>
+          <p class="text-base leading-relaxed text-muted-foreground mb-4">
+            {% if lang == 'en' %}
+            Deepen your knowledge through articles, analyses, guides, and educational resources dedicated to Rissala's major themes.
+            {% elif lang == 'ar' %}
+            تعميق المعارف من خلال مقالات وتحليلات ودلائل وموارد بيداغوجية حول القضايا الإسلامية الكبرى.
+            {% else %}
+            Approfondir ses connaissances à travers des articles, analyses, guides et ressources pédagogiques consacrés aux grandes thématiques de Rissala.
+            {% endif %}
+          </p>
+          <div class="mt-auto pt-4">
+            <a href="{% localized_url 'news' %}" class="text-primary font-medium flex items-center group">
+              <span>{% if lang == 'en' %}Read articles{% elif lang == 'ar' %}اقرأ المقالات{% else %}Lire les articles{% endif %}</span>
+              <svg class="ms-1 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology Section (Exact match to Next.js Home page) -->
+  <section class="py-16 sm:py-20 lg:py-24 bg-muted/30">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-heading mb-6">
+            {% if lang == 'en' %}The Rissala method{% elif lang == 'ar' %}منهج رسالة{% else %}La méthode Rissala{% endif %}
+          </h2>
+          <p class="text-muted-foreground text-lg mb-8 leading-relaxed">
+            {% if lang == 'en' %}
+            Study with rigor. Understand with clarity. Transmit with fidelity.
+            {% elif lang == 'ar' %}
+            ادرس بدقة. افهم بوضوح. بلّغ بأمانة.
+            {% else %}
+            Étudier avec rigueur. Comprendre avec clarté. Transmettre avec fidélité.
+            {% endif %}
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg class="h-6 w-6 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"></path>
+              </svg>
+              <div>
+                <h3 class="font-bold text-foreground">
+                  {% if lang == 'en' %}Rigor{% elif lang == 'ar' %}الدقة والتأصيل{% else %}Rigueur{% endif %}
+                </h3>
+                <p class="text-sm text-muted-foreground">
+                  {% if lang == 'en' %}Content built from recognized primary sources and presented with precision.{% elif lang == 'ar' %}محتوى مبني على مصادر معتبرة ومقدم بدقة متناهية.{% else %}Des contenus construits à partir de sources reconnues et présentés avec précision.{% endif %}
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="h-6 w-6 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"></path>
+              </svg>
+              <div>
+                <h3 class="font-bold text-foreground">
+                  {% if lang == 'en' %}Progression{% elif lang == 'ar' %}التدرج المنهجي{% else %}Progression{% endif %}
+                </h3>
+                <p class="text-sm text-muted-foreground">
+                  {% if lang == 'en' %}Step-by-step organization to advance gradually without losing sight of foundational principles.{% elif lang == 'ar' %}تنظيم مرحلي للمضي قدماً خطوة بخطوة دون إغفال الأصول.{% else %}Une organisation par étapes pour avancer progressivement, sans perdre de vue les fondements.{% endif %}
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="h-6 w-6 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"></path>
+              </svg>
+              <div>
+                <h3 class="font-bold text-foreground">
+                  {% if lang == 'en' %}Transmission{% elif lang == 'ar' %}الأمانة في التبليغ{% else %}Transmission{% endif %}
+                </h3>
+                <p class="text-sm text-muted-foreground">
+                  {% if lang == 'en' %}A continuous effort to transmit knowledge with clarity, fidelity, and respect for tradition.{% elif lang == 'ar' %}جهد متواصل لنقل العلم بوضوح وأمانة واحترام للتراث الأصيل.{% else %}Un effort constant pour transmettre le savoir avec clarté, fidélité et respect de la tradition.{% endif %}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative aspect-square bg-gradient-to-br from-primary/20 to-transparent rounded-2xl overflow-hidden flex items-center justify-center border border-primary/10">
+          <div class="p-12 text-center">
+            <svg class="h-24 w-24 text-primary/40 mb-6 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <p class="text-primary font-heading text-xl font-medium italic opacity-80 leading-relaxed">
+              {% if lang == 'en' %}
+              “Knowledge is cultivated by study, strengthened by understanding, and transmitted by practice.”
+              {% elif lang == 'ar' %}
+              «يُنمّى العلم بالدراسة، ويترسخ بالفهم، وينتقل بالعمل والممارسة.»
+              {% else %}
+              « Le savoir se cultive par l'étude, s'affermit par la compréhension et se transmet par la pratique. »
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Capture Section (Exact match to Next.js Home page) -->
+  <section class="py-20 lg:py-28 relative overflow-hidden">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto bg-card border border-border/80 rounded-3xl p-8 sm:p-12 shadow-xl shadow-black/[0.02] dark:shadow-black/20 relative z-10">
+        <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-heading mb-4 text-foreground">
+          {% if lang == 'en' %}The Rissala Newsletter{% elif lang == 'ar' %}رسالة رسالة البريدية{% else %}La Lettre Rissala{% endif %}
+        </h2>
+        <p class="text-muted-foreground text-sm sm:text-base mb-2 leading-relaxed">
+          {% if lang == 'en' %}
+          Receive new publications, analyses, educational resources, and summaries directly in your inbox.
+          {% elif lang == 'ar' %}
+          احصل على أحدث منشورات رسالة وتحليلاتها ومواردها البيداغوجية مباشرة في بريدك الإلكتروني.
+          {% else %}
+          Recevez les nouvelles publications de Rissala, nos analyses, ressources pédagogiques et synthèses directement dans votre boîte mail.
+          {% endif %}
+        </p>
+        <p class="text-xs text-muted-foreground/60 mb-8">
+          {% if lang == 'en' %}No spam. One-click unsubscribe.{% elif lang == 'ar' %}لا رسائل مزعجة. إلغاء الاشتراك بنقرة واحدة.{% else %}Pas de spam. Désinscription possible en un clic.{% endif %}
+        </p>
+
+        <form method="post" action="{% lang_url 'core:newsletter_subscribe' %}" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          {% csrf_token %}
+          <input type="hidden" name="consent" value="true">
+          <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="{% if lang == 'en' %}Your email address{% elif lang == 'ar' %}عنوان بريدك الإلكتروني{% else %}Votre adresse e-mail{% endif %}"
+            class="flex-1 h-12 px-4 rounded-xl border border-border/80 bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+          />
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 rounded-xl font-medium text-sm gap-2 shrink-0 shadow-sm transition-all"
+          >
+            <span>{% if lang == 'en' %}Subscribe{% elif lang == 'ar' %}اشترك{% else %}S'inscrire{% endif %}</span>
+            <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </form>
+        <p class="text-xs text-muted-foreground/70 mt-4">
+          {% if lang == 'en' %}No spam. One-click unsubscribe.{% elif lang == 'ar' %}لا رسائل مزعجة. إلغاء الاشتراك بنقرة واحدة.{% else %}Pas de spam. Désinscription possible en un clic.{% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

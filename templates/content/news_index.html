@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="container mx-auto px-4 lg:px-8 py-1 sm:py-2 lg:py-4">
+  <div class="w-full" x-data="{ searchQuery: '{{ search_query|escapejs }}', visibleCount: 12 }">
+    <!-- Header avec Titre et Recherche sur la même ligne (Exact match to Next.js NewsFeedClient) -->
+    <div class="mb-4 border-b border-border/50 pb-2">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-muted-foreground w-full md:w-auto">
+          <span x-show="!searchQuery">{{ copy.featured }}</span>
+          <span x-show="searchQuery" x-cloak>{{ copy.search_results }} &ldquo;<span x-text="searchQuery"></span>&rdquo;</span>
+        </h2>
+
+        <div class="relative w-full md:w-auto md:min-w-[280px]">
+          <svg class="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.3-4.3"/>
+          </svg>
+          <input
+            type="text"
+            x-model="searchQuery"
+            placeholder="{{ copy.search_placeholder }}"
+            class="w-full ps-10 pe-10 py-3 bg-muted/30 border border-border/50 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-foreground placeholder:text-muted-foreground"
+          />
+          <button
+            x-show="searchQuery.length > 0"
+            x-cloak
+            @click="searchQuery = ''"
+            type="button"
+            class="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-1"
+            aria-label="Effacer la recherche"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Layout (when search query is empty) -->
+    <div x-show="!searchQuery">
+      <!-- SECTION 1 : À LA UNE -->
+      {% if hero_article %}
+      <section class="mb-10 sm:mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+          <!-- ArticleHero (col-span-8) -->
+          <div class="lg:col-span-8">
+            <a href="{{ hero_article.get_absolute_url }}" class="group flex flex-col h-full cursor-pointer">
+              <div class="relative w-full aspect-[16/9] md:aspect-[4/3] lg:aspect-[2.5/1] overflow-hidden rounded-xl mb-3 sm:mb-4 bg-muted">
+                <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
+                <img
+                  src="{{ hero_article.image }}"
+                  alt="{{ hero_article.title }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  onerror="this.src='/static/images/actualites/default-finance.jpg'"
+                />
+              </div>
+
+              <div class="flex flex-col flex-1">
+                <div class="flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-wider text-primary mb-3">
+                  <span>{{ hero_article.tag_label }}</span>
+                  <span class="w-1 h-1 rounded-full bg-primary/50"></span>
+                  <span class="text-muted-foreground flex items-center">
+                    <svg class="w-3.5 h-3.5 me-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ copy.reading_time }}
+                  </span>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-bold font-heading leading-tight mb-2 group-hover:text-primary transition-colors text-foreground">
+                  {{ hero_article.title }}
+                </h2>
+
+                <p class="text-base sm:text-lg text-muted-foreground line-clamp-2 leading-relaxed">
+                  {{ hero_article.summary|default:hero_article.title }}
+                </p>
+
+                <div class="mt-auto pt-3 flex items-center text-sm font-medium text-muted-foreground">
+                  <span>{{ hero_article.published_at|date:"j F Y" }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- ArticleSecondary (col-span-4) -->
+          <div class="lg:col-span-4 flex flex-col gap-8 sm:grid sm:grid-cols-2 lg:flex lg:flex-col lg:gap-6">
+            {% for article in secondary_articles %}
+            <a href="{{ article.get_absolute_url }}" class="group flex flex-col h-full cursor-pointer">
+              <div class="relative w-full aspect-[16/9] md:aspect-[16/10] lg:aspect-[21/9] overflow-hidden rounded-lg mb-2 bg-muted">
+                <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
+                <img
+                  src="{{ article.image }}"
+                  alt="{{ article.title }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  onerror="this.src='/static/images/actualites/default-finance.jpg'"
+                />
+              </div>
+
+              <div class="flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+                  <span>{{ article.tag_label }}</span>
+                </div>
+
+                <h3 class="text-lg sm:text-xl font-bold font-heading leading-tight mb-1 group-hover:text-primary transition-colors text-foreground line-clamp-2">
+                  {{ article.title }}
+                </h3>
+
+                <div class="mt-auto pt-3 flex items-center justify-between text-xs font-medium text-muted-foreground">
+                  <span>{{ article.published_at|date:"j M" }}</span>
+                  <span class="flex items-center">
+                    <svg class="w-3 h-3 me-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ copy.reading_time }}
+                  </span>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      {% endif %}
+
+      <!-- SECTION 2 : DERNIÈRES ACTUALITÉS (Slider Éditorial) -->
+      {% if feed_articles %}
+      <section class="mb-16 sm:mb-24">
+        <div class="flex items-center justify-between mb-8 border-b border-border/50 pb-2">
+          <h2 class="text-sm font-bold uppercase tracking-widest text-muted-foreground">{{ copy.latest_news }}</h2>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              @click="$refs.carousel.scrollBy({ left: {% if is_rtl %}320{% else %}-320{% endif %}, behavior: 'smooth' })"
+              class="p-1.5 rounded-full bg-muted/50 text-muted-foreground hover:bg-foreground hover:text-background transition-colors"
+              aria-label="Article précédent"
+            >
+              <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m15 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <button
+              type="button"
+              @click="$refs.carousel.scrollBy({ left: {% if is_rtl %}-320{% else %}320{% endif %}, behavior: 'smooth' })"
+              class="p-1.5 rounded-full bg-muted/50 text-muted-foreground hover:bg-foreground hover:text-background transition-colors"
+              aria-label="Article suivant"
+            >
+              <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div
+          x-ref="carousel"
+          class="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 pb-4 -mx-4 px-4 lg:mx-0 lg:px-0 scroll-smooth"
+          style="scrollbar-width: none; -ms-overflow-style: none;"
+        >
+          {% for article in feed_articles %}
+          <div class="w-[260px] sm:w-[300px] lg:w-[320px] snap-start shrink-0">
+            <!-- ArticleStandard -->
+            <a href="{{ article.get_absolute_url }}" class="group flex flex-col h-full cursor-pointer">
+              <div class="relative w-full aspect-[4/3] overflow-hidden rounded-xl mb-4 bg-muted">
+                <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
+                <img
+                  src="{{ article.image }}"
+                  alt="{{ article.title }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  onerror="this.src='/static/images/actualites/default-finance.jpg'"
+                />
+              </div>
+
+              <div class="flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2.5">
+                  <span>{{ article.tag_label }}</span>
+                </div>
+
+                <h3 class="text-lg sm:text-xl font-bold font-heading leading-snug mb-3 group-hover:text-primary transition-colors text-foreground line-clamp-2">
+                  {{ article.title }}
+                </h3>
+
+                <p class="text-sm text-muted-foreground line-clamp-2 leading-relaxed mb-4">
+                  {{ article.summary|default:article.title }}
+                </p>
+
+                <div class="mt-auto pt-2 flex items-center justify-between text-xs font-medium text-muted-foreground border-t border-border/40">
+                  <span class="pt-3">{{ article.published_at|date:"j M Y" }}</span>
+                  <span class="flex items-center pt-3">
+                    <svg class="w-3 h-3 me-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ copy.reading_time }}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      <!-- SECTION 3 : TOUTES LES ACTUALITÉS (Archive Complète) -->
+      {% if all_articles %}
+      <section class="border-t border-border/40 pt-16 mb-16 sm:mb-24">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+          <h2 class="text-2xl sm:text-3xl font-black font-heading uppercase tracking-tight text-foreground">{{ copy.all_news }}</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
+          {% for article in all_articles %}
+          <div x-show="{{ forloop.counter0 }} < visibleCount">
+            <!-- ArticleCompact -->
+            <a href="{{ article.get_absolute_url }}" class="group flex flex-row items-center gap-4 sm:gap-6 cursor-pointer">
+              <div class="relative w-24 h-24 sm:w-32 sm:h-32 shrink-0 overflow-hidden rounded-lg bg-muted">
+                <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
+                <img
+                  src="{{ article.image }}"
+                  alt="{{ article.title }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  onerror="this.src='/static/images/actualites/default-finance.jpg'"
+                />
+              </div>
+
+              <div class="flex flex-col py-1 flex-1 min-w-0">
+                <div class="flex items-center gap-2 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">
+                  <span>{{ article.tag_label }}</span>
+                </div>
+
+                <h3 class="text-base sm:text-lg font-bold font-heading leading-tight mb-2 group-hover:text-primary transition-colors text-foreground line-clamp-2">
+                  {{ article.title }}
+                </h3>
+
+                <div class="flex items-center gap-3 text-xs font-medium text-muted-foreground">
+                  <span>{{ article.published_at|date:"j M" }}</span>
+                  <span class="w-1 h-1 rounded-full bg-muted-foreground/50"></span>
+                  <span class="flex items-center">
+                    <svg class="w-3 h-3 me-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ copy.reading_time }}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if all_articles|length > 12 %}
+        <div x-show="visibleCount < {{ all_articles|length }}" class="mt-12 flex justify-center">
+          <button
+            type="button"
+            @click="visibleCount += 12"
+            class="h-11 px-8 rounded-lg border border-border bg-background hover:bg-muted font-medium text-sm transition-colors text-foreground shadow-sm"
+          >
+            {{ copy.load_more }}
+          </button>
+        </div>
+        {% endif %}
+      </section>
+      {% endif %}
+    </div>
+
+    <!-- SECTION RECHERCHE (Search Query active) -->
+    <div x-show="searchQuery.trim().length > 0" x-cloak class="mb-16 sm:mb-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+        {% for article in all_articles %}
+        <div
+          x-show="('{{ article.title|escapejs }} {{ article.summary|escapejs }} {{ article.tag_label|escapejs }}').toLowerCase().includes(searchQuery.toLowerCase())"
+        >
+          <!-- ArticleStandard -->
+          <a href="{{ article.get_absolute_url }}" class="group flex flex-col h-full cursor-pointer">
+            <div class="relative w-full aspect-[4/3] overflow-hidden rounded-xl mb-4 bg-muted">
+              <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-overlay"></div>
+              <img
+                src="{{ article.image }}"
+                alt="{{ article.title }}"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                onerror="this.src='/static/images/actualites/default-finance.jpg'"
+              />
+            </div>
+
+            <div class="flex flex-col flex-1">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2.5">
+                <span>{{ article.tag_label }}</span>
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-bold font-heading leading-snug mb-3 group-hover:text-primary transition-colors text-foreground line-clamp-2">
+                {{ article.title }}
+              </h3>
+
+              <p class="text-sm text-muted-foreground line-clamp-2 leading-relaxed mb-4">
+                {{ article.summary|default:article.title }}
+              </p>
+
+              <div class="mt-auto pt-2 flex items-center justify-between text-xs font-medium text-muted-foreground border-t border-border/40">
+                <span class="pt-3">{{ article.published_at|date:"j M Y" }}</span>
+                <span class="flex items-center pt-3">
+                  <svg class="w-3 h-3 me-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {{ copy.reading_time }}
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

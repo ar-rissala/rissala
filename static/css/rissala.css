@@ -1,0 +1,359 @@
+/* ============================================================================
+   RISSALA.NET — Design System & Editorial Typography (Exact port of globals.css)
+   Palette: Light Parchment (#f7f5ef), Deep Charcoal (#102a24), Emerald (#006b54)
+   ============================================================================ */
+
+:root {
+  --background: #f7f5ef;
+  --foreground: #102a24;
+  --card: #ffffff;
+  --card-foreground: #102a24;
+  --popover: #ffffff;
+  --popover-foreground: #102a24;
+  --primary: #006b54;
+  --primary-foreground: #ffffff;
+  --secondary: #008f6a;
+  --secondary-foreground: #ffffff;
+  --muted: #dde5e1;
+  --muted-foreground: #5e6e68;
+  --accent: #35a88b;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: #dde5e1;
+  --input: #dde5e1;
+  --ring: #006b54;
+  --chart-1: #003d32;
+  --chart-2: #006b54;
+  --chart-3: #008f6a;
+  --chart-4: #35a88b;
+  --chart-5: #102a24;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #f7f5ef;
+  --card: #121212;
+  --card-foreground: #f7f5ef;
+  --popover: #121212;
+  --popover-foreground: #f7f5ef;
+  --primary: #35a88b;
+  --primary-foreground: #0a0a0a;
+  --secondary: #27272a;
+  --secondary-foreground: #f7f5ef;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #27272a;
+  --accent-foreground: #35a88b;
+  --destructive: #ef4444;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #35a88b;
+  --chart-1: #35a88b;
+  --chart-2: #008f6a;
+  --chart-3: #006b54;
+  --chart-4: #003d32;
+  --chart-5: #f7f5ef;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #f7f5ef;
+  --sidebar-primary: #35a88b;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #35a88b;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #35a88b;
+}
+
+* {
+  border-color: var(--border);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+html[dir="rtl"] body {
+  font-family: "Amiri", "Scheherazade New", "Inter", serif;
+}
+
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+section {
+  overflow-x: clip;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Article Prose Styles (Exact port from Next.js globals.css) ── */
+.prose-article {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--foreground);
+}
+
+.prose-article h1,
+.prose-article h2 {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
+}
+
+html[dir="rtl"] .prose-article h1,
+html[dir="rtl"] .prose-article h2 {
+  border-left: none;
+  padding-left: 0;
+  border-right: 4px solid var(--primary);
+  padding-right: 1rem;
+}
+
+.prose-article h3 {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.prose-article p {
+  margin-bottom: 1.25rem;
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.prose-article strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.prose-article ul,
+.prose-article ol {
+  margin-bottom: 1.25rem;
+  padding-inline-start: 1.5rem;
+  color: var(--muted-foreground);
+}
+
+.prose-article ul {
+  list-style-type: disc;
+}
+
+.prose-article ol {
+  list-style-type: decimal;
+}
+
+.prose-article li {
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.prose-article blockquote {
+  border-inline-start: 4px solid color-mix(in srgb, var(--primary) 50%, transparent);
+  background-color: color-mix(in srgb, var(--primary) 5%, transparent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+/* ── Arabic Pedagogical Typography ── */
+.arabic {
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 1.75rem;
+  line-height: 2.2;
+  color: var(--foreground);
+  text-align: right;
+  margin: 0.75rem 0;
+}
+
+.arabic-inline {
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 1.35rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.arabic-large {
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 3rem;
+  line-height: 2.2;
+  color: var(--primary);
+  text-align: center;
+}
+
+/* ── Article Tables ── */
+.table-wrapper,
+.prose-article .table-wrapper {
+  margin: 2rem 0;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.table-wrapper table,
+.prose-article table {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.table-wrapper thead,
+.prose-article thead {
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.table-wrapper th,
+.prose-article th {
+  padding: 0.75rem 1rem;
+  text-align: start;
+  font-weight: 600;
+  color: var(--foreground);
+  font-size: 0.875rem;
+}
+
+.table-wrapper td,
+.prose-article td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  color: var(--muted-foreground);
+}
+
+.table-wrapper tbody tr:hover,
+.prose-article tbody tr:hover {
+  background-color: color-mix(in srgb, var(--primary) 5%, transparent);
+  transition: background-color 0.15s ease;
+}
+
+/* ── Pedagogical Callouts & Letter Showcase ── */
+.info-box {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  background-color: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+.info-box-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-box-content {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
+.warning-box {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  background-color: rgba(245, 158, 11, 0.06);
+}
+
+.warning-box-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.warning-box-content {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
+.step-card {
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  transition: border-color 0.3s ease;
+}
+
+.step-card:hover {
+  border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.letter-showcase {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 0.75rem;
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  font-family: "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  direction: rtl;
+  font-size: 2.25rem;
+  color: var(--primary);
+}

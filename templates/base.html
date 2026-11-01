@@ -1,0 +1,164 @@
+{% load static rissala_tags %}<!DOCTYPE html>
+<html lang="{{ lang|default:'fr' }}" dir="{{ dir|default:text_dir|default:'ltr' }}" class="h-full antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <title>{{ seo_title|default:"Rissala | Fondements & Arabe" }}</title>
+  <meta name="description" content="{{ seo_description|default:ui.meta_default_desc|default:ui.footer_desc }}" />
+  <meta name="robots" content="{{ robots_directive|default:'index, follow' }}" />
+  <meta name="google-site-verification" content="g0SbH6Uv0UaRtCHKt7uTqQZqFFXKMdSaNt5mspGuR9A" />
+
+  <!-- Canonical & Hreflang -->
+  <link rel="canonical" href="{{ canonical_url|default:seo_canonical }}" />
+  {% if seo_hreflangs %}
+    {% for h_lang, h_url in seo_hreflangs.items %}
+    <link rel="alternate" hreflang="{{ h_lang }}" href="{{ h_url }}" />
+    {% endfor %}
+    {% if seo_x_default %}
+    <link rel="alternate" hreflang="x-default" href="{{ seo_x_default }}" />
+    {% endif %}
+  {% elif hreflang_links %}
+    {% for h_lang, h_url in hreflang_links.items %}
+    <link rel="alternate" hreflang="{{ h_lang }}" href="{{ h_url }}" />
+    {% endfor %}
+  {% endif %}
+
+  <!-- Open Graph / Twitter Cards -->
+  <meta property="og:type" content="{{ og_type|default:'website' }}" />
+  <meta property="og:site_name" content="Rissala" />
+  <meta property="og:title" content="{{ seo_title|default:'Rissala | Fondements & Arabe' }}" />
+  <meta property="og:description" content="{{ seo_description|default:ui.meta_default_desc|default:ui.footer_desc }}" />
+  <meta property="og:url" content="{{ canonical_url }}" />
+  <meta property="og:image" content="{{ og_image|default:'https://rissala.net/static/logo-icon.png' }}" />
+  <meta property="og:locale" content="{{ og_locale|default:'fr_FR' }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ seo_title|default:'Rissala | Fondements & Arabe' }}" />
+  <meta name="twitter:description" content="{{ seo_description|default:ui.meta_default_desc|default:ui.footer_desc }}" />
+  <meta name="twitter:image" content="{{ og_image|default:'https://rissala.net/static/logo-icon.png' }}" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="{% static 'logo-icon.png' %}" />
+  <link rel="apple-touch-icon" href="{% static 'logo-icon.png' %}" />
+
+  <!-- Google Fonts: Inter, Outfit, Scheherazade New & Amiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Scheherazade+New:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Theme Initialization (prevents flash of unstyled theme) -->
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+
+  <!-- Tailwind CSS with exact Rissala design tokens from globals.css -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function withOpacity(varName) {
+      return ({ opacityValue }) => {
+        if (opacityValue !== undefined) {
+          return `color-mix(in srgb, var(${varName}) calc(${opacityValue} * 100%), transparent)`;
+        }
+        return `var(${varName})`;
+      };
+    }
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: withOpacity('--background'),
+            foreground: withOpacity('--foreground'),
+            card: withOpacity('--card'),
+            'card-foreground': withOpacity('--card-foreground'),
+            popover: withOpacity('--popover'),
+            'popover-foreground': withOpacity('--popover-foreground'),
+            primary: withOpacity('--primary'),
+            'primary-foreground': withOpacity('--primary-foreground'),
+            secondary: withOpacity('--secondary'),
+            'secondary-foreground': withOpacity('--secondary-foreground'),
+            muted: withOpacity('--muted'),
+            'muted-foreground': withOpacity('--muted-foreground'),
+            accent: withOpacity('--accent'),
+            'accent-foreground': withOpacity('--accent-foreground'),
+            destructive: withOpacity('--destructive'),
+            border: withOpacity('--border'),
+            input: withOpacity('--input'),
+            ring: withOpacity('--ring'),
+            'chart-1': withOpacity('--chart-1'),
+            'chart-2': withOpacity('--chart-2'),
+            'chart-3': withOpacity('--chart-3'),
+            'chart-4': withOpacity('--chart-4'),
+            'chart-5': withOpacity('--chart-5'),
+            emerald: {
+              DEFAULT: '#006b54',
+              50: '#eef7f4',
+              100: '#d5ede6',
+              200: '#addcd0',
+              500: '#008f6a',
+              600: '#006b54',
+              700: '#005643',
+              800: '#003d32',
+              900: '#102a24',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Outfit', 'Inter', 'sans-serif'],
+            arabic: ['"Scheherazade New"', 'Amiri', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Editorial Styles -->
+  <link rel="stylesheet" href="{% static 'css/rissala.css' %}" />
+
+  <!-- Alpine.js for interactive dropdowns, mobile navigation, tabs, and calculator -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+
+  <!-- JSON-LD Structured Data -->
+  {% if seo_json_ld %}
+  <script type="application/ld+json">{{ seo_json_ld|safe }}</script>
+  {% endif %}
+  {% for schema_json in json_ld_scripts %}
+  <script type="application/ld+json">{{ schema_json|safe }}</script>
+  {% endfor %}
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg">
+    Aller au contenu principal
+  </a>
+
+  {% block navbar %}
+  {% include "partials/navbar.html" %}
+  {% endblock %}
+
+  {% if messages %}
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 space-y-2 z-30">
+    {% for message in messages %}
+    <div class="flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-medium {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800{% else %}bg-primary/10 border-primary/20 text-primary{% endif %}">
+      <span>{{ message }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main id="main-content" class="flex-1 flex flex-col">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  {% include "partials/footer.html" %}
+  {% endblock %}
+
+  <script src="{% static 'js/rissala.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

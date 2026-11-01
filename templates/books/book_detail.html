@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col flex-1 bg-background pb-24" x-data="{ readerOpen: false, readerMode: 'chapters' }">
+    <!-- Top Bar -->
+    <div class="border-b border-border bg-background/80 dark:bg-background/85 backdrop-blur-sm sticky top-16 z-40">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between">
+            <a
+                href="{% lang_url 'books:library_index' %}"
+                class="inline-flex items-center text-xs sm:text-sm text-muted-foreground hover:text-foreground font-medium transition-colors"
+            >
+                <svg class="me-1.5 h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m12 19-7-7 7-7M19 12H5"/></svg>
+                {{ dict.library.bookPage.backToLibrary }}
+            </a>
+            {% if user_progress %}
+            <span class="text-xs font-medium text-primary">
+                Progression : {{ user_progress.percentage|floatformat:0 }}% ({{ dict.library.page }} {{ user_progress.current_page }} / {{ book.page_count }})
+            </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Book Details Section -->
+    <section class="py-12 md:py-20">
+        <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-start">
+                <!-- Left Column: Cover Image (4 cols) -->
+                <div class="md:col-span-5 lg:col-span-4 flex flex-col items-center">
+                    <div class="w-full max-w-[300px] aspect-[3/4] rounded-2xl bg-muted/30 p-6 border border-border/60 shadow-inner flex items-center justify-center relative">
+                        <div class="relative w-full h-full shadow-2xl rounded-sm overflow-hidden">
+                            <img
+                                src="{{ book.cover_image_url|default:'/images/covers/ne-sois-pas-triste.jpg' }}"
+                                alt="{{ localized_title }}"
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Quick Metadata Mobile/Tablet -->
+                    <div class="w-full max-w-[300px] mt-6 grid grid-cols-2 gap-4 p-4 rounded-xl bg-card border border-border/60 text-center">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-muted-foreground block mb-1">{{ dict.library.bookPage.language }}</span>
+                            <span class="font-serif font-bold text-sm text-foreground flex items-center justify-center gap-1">
+                                <svg class="h-3.5 w-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+                                {% for bl in book.languages.all %}{{ bl|trans_field:"name" }}{% if not forloop.last %} / {% endif %}{% endfor %}
+                            </span>
+                        </div>
+                        <div class="border-s border-border/60">
+                            <span class="text-[10px] uppercase tracking-wider text-muted-foreground block mb-1">{{ dict.library.bookPage.length }}</span>
+                            <span class="font-serif font-bold text-sm text-foreground flex items-center justify-center gap-1">
+                                <svg class="h-3.5 w-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                {{ book.page_count }} p.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Information & Actions (8 cols) -->
+                <div class="md:col-span-7 lg:col-span-8 flex flex-col">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4 self-start">
+                        {{ book.category|trans_field:"name" }}
+                    </div>
+
+                    <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight">
+                        {{ localized_title }}
+                    </h1>
+
+                    {% if book.original_arabic_title %}
+                    <p class="font-arabic text-xl text-primary/90 mb-3" dir="rtl">{{ book.original_arabic_title }}</p>
+                    {% endif %}
+
+                    <p class="text-lg sm:text-xl text-muted-foreground font-serif italic mb-8">
+                        {{ dict.library.bookPage.by }} <span class="text-foreground font-semibold not-italic">{% for author in book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+                    </p>
+
+                    <!-- Primary Action Buttons -->
+                    <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4 mb-10 pb-10 border-b border-border">
+                        <a
+                            href="#web-reader"
+                            class="flex-1 sm:flex-initial inline-flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90 hover:-translate-y-0.5 transition-all"
+                        >
+                            <svg class="me-2.5 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            {{ dict.library.bookPage.readOnline }}
+                        </a>
+
+                        {% if pdf_file and pdf_token %}
+                        <a
+                            href="{% lang_url 'books:book_file_download' file_id=pdf_file.id %}?token={{ pdf_token }}&download=1"
+                            class="inline-flex items-center justify-center rounded-xl bg-card border border-border px-5 py-4 text-sm font-semibold text-foreground hover:bg-muted/50 hover:border-primary/40 transition-all"
+                        >
+                            <svg class="me-2 h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            {{ dict.library.bookPage.downloadPdf }}
+                        </a>
+                        {% endif %}
+
+                        {% if epub_file and epub_token %}
+                        <a
+                            href="{% lang_url 'books:book_file_download' file_id=epub_file.id %}?token={{ epub_token }}&download=1"
+                            class="inline-flex items-center justify-center rounded-xl bg-card border border-border px-5 py-4 text-sm font-semibold text-foreground hover:bg-muted/50 hover:border-primary/40 transition-all"
+                        >
+                            <svg class="me-2 h-4 w-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            EPUB 3
+                        </a>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                        <form method="post" action="{% lang_url 'books:web_toggle_library' book_id=book.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="inline-flex items-center justify-center rounded-xl border px-4 py-4 text-xs font-bold uppercase tracking-wider transition-all {% if in_personal_library %}bg-primary/10 border-primary text-primary{% else %}bg-card border-border text-muted-foreground hover:text-foreground{% endif %}">
+                                {% if in_personal_library %}★ Dans ma bibliothèque{% else %}☆ Favoris{% endif %}
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <h2 class="font-serif text-xl font-bold text-foreground mb-4 uppercase tracking-wide">
+                            {{ dict.library.bookPage.summaryTitle }}
+                        </h2>
+                        <div class="prose prose-stone dark:prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
+                            <p class="text-base sm:text-lg text-foreground/90 font-medium">
+                                {{ localized_short_desc }}
+                            </p>
+                            {% if localized_long_desc %}
+                            <p class="text-sm sm:text-base">
+                                {{ localized_long_desc }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Technical Notice -->
+                    <div class="mt-12 p-5 rounded-xl bg-muted/30 border border-border/60 flex items-start gap-3">
+                        <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        <div class="text-xs text-muted-foreground leading-relaxed">
+                            <strong class="text-foreground block mb-1">{{ dict.library.bookPage.comfortTitle }}</strong>
+                            {{ dict.library.bookPage.comfortDesc }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structured Chapter Reader & Embedded PDF Viewer -->
+    <section id="web-reader" class="py-12 border-t border-border bg-muted/20">
+        <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-foreground uppercase tracking-wide">
+                        Liseuse numérique Rissala
+                    </h2>
+                    <p class="text-xs text-muted-foreground mt-1">
+                        Consultez les chapitres structurés ou la liseuse PDF intégrée avec sauvegarde automatique de progression.
+                    </p>
+                </div>
+                {% if pdf_file and pdf_token %}
+                <div class="inline-flex rounded-lg border border-border bg-card p-1">
+                    <button
+                        type="button"
+                        @click="readerMode = 'chapters'"
+                        :class="readerMode === 'chapters' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'"
+                        class="px-3 py-1.5 rounded-md text-xs font-semibold transition-colors"
+                    >
+                        Chapitres ({{ chapters|length }})
+                    </button>
+                    <button
+                        type="button"
+                        @click="readerMode = 'pdf'"
+                        :class="readerMode === 'pdf' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'"
+                        class="px-3 py-1.5 rounded-md text-xs font-semibold transition-colors"
+                    >
+                        Liseuse PDF ({{ book.page_count }} p.)
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Chapters View -->
+            <div x-show="readerMode === 'chapters'" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Chapter List Sidebar -->
+                <div class="lg:col-span-4 space-y-2">
+                    <div class="rounded-xl bg-card border border-border p-4">
+                        <h3 class="font-serif text-sm font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                            Sommaire de l'ouvrage
+                        </h3>
+                        <div class="space-y-1.5">
+                            {% for ch in chapters %}
+                            <a
+                                href="?chapter={{ ch.order }}#web-reader"
+                                class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors {% if active_chapter and active_chapter.id == ch.id %}bg-primary text-primary-foreground font-semibold{% else %}hover:bg-muted/50 text-foreground{% endif %}"
+                            >
+                                <span class="truncate">{{ ch.order }}. {{ ch.localized_title }}</span>
+                                <span class="text-[11px] opacity-75 ms-2 shrink-0">p. {{ ch.start_page }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Chapter Content -->
+                <div class="lg:col-span-8">
+                    {% if active_chapter %}
+                    <div class="rounded-2xl bg-card border border-border p-8 md:p-12 shadow-sm">
+                        <div class="flex items-center justify-between text-xs text-muted-foreground uppercase tracking-widest mb-4 pb-4 border-b border-border/60">
+                            <span class="text-primary font-bold">Chapitre {{ active_chapter.order }} / {{ chapters|length }}</span>
+                            <span>Pages {{ active_chapter.start_page }}–{{ active_chapter.end_page }} • {{ active_chapter.reading_time_minutes }} min</span>
+                        </div>
+                        <h3 class="font-serif text-2xl md:text-3xl font-bold text-foreground mb-6">
+                            {{ active_chapter.localized_title }}
+                        </h3>
+                        <div class="prose prose-stone dark:prose-invert max-w-none leading-relaxed text-foreground/90 whitespace-pre-line">
+                            {{ active_chapter.localized_content }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Embedded PDF View -->
+            {% if pdf_file and pdf_token %}
+            <div x-show="readerMode === 'pdf'" x-cloak class="rounded-2xl overflow-hidden border border-border bg-[#1c1b18] shadow-xl">
+                <iframe
+                    src="{% lang_url 'books:book_file_download' file_id=pdf_file.id %}?token={{ pdf_token }}#page={{ user_progress.current_page|default:1 }}"
+                    class="w-full h-[75vh] border-0"
+                    title="{{ localized_title }}"
+                ></iframe>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

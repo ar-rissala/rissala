@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col flex-1 bg-background pb-24">
+    <section class="relative w-full py-20 md:py-28 overflow-hidden flex items-center justify-center border-b border-border">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/islamic-pattern-bg.jpg');"></div>
+            <div class="absolute inset-0 bg-background/80 dark:bg-background/85 backdrop-blur-[1px]"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+        </div>
+        <div class="container relative z-10 mx-auto max-w-4xl px-4 text-center">
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+                {{ dict.crypto.hero.title }} <span class="text-primary">{{ dict.crypto.hero.titleHighlight }}</span>
+            </h1>
+            <p class="text-lg text-foreground/80 max-w-2xl mx-auto">
+                {{ dict.crypto.hero.subtitle }}
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto max-w-5xl px-4 sm:px-6 space-y-8">
+            <div class="rounded-2xl border border-amber-200 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-950/40 p-5 text-xs text-amber-900 dark:text-amber-200">
+                <strong>{{ dict.crypto.disclaimerTitle }} :</strong> {{ dict.crypto.disclaimerText }}
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="rounded-xl border border-border bg-card p-6">
+                    <h3 class="font-serif text-lg font-bold text-foreground mb-2">Utilité réelle (Mâl Mutaqawwim)</h3>
+                    <p class="text-sm text-muted-foreground leading-relaxed">Analyse de l'utilité intrinsèque du protocole, de la gouvernance et de l'absence d'incertitude excessive (Gharar) ou de spéculation pure (Maysir).</p>
+                </div>
+                <div class="rounded-xl border border-border bg-card p-6">
+                    <h3 class="font-serif text-lg font-bold text-foreground mb-2">Exclusion du prêt usuraire DeFi</h3>
+                    <p class="text-sm text-muted-foreground leading-relaxed">Les protocoles reposant sur le prêt/emprunt à intérêt fixe ou variable (Lending/Yield usuraires) sont exclus selon les principes du Fiqh al-Mu'amalat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

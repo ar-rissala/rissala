@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="container mx-auto px-4 lg:px-8 py-16 max-w-4xl">
+  <div class="mb-12 border-b border-border/50 pb-8">
+    <div class="text-center py-4 px-4">
+      <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold font-heading mb-4 text-foreground">
+        {% if lang == 'en' %}Privacy Policy{% elif lang == 'ar' %}سياسة الخصوصية{% else %}Politique de Confidentialité{% endif %}
+      </h1>
+      <p class="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        {% if lang == 'en' %}
+        Your privacy is our priority. Discover transparently how Rissala collects, protects, and manages your personal data in accordance with the GDPR.
+        {% elif lang == 'ar' %}
+        حماية خصوصيتك أولويتنا المطلقة. تعرّف بكل شفافية على كيفية جمع رسالة لبياناتك الشخصية وحمايتها وفقاً للائحة العامة لحماية البيانات (GDPR).
+        {% else %}
+        La protection de votre vie privée est au cœur de nos engagements. Découvrez en toute transparence comment Rissala collecte, protège et gère vos données personnelles conformément au RGPD.
+        {% endif %}
+      </p>
+    </div>
+  </div>
+
+  <div class="space-y-8">
+    <!-- 1. Responsable du traitement -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <polyline points="16 11 18 13 22 9"></polyline>
+        </svg>
+        <span>1. {% if lang == 'en' %}Data Controller{% elif lang == 'ar' %}المسؤول عن معالجة البيانات{% else %}Responsable du traitement{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>
+          {% if lang == 'en' %}
+          The controller responsible for processing personal data on the <strong>Rissala.net</strong> platform is the site publisher (Rissala Editorial Team).
+          {% elif lang == 'ar' %}
+          المسؤول عن معالجة البيانات الشخصية على منصة <strong>Rissala.net</strong> هو ناشر الموقع (هيئة تحرير رسالة).
+          {% else %}
+          Le responsable du traitement des données personnelles collectées sur la plateforme <strong>Rissala.net</strong> est l'éditeur du site (équipe éditoriale Rissala).
+          {% endif %}
+        </p>
+        <p>
+          {% if lang == 'en' %}For any inquiries regarding personal data protection, you can directly reach us at:{% elif lang == 'ar' %}لأي استفسار يتعلق بحماية البيانات الشخصية، يمكنكم التواصل مباشرة عبر:{% else %}Pour toute question relative à la protection de vos données personnelles, vous pouvez nous contacter directement à l'adresse :{% endif %}<br />
+          <a href="mailto:rissala@tutamail.com" class="text-primary font-semibold hover:underline">rissala@tutamail.com</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- 2. Données collectées -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+        </svg>
+        <span>2. {% if lang == 'en' %}Data Collected & Minimization{% elif lang == 'ar' %}البيانات المجمعة ومبدأ التقليل{% else %}Données collectées &amp; Minimisation{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>
+          {% if lang == 'en' %}
+          In compliance with the principle of data minimization (GDPR Article 5.1.c), Rissala collects only the data strictly necessary for providing its educational services:
+          {% elif lang == 'ar' %}
+          امتثالاً لمبدأ تقليل البيانات (المادة 5.1.c من GDPR)، تقتصر رسالة على جمع البيانات الضرورية تماماً لتقديم خدماتها التعليمية:
+          {% else %}
+          Conformément au principe de minimisation des données (article 5.1.c du RGPD), Rissala limite la collecte au strict nécessaire pour la fourniture de ses services éducatifs :
+          {% endif %}
+        </p>
+        <ul class="list-disc ps-6 space-y-2 text-foreground">
+          <li>
+            <strong>{% if lang == 'en' %}User Account Data:{% elif lang == 'ar' %}بيانات حساب المستخدم:{% else %}Données de compte utilisateur :{% endif %}</strong>
+            <span class="text-muted-foreground">{% if lang == 'en' %}Email address, username/pseudonym, encrypted password (hashed), optional first and last name, optional biography, and language preference.{% elif lang == 'ar' %}البريد الإلكتروني، الاسم المستعار، كلمة المرور المشفرة، الاسم واللقب (اختياري)، النبذة التعريفية (اختياري)، واللغة المفضلة.{% else %}Adresse e-mail, pseudonyme, mot de passe sécurisé (chiffré), prénom et nom (facultatifs), biographie (facultative), langue préférée et progression de lecture.{% endif %}</span>
+          </li>
+          <li>
+            <strong>{% if lang == 'en' %}Contact Messages:{% elif lang == 'ar' %}رسائل التواصل:{% else %}Formulaire de contact :{% endif %}</strong>
+            <span class="text-muted-foreground">{% if lang == 'en' %}Full name, contact email address, subject, and message content.{% elif lang == 'ar' %}الاسم الكامل، البريد الإلكتروني، موضوع الرسالة ومحتواها.{% else %}Nom, adresse électronique, sujet sélectionné et contenu du message adressé.{% endif %}</span>
+          </li>
+          <li>
+            <strong>{% if lang == 'en' %}Newsletter Subscriptions:{% elif lang == 'ar' %}الاشتراك في النشرة البريدية:{% else %}Lettre éditoriale (Newsletter) :{% endif %}</strong>
+            <span class="text-muted-foreground">{% if lang == 'en' %}Email address, optional first name, timestamped double opt-in confirmation token, proof of consent (anonymized IP hash), and preferred language.{% elif lang == 'ar' %}البريد الإلكتروني، الاسم الأول (اختياري)، رمز تأكيد الاشتراك المزدوج (Double opt-in)، إثبات الموافقة المؤرخ، واللغة المفضلة.{% else %}Adresse e-mail, prénom (optionnel), jetons de double opt-in et de désinscription, preuve horodatée du consentement (hash d'IP) et langue de réception.{% endif %}</span>
+          </li>
+          <li>
+            <strong>{% if lang == 'en' %}Technical & Security Logs:{% elif lang == 'ar' %}السجلات التقنية وسجلات الأمان:{% else %}Journaux techniques et de sécurité :{% endif %}</strong>
+            <span class="text-muted-foreground">{% if lang == 'en' %}Server-level IP address, request timestamps, and HTTP headers strictly processed for infrastructure defense, denial-of-service mitigation, and fraud prevention.{% elif lang == 'ar' %}عنوان IP على مستوى الخادم، أوقات الطلبات، وسجلات التشغيل الفنية لحماية المنصة من الهجمات وضمان استقرارها.{% else %}Adresse IP au niveau serveur, horodatage des requêtes et journaux de diagnostic système pour la défense contre les attaques et la prévention des abus.{% endif %}</span>
+          </li>
+        </ul>
+        <p class="font-semibold text-primary pt-2">
+          {% if lang == 'en' %}No banking data, no payment cards, and no personal telephone numbers are collected on Rissala.net.{% elif lang == 'ar' %}لا يتم جمع أي بيانات بنكية أو بطاقات دفع أو أرقام هواتف شخصية على موقع Rissala.net.{% else %}Aucune coordonnée bancaire, aucun numéro de carte de paiement et aucun numéro de téléphone personnel n'est collecté sur Rissala.net.{% endif %}
+        </p>
+      </div>
+    </div>
+
+    <!-- 3. Finalités et bases légales -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 14 14"></polyline>
+        </svg>
+        <span>3. {% if lang == 'en' %}Purposes & Legal Bases{% elif lang == 'ar' %}الأغراض والأسس القانونية للمعالجة{% else %}Finalités &amp; Bases légales du traitement{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}Every processing activity is anchored on an established legal basis under Article 6 of the GDPR:{% elif lang == 'ar' %}تستند كل معالجة للبيانات إلى أساس قانوني صريح بموجب المادة 6 من لائحة GDPR:{% else %}Chaque traitement de données repose sur une base légale déterminée conformément à l'article 6 du RGPD :{% endif %}</p>
+        <ul class="list-disc ps-6 space-y-2">
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Service Execution (Art. 6.1.b):{% elif lang == 'ar' %}تنفيذ الخدمة (المادة 6.1.b):{% else %}Exécution du service (art. 6.1.b) :{% endif %}</strong>
+            {% if lang == 'en' %}Authentication, membership dashboard, reading progress synchronization, and access to learning resources.{% elif lang == 'ar' %}تسجيل الدخول، إدارة حساب العضوية، مزامنة تقدم القراءة والوصول للمحتوى التعليمي.{% else %}Création et gestion du compte utilisateur, suivi de progression dans la bibliothèque et accès aux cours.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Explicit Consent (Art. 6.1.a):{% elif lang == 'ar' %}الموافقة الصريحة (المادة 6.1.a):{% else %}Consentement explicite (art. 6.1.a) :{% endif %}</strong>
+            {% if lang == 'en' %}Delivery of editorial newsletters (double opt-in) and processing of voluntary contact form submissions.{% elif lang == 'ar' %}إرسال النشرات الإخبارية باشتراك مزدوج ومعالجة رسائل التواصل الموجهة طوعاً.{% else %}Envoi de la lettre éditoriale (avec procédure de double opt-in) et traitement des demandes volontaires transmises par le formulaire de contact.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Legitimate Interest & Legal Compliance (Art. 6.1.c / 6.1.f):{% elif lang == 'ar' %}المصلحة المشروعة والامتثال القانوني (المادة 6.1.c / 6.1.f):{% else %}Intérêt légitime &amp; obligations légales (art. 6.1.c et 6.1.f) :{% endif %}</strong>
+            {% if lang == 'en' %}Ensuring platform uptime, safeguarding application integrity against automated attacks, and retaining required technical security logs.{% elif lang == 'ar' %}حماية البنية التحتية، ومنع الاختراقات والأنشطة الضارة، والاحتفاظ بالسجلات الفنية الإلزامية.{% else %}Sécurisation de la plateforme, prévention des abus, lutte contre la cybercriminalité et tenue des journaux techniques de connexion requis par la réglementation.{% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4. Durées de conservation -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 14 14"></polyline>
+        </svg>
+        <span>4. {% if lang == 'en' %}Data Retention Periods{% elif lang == 'ar' %}مدد الاحتفاظ بالبيانات{% else %}Durées de conservation{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}Personal data is retained only for as long as strictly necessary for the purposes for which it is processed:{% elif lang == 'ar' %}يتم الاحتفاظ بالبيانات الشخصية للمدة اللازمة حصراً لتحقيق الأهداف المحددة:{% else %}Les données personnelles sont conservées uniquement pour la durée strictement nécessaire à l'accomplissement des finalités prévues :{% endif %}</p>
+        <ul class="list-disc ps-6 space-y-2">
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}User Accounts:{% elif lang == 'ar' %}حسابات المستخدمين:{% else %}Comptes utilisateurs :{% endif %}</strong>
+            {% if lang == 'en' %}Retained for the active duration of the account. Accounts inactive for 3 consecutive years or subject to a valid deletion request are deleted.{% elif lang == 'ar' %}طوال فترة نشاط الحساب، وتُحذف الحسابات غير النشطة لمدة 3 سنوات متتالية أو بناءً على طلب صاحبها.{% else %}Conservées pendant la durée d'activité du compte. Les comptes inactifs depuis plus de 3 années consécutives font l'objet d'une suppression après avertissement.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Newsletter Subscriptions:{% elif lang == 'ar' %}اشتراكات النشرة البريدية:{% else %}Abonnements newsletter :{% endif %}</strong>
+            {% if lang == 'en' %}Retained until unsubscription. An unsubscribe link is included in every dispatched email allowing instant cancellation.{% elif lang == 'ar' %}حتى إلغاء الاشتراك. يتضمن كل بريد مرسل رابطاً مباشراً لإلغاء الاشتراك بنقرة واحدة.{% else %}Conservées jusqu'à la désinscription de l'abonné. Un lien de désinscription en un clic est inclus dans chaque courriel envoyé.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Contact Submissions:{% elif lang == 'ar' %}رسائل التواصل:{% else %}Messages de contact :{% endif %}</strong>
+            {% if lang == 'en' %}Retained for the processing of your inquiry, and archived for up to 24 months before routine purge.{% elif lang == 'ar' %}تُحفظ طوال مدة معالجة الطلب، وتُحذف نهائياً في مدة أقصاها 24 شهراً.{% else %}Conservés le temps du traitement de la demande, puis archivés pour une durée n'excédant pas 24 mois avant destruction.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Technical & Server Logs:{% elif lang == 'ar' %}سجلات الخوادم التقنية:{% else %}Journaux techniques serveur :{% endif %}</strong>
+            {% if lang == 'en' %}Retained for a maximum statutory period of 12 months in accordance with cybersecurity and host compliance rules.{% elif lang == 'ar' %}تُحفظ لمدة أقصاها 12 شهراً وفقاً للمتطلبات القانونية والتنظيمية للأمان السيبراني.{% else %}Conservés pour une durée maximale de 12 mois conformément aux obligations légales encadrant les prestataires techniques.{% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 5. Destinataires et Sous-traitants -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+          <path d="M3 9h18"></path>
+          <path d="M9 21V9"></path>
+        </svg>
+        <span>5. {% if lang == 'en' %}Data Recipients & Technical Sub-Processors{% elif lang == 'ar' %}المستلمون والجهات المعالجة الفرعية{% else %}Destinataires &amp; Sous-traitants techniques{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}Rissala does not sell, rent, or trade your personal information. Data is exclusively transferred to verified technical service providers strictly acting on our instructions:{% elif lang == 'ar' %}لا تقوم رسالة ببيع أو تأجير أو المتاجرة ببياناتكم الشخصية مطلقاً. تقتصر مشاركة البيانات على المزودين التقنيين الموثوقين:{% else %}Rissala ne vend, ne loue, ni ne cède aucune donnée personnelle à des tiers à des fins commerciales ou publicitaires. Les données sont uniquement accessibles à nos sous-traitants techniques indispensables :{% endif %}</p>
+        <ul class="list-disc ps-6 space-y-2">
+          <li>
+            <strong class="text-foreground">Railway Corp. (États-Unis) :</strong>
+            {% if lang == 'en' %}Platform-as-a-Service infrastructure provider hosting the Django application runtime and persistent databases.{% elif lang == 'ar' %}مزود الاستضافة السحابية المشغل لتطبيق Django وقواعد البيانات المحمية.{% else %}Hébergement de l'application Django, exécution des conteneurs et stockage sécurisé des bases de données.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">Brevo - Sendinblue SAS (France / UE) :</strong>
+            {% if lang == 'en' %}Specialized email infrastructure service provider for sending transactional notifications and consented newsletters.{% elif lang == 'ar' %}مزود خدمة إرسال الرسائل الإدارية والنشرات البريدية المتوافق مع معايير الاتحاد الأوروبي.{% else %}Routage sécurisé des e-mails transactionnels (vérification d'adresse) et des lettres d'information sollicitées.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">Tutao GmbH / Tuta Mail (Allemagne / UE) :</strong>
+            {% if lang == 'en' %}Secure, encrypted email service hosting incoming communications sent to rissala@tutamail.com.{% elif lang == 'ar' %}خدمة البريد المشفر لاستقبال رسائل التواصل عبر rissala@tutamail.com.{% else %}Service de messagerie chiffrée hébergeant la boîte de contact rissala@tutamail.com.{% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. Cookies et traceurs -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a10 10 0 0 0-1.7 19.85"></path>
+          <circle cx="8" cy="9" r="1"></circle>
+          <circle cx="15" cy="8" r="1"></circle>
+          <circle cx="10" cy="14" r="1"></circle>
+          <circle cx="16" cy="14" r="1"></circle>
+        </svg>
+        <span>6. {% if lang == 'en' %}Cookies & Local Storage{% elif lang == 'ar' %}ملفات تعريف الارتباط والتخزين المحلي{% else %}Cookies &amp; Traceurs techniques{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>
+          {% if lang == 'en' %}
+          <strong>No third-party tracking, profiling, or advertising cookies are deployed on Rissala.net.</strong>
+          {% elif lang == 'ar' %}
+          <strong>لا يتم استخدام أي ملفات تعريف ارتباط للإعلانات أو التتبع أو الاستهداف على موقع Rissala.net.</strong>
+          {% else %}
+          <strong>Aucun cookie publicitaire, aucun traceur de profilage ni aucun pixel d'analyse intrusif n'est utilisé sur Rissala.net.</strong>
+          {% endif %}
+        </p>
+        <p>
+          {% if lang == 'en' %}
+          The site uses solely strictly necessary technical cookies and local storage tokens:
+          {% elif lang == 'ar' %}
+          يقتصر الموقع فقط على ملفات تقنية ضرورية جداً لتشغيله:
+          {% else %}
+          Le site utilise exclusivement des éléments techniques indispensables au fonctionnement du service :
+          {% endif %}
+        </p>
+        <ul class="list-disc ps-6 space-y-1.5">
+          <li><code>sessionid</code> : {% if lang == 'en' %}Session management for logged-in users (HttpOnly, SameSite).{% elif lang == 'ar' %}إدارة جلسة المستخدم المسجل.{% else %}Maintien sécurisé de votre session de connexion.{% endif %}</li>
+          <li><code>csrftoken</code> : {% if lang == 'en' %}Cross-Site Request Forgery security defense.{% elif lang == 'ar' %}حماية الأمان ضد هجمات تزوير الطلبات (CSRF).{% else %}Protection contre les attaques de falsification de requêtes inter-sites.{% endif %}</li>
+          <li><code>localStorage.theme</code> : {% if lang == 'en' %}Local browser preference for dark/light display mode.{% elif lang == 'ar' %}حفظ تفضيل مظهر الواجهة (داكن/فاتح) على متصفحكم.{% else %}Mémorisation de votre préférence d'affichage (mode sombre / mode clair).{% endif %}</li>
+        </ul>
+        <p class="text-xs sm:text-sm text-muted-foreground pt-1">
+          {% if lang == 'en' %}In accordance with CNIL and European guidelines, strictly necessary technical cookies do not require prior consent.{% elif lang == 'ar' %}وفقاً لتوجيهات هيئات حماية البيانات، فإن ملفات تعريف الارتباط التقنية الضرورية معفاة من طلب الموافقة المسبقة.{% else %}Conformément aux délibérations de la CNIL et aux directives européennes, ces traceurs strictement nécessaires au bon fonctionnement de la plateforme sont exemptés de consentement préalable.{% endif %}
+        </p>
+      </div>
+    </div>
+
+    <!-- 7. Vos droits RGPD -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span>7. {% if lang == 'en' %}Your Rights & Exercise{% elif lang == 'ar' %}حقوقك وكيفية ممارستها{% else %}Vos droits &amp; Modalités d'exercice{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}Under the GDPR (Articles 15 to 22), you hold the following rights regarding your personal information:{% elif lang == 'ar' %}بموجب اللائحة الأوروبية العامة لحماية البيانات، تتمتعون بالحقوق التالية بخصوص بياناتكم:{% else %}Conformément aux articles 15 à 22 du RGPD, vous disposez des droits suivants sur vos données à caractère personnel :{% endif %}</p>
+        <ul class="list-disc ps-6 space-y-1.5">
+          <li><strong>{% if lang == 'en' %}Right of access:{% elif lang == 'ar' %}حق الوصول:{% else %}Droit d'accès :{% endif %}</strong> {% if lang == 'en' %}Obtain confirmation and copy of your processed data.{% elif lang == 'ar' %}الحصول على نسخة من بياناتك المعالجة.{% else %}Obtenir la confirmation et la copie des données traitées vous concernant.{% endif %}</li>
+          <li><strong>{% if lang == 'en' %}Right to rectification:{% elif lang == 'ar' %}حق التصحيح:{% else %}Droit de rectification :{% endif %}</strong> {% if lang == 'en' %}Correct inaccurate or outdated information.{% elif lang == 'ar' %}تصحيح أي بيانات غير دقيقة أو تحديثها.{% else %}Demander la mise à jour ou la correction de vos données inexactes.{% endif %}</li>
+          <li><strong>{% if lang == 'en' %}Right to erasure ("Right to be forgotten"):{% elif lang == 'ar' %}حق المسح ("الحق في النسيان"):{% else %}Droit à l'effacement :{% endif %}</strong> {% if lang == 'en' %}Request permanent deletion of your account and related records.{% elif lang == 'ar' %}طلب حذف حسابك وبياناتك نهائياً.{% else %}Demander la suppression complète et définitive de votre compte et de vos données associées.{% endif %}</li>
+          <li><strong>{% if lang == 'en' %}Right to limitation & opposition:{% elif lang == 'ar' %}حق تقييد المعالجة والاعتراض:{% else %}Droit de limitation et d'opposition :{% endif %}</strong> {% if lang == 'en' %}Freeze or object to the processing of specific data.{% elif lang == 'ar' %}الاعتراض على معالجة محددة أو تقييدها.{% else %}Vous opposer à un traitement ou demander son gel temporaire.{% endif %}</li>
+          <li><strong>{% if lang == 'en' %}Right to data portability:{% elif lang == 'ar' %}حق نقل البيانات:{% else %}Droit à la portabilité :{% endif %}</strong> {% if lang == 'en' %}Receive your data in a structured, commonly used machine-readable format.{% elif lang == 'ar' %}تلقي بياناتك بتنسيق منظم وقابل للقراءة آلياً.{% else %}Recevoir vos données dans un format structuré et couramment utilisé.{% endif %}</li>
+        </ul>
+        <div class="pt-2">
+          <p>
+            {% if lang == 'en' %}To exercise any of these rights, contact our data protection contact at:{% elif lang == 'ar' %}لممارسة هذه الحقوق، يمكنكم مراسلة مسؤول حماية البيانات عبر:{% else %}Pour exercer l'un de ces droits, adressez simplement votre demande par e-mail à :{% endif %}<br />
+            <a href="mailto:rissala@tutamail.com" class="text-primary font-semibold hover:underline">rissala@tutamail.com</a>
+          </p>
+        </div>
+        <p class="text-xs sm:text-sm text-muted-foreground pt-2">
+          {% if lang == 'en' %}
+          If you believe, after contacting us, that your data protection rights are not respected, you may file a complaint with the French supervisory authority: CNIL (Commission Nationale de l'Informatique et des Libertés - <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">www.cnil.fr</a>).
+          {% elif lang == 'ar' %}
+          إذا اعتبرتم، بعد التواصل معنا، أن حقوقكم لم يتم احترامها، يحق لكم تقديم شكوى لدى الهيئة المختصة بحماية البيانات: CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">www.cnil.fr</a>).
+          {% else %}
+          Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous disposez du droit d'introduire une réclamation auprès de l'autorité de contrôle compétente : la CNIL (Commission Nationale de l'Informatique et des Libertés - <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">www.cnil.fr</a>).
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

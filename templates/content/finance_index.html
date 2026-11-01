@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col min-h-screen">
+  <!-- Hero (Exact match to Next.js PageHero) -->
+  <section class="relative py-16 sm:py-20 lg:py-28 min-h-[380px] flex items-center border-b border-border/50 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/islamic-pattern-bg.jpg');" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-background/80 dark:bg-background/85" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+    <div class="relative z-10 w-full">
+      <div class="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 font-heading text-foreground">
+          {{ copy.titleMain }} <span class="text-primary">{{ copy.titleAccent }}</span>
+        </h1>
+        <p class="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-6">
+          {{ copy.description }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Grid / Stack (Exact match to Next.js fiqh-al-muamalat) -->
+  <section class="py-10 sm:py-14 lg:py-20">
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl">
+      <div class="space-y-5">
+        {% for article in articles %}
+        <a
+          href="{{ article.get_absolute_url }}"
+          class="group block p-5 sm:p-6 lg:p-8 rounded-xl border border-border/50 bg-background/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+        >
+          <div class="flex items-start gap-4 sm:gap-6">
+            <!-- Number + Icon -->
+            <div class="shrink-0 flex flex-col items-center gap-2">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                {{ article.order_num|default:forloop.counter }}
+              </span>
+              {% if article.catalog_icon == 'scale' %}
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+              {% elif article.catalog_icon == 'handshake' %}
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m11 17 2 2a1 1 0 0 0 1.42 0l4.58-4.58a1 1 0 0 0 0-1.42l-2-2"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 7 2-2a1 1 0 0 1 1.42 0l7.58 7.58a1 1 0 0 1 0 1.42l-2 2a1 1 0 0 1-1.42 0L7 8.42A1 1 0 0 1 7 7Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 11l4-4"/></svg>
+              {% elif article.catalog_icon == 'coins' %}
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path stroke-linecap="round" stroke-linejoin="round" d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 6h1v4"/><path stroke-linecap="round" stroke-linejoin="round" d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+              {% elif article.catalog_icon == 'book' %}
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              {% elif article.catalog_icon == 'building' %}
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 22v-4h6v4"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 6h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 6h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 10h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 10h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 14h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 14h.01"/></svg>
+              {% else %}
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              {% endif %}
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-3 mb-1 flex-wrap">
+                <h2 class="text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  {{ article.title }}
+                </h2>
+                {% if article.catalog_tag %}
+                <span class="inline-flex px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                  {{ article.catalog_tag }}
+                </span>
+                {% endif %}
+              </div>
+              {% if article.catalog_subtitle %}
+              <p class="text-sm text-primary/80 font-medium mb-2">{{ article.catalog_subtitle }}</p>
+              {% elif article.subtitle %}
+              <p class="text-sm text-primary/80 font-medium mb-2">{{ article.subtitle }}</p>
+              {% endif %}
+              <p class="text-sm text-muted-foreground leading-relaxed">{{ article.excerpt }}</p>
+            </div>
+
+            <!-- Arrow -->
+            <div class="shrink-0 hidden sm:flex items-center self-center">
+              <svg class="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180 transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m15 19-7-7 7-7"/></svg>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology CTA (Exact match to Next.js ctaTitle) -->
+  <section class="py-10 sm:py-14 border-t border-border/50">
+    <div class="container mx-auto px-4 lg:px-8 max-w-3xl text-center">
+      <h2 class="text-xl sm:text-2xl font-bold font-heading mb-4 text-foreground">
+        {{ copy.ctaTitle }}
+      </h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        {{ copy.ctaDesc }}
+      </p>
+      <a
+        href="{{ cta_href }}"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+      >
+        {{ copy.ctaBtn }}
+        <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m12 19-7-7 7-7M19 12H5"/></svg>
+      </a>
+    </div>
+  </section>
+</div>
+{% endblock %}

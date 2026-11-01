@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col flex-1 bg-background pb-24">
+    {% if course.is_demo or lesson.is_demo %}
+    <div class="bg-amber-50 border-b border-amber-200 px-4 py-2.5 text-center text-xs text-amber-900">
+        <strong class="font-bold uppercase tracking-wider me-2">Leçon de démonstration</strong>
+        {{ playback.demo_notice|default:"Support pédagogique écrit disponible ci-dessous. Aucune vidéo fictive n'est simulée." }}
+    </div>
+    {% endif %}
+
+    <div class="border-b border-border bg-background/80 dark:bg-background/85 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl px-4 h-12 flex items-center justify-between text-xs sm:text-sm">
+            <a href="{{ course.get_absolute_url }}" class="inline-flex items-center text-muted-foreground hover:text-foreground font-medium transition-colors">
+                <svg class="me-1.5 h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m12 19-7-7 7-7M19 12H5"/></svg>
+                {{ course.title_fr }}
+            </a>
+            <span class="text-muted-foreground font-serif italic">
+                Module {{ lesson.module.order }} • Leçon {{ lesson.order }} ({{ lesson.duration_minutes }} min)
+            </span>
+        </div>
+    </div>
+
+    <section class="py-12">
+        <div class="container mx-auto max-w-6xl px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <!-- Main Lesson Content (8 cols) -->
+            <div class="lg:col-span-8 space-y-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-primary block mb-2">
+                        Module {{ lesson.module.order }} — {{ lesson.module.title_fr }}
+                    </span>
+                    <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+                        {{ localized_lesson_title }}
+                    </h1>
+                </div>
+
+                <!-- Honest Video / Pedagogical Status Box -->
+                {% if not playback.allowed %}
+                <div class="rounded-2xl border border-amber-300 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-950/40 p-8 text-center">
+                    <h3 class="font-serif text-xl font-bold text-foreground mb-2">
+                        Accès réservé aux membres inscrits
+                    </h3>
+                    <p class="text-sm text-muted-foreground mb-6">
+                        Connectez-vous et inscrivez-vous gratuitement à ce parcours pour débloquer cette leçon et enregistrer votre progression.
+                    </p>
+                    {% if user.is_authenticated %}
+                    <form method="post" action="{% lang_url 'courses:course_enroll' identifier=course.slug_fr %}">
+                        {% csrf_token %}
+                        <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:bg-primary/90">
+                            S'inscrire au parcours
+                        </button>
+                    </form>
+                    {% else %}
+                    <a href="{% lang_url 'accounts:login' %}" class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:bg-primary/90">
+                        Se connecter
+                    </a>
+                    {% endif %}
+                </div>
+                {% else %}
+                    {% if playback.video_available and playback.manifest_url %}
+                    <div class="rounded-2xl overflow-hidden border border-border bg-black aspect-video">
+                        <video controls class="w-full h-full" src="{{ playback.manifest_url }}"></video>
+                    </div>
+                    {% else %}
+                    <div class="rounded-2xl border border-border/80 bg-muted/30 p-6 flex items-start gap-4">
+                        <div class="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <div class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                            <strong class="text-foreground block mb-1">Support d'étude écrit (Parcours de démonstration — sans vidéo raccordée)</strong>
+                            {{ playback.demo_notice }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="rounded-2xl border border-border bg-card p-8 shadow-sm">
+                        <div class="prose prose-lg dark:prose-invert max-w-none article-prose text-foreground leading-relaxed">
+                            {{ lesson.content_html|safe }}
+                        </div>
+
+                        {% if user.is_authenticated %}
+                        <div class="mt-8 pt-6 border-t border-border flex items-center justify-between">
+                            {% if lesson_progress and lesson_progress.is_completed %}
+                            <span class="inline-flex items-center gap-2 text-sm font-bold text-primary">
+                                ✓ Leçon terminée
+                            </span>
+                            {% else %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary/90 transition-colors">
+                                    Marquer cette leçon comme terminée
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <!-- Prev / Next Lesson -->
+                <div class="flex items-center justify-between pt-4 border-t border-border">
+                    {% if prev_lesson %}
+                    <a href="{{ course.get_absolute_url }}lecon/{{ prev_lesson.slug }}/" class="text-sm font-semibold text-muted-foreground hover:text-primary">
+                        ← {{ prev_lesson.localized_title }}
+                    </a>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+
+                    {% if next_lesson %}
+                    <a href="{{ course.get_absolute_url }}lecon/{{ next_lesson.slug }}/" class="text-sm font-semibold text-primary hover:underline">
+                        {{ next_lesson.localized_title }} →
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Sidebar Curriculum (4 cols) -->
+            <div class="lg:col-span-4">
+                <div class="rounded-2xl border border-border bg-card p-5">
+                    <h3 class="font-serif font-bold text-sm uppercase tracking-wider text-muted-foreground mb-4">
+                        Sommaire du parcours
+                    </h3>
+                    <div class="space-y-4">
+                        {% for mod in modules %}
+                        <div>
+                            <h4 class="text-xs font-bold text-foreground mb-2">
+                                Module {{ mod.order }} — {{ mod.localized_title }}
+                            </h4>
+                            <div class="space-y-1">
+                                {% for les in mod.lessons_list %}
+                                <a
+                                    href="{{ course.get_absolute_url }}lecon/{{ les.slug }}/"
+                                    class="block px-3 py-2 rounded-lg text-xs transition-colors {% if les.id == lesson.id %}bg-primary text-primary-foreground font-semibold{% else %}hover:bg-muted/50 text-muted-foreground{% endif %}"
+                                >
+                                    {{ les.order }}. {{ les.localized_title }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

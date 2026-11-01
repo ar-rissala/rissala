@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 sm:px-6 py-12">
+  <div class="bg-card border border-border/80 rounded-2xl p-6 sm:p-8 shadow-xl shadow-black/[0.03] dark:shadow-black/20">
+    <div class="flex items-center justify-between mb-6 pb-4 border-b border-border/60">
+      <h1 class="text-2xl font-bold text-foreground font-heading">{{ ui.nav_profile }}</h1>
+      <a href="{{ nav_urls.dashboard }}" class="text-xs font-semibold text-primary hover:underline">← {{ ui.nav_dashboard }}</a>
+    </div>
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      <div>
+        <label class="block text-xs font-semibold text-foreground mb-1.5">Pseudonyme</label>
+        {{ form.pseudo }}
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-foreground mb-1.5">Prénom</label>
+          {{ form.first_name }}
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-foreground mb-1.5">Nom</label>
+          {{ form.last_name }}
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-foreground mb-1.5">Langue d'interface préférée</label>
+        {{ form.preferred_language }}
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-foreground mb-1.5">Biographie / Notes</label>
+        {{ form.bio }}
+      </div>
+      <label class="flex items-center gap-2.5 text-xs font-medium text-muted-foreground pt-2 cursor-pointer">
+        {{ form.newsletter_opt_in }}
+        <span class="text-foreground">Recevoir la lettre éditoriale Rissala</span>
+      </label>
+      <div class="pt-4 border-t border-border/60">
+        <button type="submit" class="px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm cursor-pointer shadow-sm transition-all">
+          Enregistrer mes préférences
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+

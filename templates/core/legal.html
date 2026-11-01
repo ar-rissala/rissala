@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="container mx-auto px-4 lg:px-8 py-16 max-w-4xl">
+  <div class="mb-12 border-b border-border/50 pb-8">
+    <div class="text-center py-4 px-4">
+      <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+          <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+          <path d="M7 21h10"></path>
+          <path d="M12 3v18"></path>
+          <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
+        </svg>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold font-heading mb-4 text-foreground">
+        {% if lang == 'en' %}Legal Notice{% elif lang == 'ar' %}الإشعار القانوني{% else %}Mentions légales{% endif %}
+      </h1>
+      <p class="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        {% if lang == 'en' %}
+        This legal notice is intended to inform Rissala website users about the identity of the publisher, the hosting services, the terms of use, and the responsibilities associated with its consultation.
+        {% elif lang == 'ar' %}
+        يهدف هذا الإشعار القانوني إلى إبلاغ مستخدمي موقع رسالة بهوية الناشر وخدمات الاستضافة وشروط الاستخدام والمسؤوليات المرتبطة بتصفحه.
+        {% else %}
+        Les présentes mentions légales ont pour objet d'informer les utilisateurs du site Rissala sur l'identité de l'éditeur, les services d'hébergement, les conditions d'utilisation du site ainsi que les responsabilités associées à sa consultation.
+        {% endif %}
+      </p>
+    </div>
+  </div>
+
+  <div class="space-y-8">
+    <!-- 1. Éditeur du site -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+          <path d="M9 22v-4h6v4"></path>
+          <path d="M8 6h.01"></path>
+          <path d="M16 6h.01"></path>
+          <path d="M8 10h.01"></path>
+          <path d="M16 10h.01"></path>
+          <path d="M8 14h.01"></path>
+          <path d="M16 14h.01"></path>
+        </svg>
+        <span>1. {% if lang == 'en' %}Site Publisher{% elif lang == 'ar' %}ناشر الموقع{% else %}Éditeur du site{% endif %}</span>
+      </h2>
+      <div class="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>
+          {% if lang == 'en' %}
+          The <strong>Rissala.net</strong> website is published by the Rissala editorial team.
+          {% elif lang == 'ar' %}
+          يتم نشر موقع <strong>Rissala.net</strong> بواسطة فريق تحرير رسالة.
+          {% else %}
+          Le site <strong>Rissala.net</strong> est édité par l'équipe éditoriale Rissala.
+          {% endif %}
+        </p>
+
+        <p>
+          {% if lang == 'en' %}Public contact email address:{% elif lang == 'ar' %}عنوان البريد الإلكتروني العام للتواصل:{% else %}Adresse électronique de contact public :{% endif %}<br />
+          <a href="mailto:rissala@tutamail.com" class="text-primary font-semibold hover:underline">rissala@tutamail.com</a>
+        </p>
+
+        <p>
+          {% if lang == 'en' %}
+          Director of publication: <strong>Rissala Editorial Direction</strong> (contactable at <a href="mailto:rissala@tutamail.com" class="text-primary hover:underline">rissala@tutamail.com</a>).
+          {% elif lang == 'ar' %}
+          إدارة النشر: <strong>الهيئة التحريرية لرسالة</strong> (يمكن التواصل معها عبر <a href="mailto:rissala@tutamail.com" class="text-primary hover:underline">rissala@tutamail.com</a>).
+          {% else %}
+          Directeur de la publication : <strong>La direction éditoriale de Rissala</strong> (joignable à l'adresse <a href="mailto:rissala@tutamail.com" class="text-primary hover:underline">rissala@tutamail.com</a>).
+          {% endif %}
+        </p>
+      </div>
+    </div>
+
+    <!-- 2. Hébergement du site & Prestataires techniques -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
+          <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
+          <line x1="6" x2="6.01" y1="6" y2="6"></line>
+          <line x1="6" x2="6.01" y1="18" y2="18"></line>
+        </svg>
+        <span>2. {% if lang == 'en' %}Hosting & Technical Providers{% elif lang == 'ar' %}الاستضافة ومزودو الخدمات التقنية{% else %}Hébergement du site &amp; Prestataires techniques{% endif %}</span>
+      </h2>
+      <div class="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>
+          {% if lang == 'en' %}
+          The application hosting and cloud infrastructure of the Rissala.net platform are provided by:
+          {% elif lang == 'ar' %}
+          تتم استضافة التطبيق والبنية التحتية السحابية لمنصة Rissala.net بواسطة:
+          {% else %}
+          L'hébergement de l'application et l'infrastructure cloud de la plateforme Rissala.net sont assurés par :
+          {% endif %}
+        </p>
+
+        <div class="ps-4 border-s-2 border-primary/30 space-y-1.5 text-foreground">
+          <p class="font-bold text-primary">Railway Corp.</p>
+          <p>{% if lang == 'en' %}Corporate name: Railway Corporation{% elif lang == 'ar' %}الاسم القانوني: Railway Corporation{% else %}Raison sociale : Railway Corporation{% endif %}</p>
+          <p>{% if lang == 'en' %}Headquarters: 548 Market St, Suite/PMB 68956, San Francisco, CA 94104, USA{% elif lang == 'ar' %}المقر الرئيسي: 548 Market St, Suite/PMB 68956, San Francisco, CA 94104, USA{% else %}Siège social : 548 Market St, Suite/PMB 68956, San Francisco, CA 94104, États-Unis{% endif %}</p>
+          <p>{% if lang == 'en' %}Official website:{% elif lang == 'ar' %}الموقع الرسمي:{% else %}Site internet :{% endif %} <a href="https://railway.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">https://railway.com</a></p>
+          <p>{% if lang == 'en' %}Contact:{% elif lang == 'ar' %}التواصل:{% else %}Contact :{% endif %} team@railway.com</p>
+        </div>
+
+        <p class="font-semibold text-foreground pt-2">
+          {% if lang == 'en' %}Distinction of Technical Roles & Providers:{% elif lang == 'ar' %}توضيح الأدوار التقنية ومزودي الخدمات:{% else %}Distinction des rôles techniques et prestataires :{% endif %}
+        </p>
+        <ul class="list-disc ps-6 space-y-2 text-sm text-muted-foreground">
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Application Host (PaaS):{% elif lang == 'ar' %}مستضيف التطبيق (PaaS):{% else %}Hébergeur applicatif (PaaS) :{% endif %}</strong>
+            {% if lang == 'en' %}Railway Corp. manages the execution containers, runtime environments, and persistent application database.{% elif lang == 'ar' %}تتولى Railway Corp تشغيل خوادم التطبيق وبيئات التشغيل وقاعدة البيانات.{% else %}Railway Corp. assure l'exécution des conteneurs applicatifs et l'hébergement de la base de données.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Underlying Cloud Infrastructure:{% elif lang == 'ar' %}البنية التحتية السحابية الأساسية:{% else %}Infrastructure cloud sous-jacente :{% endif %}</strong>
+            {% if lang == 'en' %}Standard high-availability tier-1 cloud data centers (AWS / Google Cloud) utilized by the PaaS provider.{% elif lang == 'ar' %}مراكز بيانات سحابية متطورة عالية التوافر مستخدمة من قِبل المزود السحابي.{% else %}Centres de données cloud haute disponibilité (AWS / GCP) mobilisés par le fournisseur PaaS.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Contact Email Service Provider:{% elif lang == 'ar' %}مزود خدمة البريد الإلكتروني للتواصل:{% else %}Fournisseur de messagerie de contact :{% endif %}</strong>
+            {% if lang == 'en' %}Tuta Mail (Tutao GmbH, Hanover, Germany) provides end-to-end encrypted messaging for correspondence addressed to rissala@tutamail.com.{% elif lang == 'ar' %}توفر Tuta Mail (Tutao GmbH، هانوفر، ألمانيا) خدمة البريد الإلكتروني المشفر لمراسلات rissala@tutamail.com.{% else %}Tuta Mail (Tutao GmbH, Hanovre, Allemagne) fournit le service de messagerie chiffrée pour les correspondances adressées à rissala@tutamail.com.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Transactional & Newsletter Email Provider:{% elif lang == 'ar' %}مزود رسائل البريد التقنية والنشرة البريدية:{% else %}Fournisseur de courriels transactionnels &amp; newsletter :{% endif %}</strong>
+            {% if lang == 'en' %}Brevo (Sendinblue SAS, 106 boulevard Haussmann, 75008 Paris, France) for transactional messages and opted-in editorial letters.{% elif lang == 'ar' %}شركة Brevo (فرنسا) لإرسال رسائل التحقق والنشرات البريدية بموافقة مسبقة.{% else %}Brevo (Sendinblue SAS, 106 boulevard Haussmann, 75008 Paris, France) pour les notifications et lettres éditoriales sollicitées.{% endif %}
+          </li>
+          <li>
+            <strong class="text-foreground">{% if lang == 'en' %}Domain Name Registrar:{% elif lang == 'ar' %}مسجل اسم النطاق:{% else %}Bureau d'enregistrement du nom de domaine (Registrar) :{% endif %}</strong>
+            {% if lang == 'en' %}The domain name rissala.net is registered with an ICANN-accredited registrar, with public WHOIS personal data shielded under standard data privacy protection.{% elif lang == 'ar' %}اسم النطاق rissala.net مسجل لدى مسجل معتمد من ICANN، مع حماية سرية بيانات WHOIS وفقاً للوائح الخصوصية.{% else %}Le nom de domaine rissala.net est enregistré auprès d'un bureau accrédité ICANN, avec protection de la confidentialité des données personnelles dans l'annuaire WHOIS public conformément aux règlements sur la protection des données.{% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. Objet du site -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" x2="22" y1="12" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span>3. {% if lang == 'en' %}Purpose of the Site{% elif lang == 'ar' %}الغرض من الموقع{% else %}Objet du site{% endif %}</span>
+      </h2>
+      <div class="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}Rissala is an independent educational platform dedicated to knowledge sharing, educational content, and digital study resources across its primary disciplines:{% elif lang == 'ar' %}رسالة هي منصة تعليمية مستقلة مخصصة لتبادل المعرفة ونشر المحتوى التعليمي والموارد الرقمية في تخصصاتها الرئيسية:{% else %}Rissala est une plateforme éducative indépendante dédiée au partage de connaissances, à la diffusion de contenus pédagogiques et aux ressources d'étude autour de ses thématiques principales :{% endif %}</p>
+        <ul class="list-disc ps-6 space-y-2">
+          <li>{% if lang == 'en' %}Classical Islamic sciences and scholarly texts;{% elif lang == 'ar' %}العلوم الإسلامية الأصيلة والمتون المعتمدة؛{% else %}les sciences islamiques classiques et leurs textes de référence ;{% endif %}</li>
+          <li>{% if lang == 'en' %}Standard Arabic learning and linguistic analysis;{% elif lang == 'ar' %}تعلم اللغة العربية الفصحى وقواعدها؛{% else %}l'apprentissage progressif de la langue arabe littéraire ;{% endif %}</li>
+          <li>{% if lang == 'en' %}Ethical and Islamic finance principles (Fiqh al-Mu'amalat) and practical tools (Zakat calculation);{% elif lang == 'ar' %}مبادئ التمويل الإسلامي والاقتصاد الأخلاقي وحاسبة الزكاة؛{% else %}les principes de la finance éthique et islamique et outils pratiques (calcul de la Zakat) ;{% endif %}</li>
+          <li>{% if lang == 'en' %}A synchronized digital library and educational learning paths.{% elif lang == 'ar' %}مكتبة رقمية تفاعلية ومسارات تعليمية منظمة.{% else %}une bibliothèque numérique avec suivi de lecture et parcours pédagogiques.{% endif %}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4. Propriété intellectuelle -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span>4. {% if lang == 'en' %}Intellectual Property{% elif lang == 'ar' %}الملكية الفكرية{% else %}Propriété intellectuelle{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}All elements on the Rissala website, including texts, syntheses, translations, illustrations, logos, graphic design, and digital content, are protected by intellectual property and copyright laws.{% elif lang == 'ar' %}جميع العناصر الموجودة على موقع رسالة، بما في ذلك النصوص والترجمات والرسوم التوضيحية والشعارات والتصميمات، محمية بموجب قوانين الملكية الفكرية وحقوق التأليف.{% else %}L'ensemble des éléments présents sur le site Rissala, notamment les textes, synthèses, traductions, éléments graphiques, logos, interfaces et contenus numériques, sont protégés par les dispositions relatives au droit d'auteur et à la propriété intellectuelle.{% endif %}</p>
+        <p>{% if lang == 'en' %}Unless authorized in writing by Rissala, any reproduction, adaptation, or public distribution is strictly prohibited.{% elif lang == 'ar' %}يُحظر أي استنساخ أو تعديل أو توزيع عام دون إذن كتابي مسبق.{% else %}Sauf autorisation préalable écrite de l'équipe éditoriale, toute reproduction, représentation, adaptation ou diffusion totale ou partielle des contenus originaux du site est strictement interdite.{% endif %}</p>
+        <p class="font-semibold text-primary">{% if lang == 'en' %}Classical public domain texts retain their public status, while original editorial formatting and analyses remain protected.{% elif lang == 'ar' %}تحتفظ المتون التراثية العامة بصفتها الحرة، بينما تبقى الهيكلة والتحليلات التحريرية الأصلية محمية.{% else %}Les textes classiques appartenant au domaine public conservent leur statut, tandis que les traductions, appareils pédagogiques et présentations éditoriales originaux demeurent protégés.{% endif %}</p>
+      </div>
+    </div>
+
+    <!-- 5. Responsabilité -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+          <line x1="12" x2="12" y1="9" y2="13"></line>
+          <line x1="12" x2="12.01" y1="17" y2="17"></line>
+        </svg>
+        <span>5. {% if lang == 'en' %}Liability{% elif lang == 'ar' %}المسؤولية{% else %}Responsabilité{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}Rissala strives to provide verified, documented, and regularly updated information.{% elif lang == 'ar' %}تسعى رسالة جاهدة لتقديم معلومات موثوقة ومراجعة ومحدثة بانتظام.{% else %}Rissala s'efforce de fournir des informations rigoureuses, vérifiées et régulièrement documentées.{% endif %}</p>
+        <p>{% if lang == 'en' %}The editorial content, financial calculations, or educational materials are provided for informational and pedagogical purposes and do not constitute financial, legal, or binding personal counseling.{% elif lang == 'ar' %}يتم تقديم المحتوى العلمي والحسابات المالية لأغراض تعليمية وإرشادية، ولا تشكل استشارات قانونية أو مالية ملزمة.{% else %}Les contenus éditoriaux, synthèses et calculateurs pratiques (tels que la Zakat) sont proposés à des fins éducatives et d'information générale, et ne sauraient se substituer à une consultation juridique, fiscale ou financière personnalisée.{% endif %}</p>
+        <p>{% if lang == 'en' %}The use of information available on the site is under the sole responsibility of the user.{% elif lang == 'ar' %}يقع استخدام المعلومات المتوفرة على الموقع على عاتق المستخدم وحده.{% else %}L'utilisation des informations et outils disponibles sur le site s'effectue sous la seule responsabilité de l'utilisateur.{% endif %}</p>
+      </div>
+    </div>
+
+    <!-- 6. Données personnelles & Contact -->
+    <div class="border border-border/60 bg-card rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold font-heading flex items-center gap-2 mb-4 text-foreground">
+        <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>6. {% if lang == 'en' %}Personal Data (GDPR) & Contact{% elif lang == 'ar' %}البيانات الشخصية والتواصل{% else %}Données personnelles (RGPD) &amp; Contact{% endif %}</span>
+      </h2>
+      <div class="space-y-3 text-muted-foreground leading-relaxed text-sm sm:text-base">
+        <p>{% if lang == 'en' %}The processing of personal data on Rissala complies with Regulation (EU) 2016/679 (GDPR) and applicable data protection legislation.{% elif lang == 'ar' %}تتم معالجة البيانات الشخصية على موقع رسالة وفقاً للائحة العامة لحماية البيانات (GDPR) والتشريعات المعمول بها.{% else %}Le traitement des données personnelles sur le site Rissala s'effectue dans le strict respect du Règlement Général sur la Protection des Données (RGPD - Règlement UE 2016/679) et de la loi Informatique et Libertés.{% endif %}</p>
+        <p>
+          {% if lang == 'en' %}To exercise your rights or contact our editorial team:{% elif lang == 'ar' %}لممارسة حقوقك أو التواصل مع فريقنا:{% else %}Pour toute question relative à vos données personnelles ou pour exercer vos droits (accès, rectification, effacement) :{% endif %}<br />
+          <a href="mailto:rissala@tutamail.com" class="text-primary font-semibold hover:underline">rissala@tutamail.com</a>
+        </p>
+        <p>
+          {% if lang == 'en' %}For complete details regarding data categories, retention periods, and security measures, please consult our{% elif lang == 'ar' %}للاطلاع على كافة التفاصيل حول فئات البيانات وفترات الاحتفاظ بها وإجراءات الأمان، يرجى مراجعة{% else %}Pour une information complète sur les finalités, les durées de conservation et vos droits, veuillez consulter notre{% endif %}
+          <a href="{% localized_url 'privacy' %}" class="text-primary font-semibold hover:underline">
+            {% if lang == 'en' %}Privacy Policy{% elif lang == 'ar' %}سياسة الخصوصية{% else %}Politique de confidentialité{% endif %}
+          </a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

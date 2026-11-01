@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="container mx-auto px-4 lg:px-8 py-16 sm:py-24 flex flex-col items-center min-h-[75vh] justify-center">
+  <!-- Header (Exact match to Next.js Contact page) -->
+  <div class="text-center mb-12 sm:mb-16 max-w-2xl">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 font-heading text-foreground">
+      {% if lang == 'en' %}Contact us{% elif lang == 'ar' %}اتصل بنا{% else %}Contactez-nous{% endif %}
+    </h1>
+    <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+      {% if lang == 'en' %}
+      A question about our verification methods, courses, or partnerships? Write to us.
+      {% elif lang == 'ar' %}
+      سؤال حول منهجياتنا أو مساراتنا التعليمية أو الشراكات؟ تواصل معنا.
+      {% else %}
+      Une question sur nos méthodes de vérification, d'investissement ou un partenariat ? Écrivez-nous.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- Direct Contact Card -->
+  <div class="w-full max-w-lg mb-8">
+    <!-- Email Item -->
+    <div class="flex items-center p-6 rounded-2xl border border-border/60 bg-card hover:border-primary/40 transition-colors group shadow-sm">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center me-6 text-primary group-hover:scale-110 transition-transform shrink-0">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">Email</span>
+        <a href="mailto:rissala@tutamail.com" class="text-lg font-medium text-foreground hover:text-primary transition-colors">
+          rissala@tutamail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Form -->
+  <div class="w-full max-w-lg bg-card p-6 sm:p-8 rounded-2xl border border-border/60 shadow-sm">
+    <h2 class="text-lg font-bold font-heading mb-4 text-foreground">
+      {% if lang == 'en' %}Send us a message directly{% elif lang == 'ar' %}أرسل لنا رسالة مباشرة{% else %}Envoyez-nous un message directement{% endif %}
+    </h2>
+
+    <form method="post" action="{% lang_url 'core:contact' %}" class="space-y-4">
+      {% csrf_token %}
+      <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+
+      {% if form.errors %}
+      <div class="rounded-xl bg-destructive/10 border border-destructive/30 p-3 text-xs text-destructive">
+        {% if lang == 'en' %}Please check the form fields.{% elif lang == 'ar' %}يرجى التحقق من حقول النموذج.{% else %}Veuillez vérifier les champs du formulaire.{% endif %}
+      </div>
+      {% endif %}
+
+      <div>
+        <label for="id_name" class="block text-xs font-medium text-foreground mb-1.5">
+          {% if lang == 'en' %}Full Name{% elif lang == 'ar' %}الاسم الكامل{% else %}Nom et prénom{% endif %}
+        </label>
+        <input
+          type="text"
+          id="id_name"
+          name="name"
+          required
+          value="{{ form.name.value|default:'' }}"
+          class="w-full h-11 px-4 rounded-xl border border-border/80 bg-background text-foreground text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+          placeholder="{% if lang == 'en' %}Your name{% elif lang == 'ar' %}اسمك الكريم{% else %}Votre nom{% endif %}"
+        />
+      </div>
+
+      <div>
+        <label for="id_email" class="block text-xs font-medium text-foreground mb-1.5">
+          Email
+        </label>
+        <input
+          type="email"
+          id="id_email"
+          name="email"
+          required
+          value="{{ form.email.value|default:'' }}"
+          class="w-full h-11 px-4 rounded-xl border border-border/80 bg-background text-foreground text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+          placeholder="adresse@exemple.com"
+        />
+      </div>
+
+      <div>
+        <label for="id_subject" class="block text-xs font-medium text-foreground mb-1.5">
+          {% if lang == 'en' %}Subject{% elif lang == 'ar' %}الموضوع{% else %}Sujet{% endif %}
+        </label>
+        <select
+          id="id_subject"
+          name="subject"
+          class="w-full h-11 px-4 rounded-xl border border-border/80 bg-background text-foreground text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+        >
+          <option value="Question sur un contenu éditorial">Question sur un contenu éditorial</option>
+          <option value="Proposition de contribution">Proposition de contribution</option>
+          <option value="Problème technique">Problème technique</option>
+          <option value="Autre demande">Autre demande</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="id_message" class="block text-xs font-medium text-foreground mb-1.5">
+          Message
+        </label>
+        <textarea
+          id="id_message"
+          name="message"
+          rows="4"
+          required
+          class="w-full p-4 rounded-xl border border-border/80 bg-background text-foreground text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+          placeholder="{% if lang == 'en' %}Write your message...{% elif lang == 'ar' %}اكتب رسالتك هنا...{% else %}Rédigez votre message...{% endif %}"
+        >{{ form.message.value|default:'' }}</textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full h-11 rounded-xl bg-primary text-primary-foreground font-medium text-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-95 transition-all"
+      >
+        {% if lang == 'en' %}Send message{% elif lang == 'ar' %}إرسال الرسالة{% else %}Envoyer le message{% endif %}
+      </button>
+    </form>
+  </div>
+
+  <p class="mt-12 text-sm text-muted-foreground italic text-center">
+    {% if lang == 'en' %}Response within 24 to 48 business hours.{% elif lang == 'ar' %}الرد في غضون ٢٤ إلى ٤٨ ساعة عمل.{% else %}Réponse sous 24 à 48 heures ouvrées.{% endif %}
+  </p>
+</div>
+{% endblock %}

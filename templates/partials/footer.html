@@ -1,0 +1,105 @@
+{% load static rissala_tags %}
+<footer class="w-full border-t border-border bg-background pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
+    <!-- Column 1: Brand & Socials (Exact match to Footer.tsx) -->
+    <div class="col-span-2 sm:col-span-2 md:col-span-1">
+      <a href="/{{ lang }}/" class="inline-block mb-4 group">
+        <div class="relative w-48 sm:w-64 h-14 sm:h-20 -ml-2 overflow-hidden flex items-center">
+          <img
+            src="/LogoRissala.svg"
+            alt="Logo officiel de Rissala - Apprendre l'arabe et les sciences islamiques"
+            title="Retour à l'accueil de Rissala"
+            loading="lazy"
+            width="256"
+            height="80"
+            class="w-full h-full object-contain object-left group-hover:opacity-80 transition-all"
+          />
+        </div>
+      </a>
+      <p class="text-sm text-muted-foreground leading-relaxed">
+        {% if lang == 'en' %}
+        A platform dedicated to the study and transmission of Islamic knowledge.
+        <span class="block mt-2 font-medium text-foreground">Study. Understand. Transmit.</span>
+        {% elif lang == 'ar' %}
+        منصة مخصصة لدراسة ونقل المعرفة الإسلامية الأصيلة.
+        <span class="block mt-2 font-medium text-foreground">ادرس. افهم. بلّغ.</span>
+        {% else %}
+        Une plateforme dédiée à l'étude et à la transmission du savoir islamique.
+        <span class="block mt-2 font-medium text-foreground">Étudier. Comprendre. Transmettre.</span>
+        {% endif %}
+      </p>
+      <div class="flex items-center gap-4 mt-6">
+        <a
+          href="https://instagram.com/rissala.officiel/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all duration-300 min-h-0 min-w-0"
+          aria-label="Instagram Rissala"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+          </svg>
+        </a>
+        <a
+          href="https://youtube.com/@rissala-1"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-all duration-300 min-h-0 min-w-0"
+          aria-label="YouTube Rissala"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
+            <path d="m10 15 5-3-5-3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Column 2: Apprendre -->
+    <div>
+      <h4 class="text-sm font-semibold mb-6 text-foreground">
+        {% if lang == 'en' %}Learn{% elif lang == 'ar' %}تعلّم{% else %}Apprendre{% endif %}
+      </h4>
+      <ul class="space-y-3 text-sm text-muted-foreground">
+        <li><a href="{% localized_url 'arabic_language' %}" class="hover:text-primary transition-colors">{{ ui.nav_arabic }}</a></li>
+        <li><a href="{% localized_url 'islamic_sciences' %}" class="hover:text-primary transition-colors">{{ ui.nav_sciences }}</a></li>
+        <li><a href="{% localized_url 'islamic_finance' %}" class="hover:text-primary transition-colors">{{ ui.nav_finance }}</a></li>
+        <li><a href="{% localized_url 'courses' %}" class="hover:text-primary transition-colors">{{ ui.nav_courses }}</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Ressources -->
+    <div>
+      <h4 class="text-sm font-semibold mb-6 text-foreground">
+        {% if lang == 'en' %}Resources{% elif lang == 'ar' %}الموارد{% else %}Ressources{% endif %}
+      </h4>
+      <ul class="space-y-3 text-sm text-muted-foreground">
+        <li><a href="{% localized_url 'books' %}" class="hover:text-primary transition-colors">{{ ui.nav_books }}</a></li>
+        <li><a href="{% localized_url 'news' %}" class="hover:text-primary transition-colors">{{ ui.nav_news }} &amp; Articles</a></li>
+        <li><a href="{% localized_url 'services' %}" class="hover:text-primary transition-colors">{{ ui.footer_services }} &amp; Zakat</a></li>
+        <li><a href="{% localized_url 'about' %}" class="hover:text-primary transition-colors">{{ ui.footer_about }}</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact -->
+    <div>
+      <h4 class="text-sm font-semibold mb-6 text-foreground">{{ ui.footer_contact }}</h4>
+      <p class="text-sm text-muted-foreground mb-4">
+        {% if lang == 'en' %}Need guidance? Contact our editorial team.{% elif lang == 'ar' %}هل تحتاج إلى مرافقة؟ تواصل مع فريقنا.{% else %}Besoin d'accompagnement ? Contactez notre équipe.{% endif %}
+      </p>
+      <a href="{% localized_url 'contact' %}" class="text-sm text-primary font-medium hover:underline">
+        {% if lang == 'en' %}Contact us{% elif lang == 'ar' %}اتصل بنا{% else %}Nous contacter{% endif %}
+      </a>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12 lg:mt-16 pt-6 sm:pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground">
+    <p>&copy; {% now "Y" %} Rissala. {{ ui.footer_rights }}</p>
+    <div class="flex gap-4 sm:gap-6 mt-3 sm:mt-0">
+      <a href="{% localized_url 'legal' %}" class="hover:text-primary transition-colors">{{ ui.footer_legal }}</a>
+      <a href="{% localized_url 'privacy' %}" class="hover:text-primary transition-colors">{{ ui.footer_privacy }}</a>
+    </div>
+  </div>
+</footer>

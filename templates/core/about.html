@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load rissala_tags %}
+
+{% block content %}
+<div class="flex flex-col min-h-screen">
+  <!-- Hero Section (Exact match to Next.js About page) -->
+  <section class="relative py-16 sm:py-20 lg:py-28 min-h-[380px] flex items-center border-b border-border/50 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/islamic-pattern-bg.jpg');" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-background/[0.75]" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+    <div class="relative z-10 w-full">
+      <div class="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 font-heading">
+          {% if lang == 'en' %}About <span class="text-primary">Rissala</span>{% elif lang == 'ar' %}نبذة عن <span class="text-primary">رسالة</span>{% else %}À propos de <span class="text-primary">Rissala</span>{% endif %}
+        </h1>
+        <h2 class="text-xl sm:text-2xl text-foreground font-semibold mb-6">
+          {% if lang == 'en' %}
+          Rissala: the reference platform for Islamic sciences, Arabic language, and Islamic finance
+          {% elif lang == 'ar' %}
+          رسالة: المنصة المرجعية في العلوم الإسلامية، اللغة العربية والتمويل الإسلامي
+          {% else %}
+          Rissala : la plateforme de référence en sciences islamiques, langue arabe et finance islamique
+          {% endif %}
+        </h2>
+        <p class="text-base sm:text-lg text-muted-foreground leading-relaxed text-justify sm:text-center">
+          {% if lang == 'en' %}
+          Rissala is an educational platform dedicated to the rigorous study of Islamic sciences, the learning of the Arabic language, and the understanding of Islamic finance. Available in French, English, and Arabic, it provides access to authentic, verified, and structured knowledge based on the Quran, the Sunnah, and the opinions of classical and contemporary scholars.
+          {% elif lang == 'ar' %}
+          رسالة هي منصة تعليمية مخصصة للدراسة المنهجية للعلوم الإسلامية، وتعلم اللغة العربية، وفهم التمويل الإسلامي. تتوفر باللغات الفرنسية، الإنجليزية، والعربية، وتقدم معارف أصيلة وموثقة ومنهجية مبنية على القرآن الكريم والسنة النبوية وآراء العلماء المعتبرين قديماً وحديثاً.
+          {% else %}
+          Rissala est une plateforme éducative dédiée à l'étude rigoureuse des sciences islamiques, à l'apprentissage de la langue arabe et à la compréhension de la finance islamique. Disponible en français, en anglais et en arabe, elle rend accessibles des connaissances authentiques, vérifiées et structurées, fondées sur le Coran, la Sunna et les avis des savants classiques et contemporains.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Section (Exact match to Next.js About page) -->
+  <section class="py-14 sm:py-18 lg:py-24">
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl space-y-16">
+      <!-- Ce que nous enseignons -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold font-heading">
+            {% if lang == 'en' %}What we teach{% elif lang == 'ar' %}ما ندرّسه{% else %}Ce que nous enseignons{% endif %}
+          </h3>
+        </div>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-muted-foreground">
+          <li class="bg-card p-4 rounded-xl border border-border/60">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Fiqh (Islamic jurisprudence){% elif lang == 'ar' %}الفقه الإسلامي{% else %}Fiqh (jurisprudence islamique){% endif %}
+            </strong>
+            {% if lang == 'en' %}Comparison of the four schools of law: Hanafi, Maliki, Shafi'i, Hanbali.{% elif lang == 'ar' %}مقارنة المذاهب الفقهية الأربعة المعتمدة: الحنفي، والمالكي، والشافعي، والحنبلي.{% else %}Comparaison des quatre écoles juridiques (madhabs) : hanafite, malikite, chaféite, hanbalite.{% endif %}
+          </li>
+          <li class="bg-card p-4 rounded-xl border border-border/60">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Hadith and Hadith sciences{% elif lang == 'ar' %}الحديث وعلومه{% else %}Hadith et sciences du hadith{% endif %}
+            </strong>
+            {% if lang == 'en' %}Authentication, chains of transmission (isnad), classification.{% elif lang == 'ar' %}علم التخريج ودراسة الأسانيد وقواعد التصنيف والجرح والتعديل.{% else %}Authentification, chaînes de transmission (isnad), classification.{% endif %}
+          </li>
+          <li class="bg-card p-4 rounded-xl border border-border/60">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Tafsir (Quranic exegesis){% elif lang == 'ar' %}التفسير القرآني{% else %}Tafsir (exégèse coranique){% endif %}
+            </strong>
+            {% if lang == 'en' %}Classical and contemporary interpretation of the Quran.{% elif lang == 'ar' %}التفسير الكلاسيكي والمعاصر لكتاب الله العزيز وفق أصول التأويل.{% else %}Interprétation classique et contemporaine du Coran.{% endif %}
+          </li>
+          <li class="bg-card p-4 rounded-xl border border-border/60">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Aqida (Islamic creed){% elif lang == 'ar' %}العقيدة الإسلامية{% else %}Aqida (croyance islamique){% endif %}
+            </strong>
+            {% if lang == 'en' %}Foundations of faith according to Ahl al-Sunna.{% elif lang == 'ar' %}أصول الإيمان والتوحيد وفق منهج أهل السنة والجماعة.{% else %}Fondements de la foi selon Ahl al-Sunna.{% endif %}
+          </li>
+          <li class="bg-card p-4 rounded-xl border border-border/60">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Sîra (Prophetic biography ﷺ){% elif lang == 'ar' %}السيرة النبوية ﷺ{% else %}Sîra (biographie du Prophète ﷺ){% endif %}
+            </strong>
+            {% if lang == 'en' %}Life, historical context, and teachings.{% elif lang == 'ar' %}سيرته العطرة وسياقها التاريخي والدروس والعبر التربوية المستفادة.{% else %}Vie, contexte historique et enseignements.{% endif %}
+          </li>
+          <li class="bg-card p-4 rounded-xl border border-border/60">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Arabic language{% elif lang == 'ar' %}اللغة العربية{% else %}Langue arabe{% endif %}
+            </strong>
+            {% if lang == 'en' %}Grammar (nahw), conjugation (sarf), Quranic vocabulary, classical and modern Arabic.{% elif lang == 'ar' %}النحو والصرف والمفردات القرآنية والعربية الفصحى والمعاصرة.{% else %}Grammaire (nahw), conjugaison (sarf), vocabulaire coranique, arabe classique et moderne.{% endif %}
+          </li>
+          <li class="bg-card p-4 rounded-xl border border-border/60 md:col-span-2">
+            <strong class="text-foreground block mb-1">
+              {% if lang == 'en' %}Islamic finance{% elif lang == 'ar' %}التمويل الإسلامي{% else %}Finance islamique{% endif %}
+            </strong>
+            {% if lang == 'en' %}Principles of economic Sharia, halal contracts, alternatives to conventional banking, zakat, compliant investment.{% elif lang == 'ar' %}مبادئ الاقتصاد الإسلامي، والعقود الشرعية، وبدائل المعاملات الربوية، والزكاة، والاستثمار المتوافق.{% else %}Principes de la charia économique, contrats halal, alternatives à la banque conventionnelle, zakat, investissement conforme.{% endif %}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Notre approche -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+              <path d="M7 21h10"></path>
+              <path d="M12 3v18"></path>
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold font-heading">
+            {% if lang == 'en' %}Our approach{% elif lang == 'ar' %}منهجنا{% else %}Notre approche{% endif %}
+          </h3>
+        </div>
+        <p class="text-lg text-muted-foreground leading-relaxed bg-card p-6 rounded-xl border border-border/60 border-l-4 border-l-primary rtl:border-l-0 rtl:border-r-4 rtl:border-r-primary">
+          {% if lang == 'en' %}
+          Every piece of content published on Rissala is based on primary sources — the Quran, authentic Sunnah — and the established positions of recognized schools of law, with systematic citation of references. Our methodology prioritizes the traceability of sources over unsourced opinions.
+          {% elif lang == 'ar' %}
+          يعتمد كل محتوى يُنشر على منصة رسالة على المصادر الأساسية — القرآن الكريم والسنة النبوية الصحيحة — والمواقف المعتمدة للمذاهب الفقهية المعروفة، مع التوثيق المنهجي للمراجع. تمنح منهجيتنا الأولوية لتأصيل المصادر على الآراء غير الموثقة.
+          {% else %}
+          Chaque contenu publié sur Rissala repose sur des sources primaires — Coran, Sunna authentifiée — et sur les positions établies des écoles juridiques reconnues, avec citation systématique des références. Notre méthodologie privilégie la traçabilité des sources à l'opinion non sourcée.
+          {% endif %}
+        </p>
+      </div>
+
+      <!-- À qui s'adresse Rissala -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold font-heading">
+            {% if lang == 'en' %}Who Rissala is for{% elif lang == 'ar' %}لمن توجه منصة رسالة{% else %}À qui s'adresse Rissala{% endif %}
+          </h3>
+        </div>
+        <p class="text-lg text-muted-foreground leading-relaxed mb-4">
+          {% if lang == 'en' %}
+          Rissala is aimed at new Muslims, students of Islamic sciences, people learning the Arabic language, and anyone wishing to structure their understanding of Islam or the principles of Islamic finance — in French, English, or Arabic.
+          {% elif lang == 'ar' %}
+          رسالة موجهة للمسلمين الجدد، وطلبة العلم الشرعي، ومتعلمي اللغة العربية، وكل من يرغب في بناء فهم منهجي للإسلام أو لمبادئ التمويل الإسلامي — باللغات الفرنسية، الإنجليزية، أو العربية.
+          {% else %}
+          Rissala s'adresse aux nouveaux musulmans, aux étudiants en sciences islamiques, aux personnes en apprentissage de la langue arabe, et à toute personne souhaitant structurer sa compréhension de l'islam ou des principes de la finance islamique — en français, en anglais ou en arabe.
+          {% endif %}
+        </p>
+        <div class="flex items-center gap-4 bg-primary/5 p-4 rounded-xl border border-primary/20">
+          <svg class="h-8 w-8 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" x2="22" y1="12" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <p class="text-muted-foreground">
+            {% if lang == 'en' %}
+            Rissala is designed for an international audience: each linguistic version provides full and native access to the same level of standard and rigor.
+            {% elif lang == 'ar' %}
+            صُممت رسالة لجمهور عالمي: حيث توفر كل نسخة لغوية وصولاً كاملاً وأصلياً بنفس مستوى الدقة والجودة.
+            {% else %}
+            Rissala est pensée pour une audience internationale : chaque version linguistique offre un accès complet et natif au même niveau d'exigence et de rigueur.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

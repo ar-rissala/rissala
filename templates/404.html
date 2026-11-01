@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+  <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary font-bold text-2xl mb-6 font-mono">
+    404
+  </div>
+  <h1 class="text-3xl sm:text-4xl font-bold text-foreground font-heading">{{ ui.404_title|default:"Page introuvable (404)" }}</h1>
+  <p class="mt-4 text-muted-foreground text-base max-w-xl mx-auto">
+    {{ ui.404_desc|default:"La page que vous recherchez n'existe pas ou a été déplacée." }}
+  </p>
+  <div class="mt-8 flex items-center justify-center gap-4">
+    <a href="/{{ current_lang|default:'fr' }}/" class="px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-colors shadow-sm">
+      {{ ui.404_cta|default:"Retourner à l'accueil" }}
+    </a>
+    <a href="{{ nav_urls.books }}" class="px-6 py-3 rounded-xl border border-border hover:border-primary/50 text-foreground font-semibold text-sm transition-colors bg-card">
+      {{ ui.nav_books|default:"Livres" }}
+    </a>
+  </div>
+</div>
+{% endblock %}
+
