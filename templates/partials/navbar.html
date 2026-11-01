@@ -1,11 +1,26 @@
 {% load static rissala_tags %}
 <header
+  id="site-header"
   x-data="{
     mobileOpen: false,
     langOpen: false,
     userMenuOpen: false,
     scrolled: false,
     isDark: document.documentElement.classList.contains('dark'),
+    toggleMobile() {
+      this.mobileOpen = !this.mobileOpen;
+      if (this.mobileOpen) {
+        this.langOpen = false;
+        this.userMenuOpen = false;
+        document.body.classList.add('overflow-hidden');
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+    },
+    closeMobile() {
+      this.mobileOpen = false;
+      document.body.classList.remove('overflow-hidden');
+    },
     toggleTheme() {
       this.isDark = !this.isDark;
       if (this.isDark) {
@@ -18,8 +33,8 @@
     }
   }"
   @scroll.window="scrolled = (window.pageYOffset > 10)"
-  @keydown.escape.window="mobileOpen = false; langOpen = false; userMenuOpen = false"
-  :class="scrolled ? 'border-b border-border/80 bg-background/90 backdrop-blur-xl shadow-sm' : 'border-b border-border/40 bg-background/75 backdrop-blur-md'"
+  @keydown.escape.window="closeMobile(); langOpen = false; userMenuOpen = false"
+  :class="mobileOpen ? 'bg-background border-b border-border shadow-md' : (scrolled ? 'border-b border-border/80 bg-background/90 backdrop-blur-xl shadow-sm' : 'border-b border-border/40 bg-background/75 backdrop-blur-md')"
   class="sticky top-0 z-50 w-full transition-all duration-300"
 >
   <div class="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 relative">
@@ -216,7 +231,7 @@
         @click="toggleTheme()"
         :title="isDark ? 'Passer en mode clair' : 'Passer en mode sombre'"
         :aria-label="isDark ? 'Passer en mode clair' : 'Passer en mode sombre'"
-        class="flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors cursor-pointer"
+        class="flex items-center justify-center w-10 h-10 rounded-xl border border-border/60 bg-background/80 hover:bg-muted/50 text-foreground transition-all cursor-pointer"
       >
         <svg x-cloak x-show="isDark" class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="4"></circle>
@@ -234,10 +249,11 @@
         </svg>
       </button>
 
+      <!-- Quick Search Button -->
       <a
         href="{% localized_url 'search' %}"
         aria-label="{{ ui.nav_search }}"
-        class="flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors"
+        class="flex items-center justify-center w-10 h-10 rounded-xl border border-border/60 bg-background/80 hover:bg-muted/50 text-foreground transition-all"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8"></circle>
@@ -245,11 +261,14 @@
         </svg>
       </a>
 
+      <!-- Burger Menu Button -->
       <button
         type="button"
-        @click="mobileOpen = !mobileOpen"
-        class="flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-muted/50 transition-colors cursor-pointer"
+        data-mobile-toggle
+        @click="toggleMobile()"
+        class="flex items-center justify-center w-10 h-10 rounded-xl border border-border/80 bg-background/90 hover:bg-muted/60 text-foreground transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary shadow-xs"
         :aria-expanded="mobileOpen"
+        aria-controls="mobile-nav-panel"
         aria-label="Ouvrir ou fermer le menu"
       >
         <svg x-show="!mobileOpen" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -257,53 +276,69 @@
           <line x1="4" x2="20" y1="6" y2="6"></line>
           <line x1="4" x2="20" y1="18" y2="18"></line>
         </svg>
-        <svg x-cloak x-show="mobileOpen" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M18 6 6 18"></path>
-          <path d="m6 6 12 12"></path>
+        <svg x-cloak x-show="mobileOpen" class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Fullscreen Overlay Menu (Exact match to Navbar.tsx) -->
+  <!-- Mobile & Tablet Fullscreen Drawer Menu -->
   <div
+    id="mobile-nav-panel"
     x-cloak
     x-show="mobileOpen"
-    x-transition.opacity
-    class="fixed inset-0 z-40 lg:hidden bg-background/95 backdrop-blur-xl overflow-y-auto"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-2"
+    class="fixed inset-x-0 top-16 bottom-0 z-40 lg:hidden bg-background/98 border-t border-border/60 shadow-2xl overflow-y-auto"
+    style="height: calc(100dvh - 4rem); min-height: calc(100vh - 4rem);"
   >
-    <div class="flex flex-col items-center min-h-screen px-6 pt-20 pb-12">
+    <div class="flex flex-col items-center w-full min-h-full px-5 py-6">
       {% if user.is_authenticated %}
-      <div class="flex items-center gap-3 mb-6 px-4 py-3 rounded-xl bg-muted/30 border border-border/50 w-full max-w-sm">
-        <span class="w-9 h-9 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center shrink-0">
+      <div class="flex items-center gap-3 mb-5 px-4 py-3 rounded-2xl bg-muted/40 border border-border/60 w-full max-w-sm shadow-xs">
+        <span class="w-10 h-10 rounded-xl bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center shrink-0 shadow-xs">
           {{ user.display_name|slice:":1"|upper }}
         </span>
-        <div class="min-w-0">
+        <div class="min-w-0 flex-1">
           <p class="text-sm font-semibold text-foreground truncate">{{ user.display_name }}</p>
           <p class="text-xs text-muted-foreground truncate">{{ user.email }}</p>
         </div>
       </div>
       {% endif %}
 
-      <nav class="flex flex-col items-center w-full max-w-sm">
+      <!-- Navigation Links -->
+      <nav aria-label="Navigation mobile" class="flex flex-col items-center w-full max-w-sm space-y-1">
         {% for item in nav_items %}
-        <div class="w-full border-b border-border/30 last:border-0">
+        <div class="w-full">
           <a
             href="{{ item.url }}"
-            class="flex items-center justify-center w-full py-3.5 px-4 text-lg font-medium transition-colors text-center {% if request.path == item.url %}text-primary font-semibold{% else %}text-foreground hover:text-primary{% endif %}"
+            @click="closeMobile()"
+            class="flex items-center justify-between w-full py-3 px-4 rounded-xl text-base font-medium transition-all {% if request.path == item.url or item.key != 'home' and item.url in request.path %}bg-primary/10 text-primary font-semibold{% else %}text-foreground hover:bg-muted/50 hover:text-primary{% endif %}"
           >
-            {{ item.label }}
+            <span>{{ item.label }}</span>
+            {% if request.path == item.url or item.key != 'home' and item.url in request.path %}
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            {% else %}
+            <svg class="w-4 h-4 text-muted-foreground/50 {% if is_rtl %}rotate-180{% endif %}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"></path>
+            </svg>
+            {% endif %}
           </a>
         </div>
         {% endfor %}
       </nav>
 
-      <div class="flex flex-col gap-3 w-full max-w-sm mt-6 pt-6 border-t border-border/50">
+      <!-- Bottom Controls: Language + Theme + Auth -->
+      <div class="flex flex-col gap-3 w-full max-w-sm mt-6 pt-6 border-t border-border/60">
         <!-- Theme Toggle in Mobile Menu -->
         <button
           type="button"
           @click="toggleTheme()"
-          class="flex items-center justify-between w-full h-12 px-4 rounded-xl border border-border bg-card text-foreground font-medium text-sm hover:bg-muted/40 transition-colors"
+          class="flex items-center justify-between w-full h-11 px-4 rounded-xl border border-border bg-card text-foreground font-medium text-sm hover:bg-muted/40 transition-colors cursor-pointer"
         >
           <span class="flex items-center gap-2.5">
             <svg x-cloak x-show="isDark" class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -325,13 +360,14 @@
           <span class="text-xs px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-medium" x-text="isDark ? 'Actif' : 'Clair'"></span>
         </button>
 
-        <div class="flex justify-center gap-2 mb-2">
+        <!-- Language switcher buttons -->
+        <div class="grid grid-cols-3 gap-2">
           {% for l_code, l_url in lang_switch_urls.items %}
           <a
             href="{{ l_url }}"
-            class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border {% if l_code == lang %}bg-primary text-primary-foreground border-primary{% else %}bg-card text-foreground border-border/80{% endif %}"
+            class="flex items-center justify-center h-10 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all {% if l_code == lang %}bg-primary text-primary-foreground border-primary shadow-xs{% else %}bg-card text-foreground border-border/80 hover:bg-muted/40{% endif %}"
           >
-            {{ l_code|upper }}
+            {% if l_code == 'fr' %}FR{% elif l_code == 'en' %}EN{% else %}العربية{% endif %}
           </a>
           {% endfor %}
         </div>
@@ -339,23 +375,36 @@
         {% if user.is_authenticated %}
         <a
           href="{% localized_url 'dashboard' %}"
-          class="w-full h-12 rounded-xl border border-border bg-card text-foreground font-medium text-base flex items-center justify-center gap-2 hover:bg-muted/40 transition-colors"
+          @click="closeMobile()"
+          class="w-full h-11 rounded-xl border border-border bg-card text-foreground font-medium text-sm flex items-center justify-center gap-2 hover:bg-muted/40 transition-colors shadow-xs"
         >
+          <svg class="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
           {{ ui.nav_member }}
         </a>
         <a
           href="/{{ lang }}/deconnexion/"
-          class="w-full h-12 rounded-xl border border-destructive/40 text-destructive font-medium text-base flex items-center justify-center hover:bg-destructive/10 transition-colors"
+          class="w-full h-11 rounded-xl border border-destructive/30 text-destructive font-medium text-sm flex items-center justify-center gap-2 hover:bg-destructive/10 transition-colors"
         >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>
           {{ ui.nav_logout }}
         </a>
         {% else %}
-        <a
-          href="{% localized_url 'login' %}"
-          class="w-full h-12 rounded-xl bg-primary text-primary-foreground font-medium text-base flex items-center justify-center shadow-sm hover:opacity-95 transition-all"
-        >
-          {{ ui.nav_login }}
-        </a>
+        <div class="grid grid-cols-2 gap-2 mt-1">
+          <a
+            href="{% localized_url 'login' %}"
+            @click="closeMobile()"
+            class="w-full h-11 rounded-xl bg-primary text-primary-foreground font-medium text-sm flex items-center justify-center shadow-xs hover:opacity-95 transition-all"
+          >
+            {{ ui.nav_login }}
+          </a>
+          <a
+            href="{% localized_url 'register' %}"
+            @click="closeMobile()"
+            class="w-full h-11 rounded-xl border border-border bg-card text-foreground font-medium text-sm flex items-center justify-center hover:bg-muted/40 transition-colors"
+          >
+            {{ ui.nav_register }}
+          </a>
+        </div>
         {% endif %}
       </div>
     </div>

@@ -609,3 +609,12 @@ class RissalaFullPlatformTestSuite(TestCase):
             self.assertNotIn("fenals", content.lower())
             self.assertNotIn("13010", content)
             self.assertNotIn("88909075900024", content)
+
+    def test_mobile_burger_menu_elements(self):
+        """Verify the burger toggle button and mobile navigation drawer are rendered in the navbar."""
+        res = self.client.get("/fr/")
+        self.assertEqual(res.status_code, 200)
+        content = res.content.decode("utf-8")
+        self.assertIn("data-mobile-toggle", content)
+        self.assertIn('id="mobile-nav-panel"', content)
+        self.assertIn("toggleMobile()", content)
